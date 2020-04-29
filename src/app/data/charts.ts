@@ -1,16 +1,17 @@
 import { Colors } from '../constants/colors.service';
 
 export const polarAreaChartData = {
-  labels: ['Sales', 'Orders', 'Stock'],
+  labels: ['ทดสอบ', 'ทดสอบ1', 'ทดสอบ3', 'ทดสอบ2'],
   datasets: [
     {
-      data: [80, 90, 70],
+      data: [80, 90, 70,100],
       borderWidth: 2,
-      borderColor: [Colors.getColors().themeColor1, Colors.getColors().themeColor2, Colors.getColors().themeColor3],
+      borderColor: [Colors.getColors().themeColor1, Colors.getColors().themeColor2, Colors.getColors().themeColor3, Colors.getColors().themeColor4],
       backgroundColor: [
         Colors.getColors().themeColor1_10,
         Colors.getColors().themeColor2_10,
-        Colors.getColors().themeColor3_10
+        Colors.getColors().themeColor3_10,
+        Colors.getColors().themeColor4_10
       ]
     }
   ]
@@ -97,7 +98,7 @@ export const scatterChartData = {
       ]
     },
     {
-      borderWidth: 2,
+      borderWidth: 20,
       showLine: false,
       label: 'Desserts',
       borderColor: Colors.getColors().themeColor2,
@@ -152,41 +153,51 @@ export const radarChartData = {
       borderColor: Colors.getColors().themeColor2,
       backgroundColor: Colors.getColors().themeColor2_10,
       data: [68, 80, 95]
+    },
+    {
+      label: 'Order5',
+      borderWidth: 2,
+      pointBackgroundColor: Colors.getColors().themeColor3,
+      borderColor: Colors.getColors().themeColor3,
+      backgroundColor: Colors.getColors().themeColor3_10,
+      data: [80, 30, 165]
     }
   ],
   labels: ['Cakes', 'Desserts', 'Cupcakes']
 };
 
 export const pieChartData = {
-  labels: ['Cakes', 'Cupcakes', 'Desserts'],
+  labels: ['Cakes', 'Cupcakes', 'Desserts','Dessertss'],
   datasets: [
     {
       label: '',
-      borderColor: [Colors.getColors().themeColor1, Colors.getColors().themeColor2, Colors.getColors().themeColor3],
+      borderColor: [Colors.getColors().themeColor1, Colors.getColors().themeColor2, Colors.getColors().themeColor3,Colors.getColors().themeColor4],
       backgroundColor: [
         Colors.getColors().themeColor1_10,
         Colors.getColors().themeColor2_10,
-        Colors.getColors().themeColor3_10
+        Colors.getColors().themeColor3_10,
+        Colors.getColors().themeColor4_10
       ],
       borderWidth: 2,
-      data: [15, 25, 20]
+      data: [15, 25, 20,15]
     }
   ]
 };
 
 export const doughnutChartData = {
-  labels: ['Cakes', 'Cupcakes', 'Desserts'],
+  labels: ['Cakes', 'Cupcakes', 'Desserts','Dessertss'],
   datasets: [
     {
       label: '',
-      borderColor: [Colors.getColors().themeColor3, Colors.getColors().themeColor2, Colors.getColors().themeColor1],
+      borderColor: [Colors.getColors().themeColor1, Colors.getColors().themeColor2, Colors.getColors().themeColor3,Colors.getColors().themeColor4],
       backgroundColor: [
         Colors.getColors().themeColor3_10,
         Colors.getColors().themeColor2_10,
-        Colors.getColors().themeColor1_10
+        Colors.getColors().themeColor1_10,
+        Colors.getColors().themeColor4_10
       ],
       borderWidth: 2,
-      data: [15, 25, 20]
+      data: [15, 25, 20,55]
     }
   ]
 };
