@@ -28,7 +28,7 @@ export class GlideThumbsComponent implements OnInit, AfterViewInit, OnDestroy {
   thumbsPerView;
   renderArrows = true;
   activeIndex = 0;
-
+  updateTimeout;
   sidebarSubscription: Subscription;
   sidebar;
 
@@ -106,13 +106,16 @@ export class GlideThumbsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    clearTimeout(this.updateTimeout);
+    this.updateTimeout = null;
+
     this.glideCarouselImages.destroy();
     this.glideCarouselThumbs.destroy();
     this.sidebarSubscription.unsubscribe();
   }
 
   update() {
-    setTimeout(() => {
+    this.updateTimeout = setTimeout(() => {
       this.glideCarouselThumbs.update();
       this.glideCarouselImages.update();
     }, 500);

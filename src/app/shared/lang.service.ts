@@ -18,8 +18,8 @@ export class LangService {
   supportedLanguages: Language[] = [
     { code: 'th-TH', direction: 'ltr', label: 'ภาษาไทย', shorthand: 'th' },
     { code: 'en-US', direction: 'ltr', label: 'English', shorthand: 'en' },
-    { code: 'es-ES', direction: 'ltr', label: 'Español', shorthand: 'es' },
-    { code: 'en-EN', direction: 'rtl', label: 'English - RTL', shorthand: 'enrtl' }
+    // { code: 'es-ES', direction: 'ltr', label: 'Español', shorthand: 'es' },
+    // { code: 'en-EN', direction: 'rtl', label: 'English - RTL', shorthand: 'enrtl' }
   ];
 
   constructor(private translate: TranslateService, private rendererFactory: RendererFactory2, private router: Router) {
@@ -27,10 +27,10 @@ export class LangService {
   }
 
   init() {
-    this.translate.setTranslation('th-TH', th);
     this.translate.setTranslation('en-US', en);
-    this.translate.setTranslation('es-ES', es);
-    this.translate.setTranslation('en-EN', en);
+    // this.translate.setTranslation('es-ES', es);
+    // this.translate.setTranslation('en-EN', en);
+    this.translate.setTranslation('th-TH', th);
     this.translate.setDefaultLang(this.defaultLanguage);
     if (this.isSingleLang) {
       this.translate.use(this.defaultLanguage);

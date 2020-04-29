@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { SidebarService, ISidebar } from 'src/app/containers/layout/sidebar/sidebar.service';
 
 @Component({

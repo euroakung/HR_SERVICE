@@ -20,10 +20,6 @@
   },
   "menu": {
     "app": "Home",
-    "vien": "Vien",
-    "start": "Start",
-    "second-menu": "Second Menu",
-    "second": "Second",
     "dashboards": "Dashboards",
     "default": "Default",
     "analytics": "Analytics",

@@ -12,6 +12,7 @@ export class GlideComponent implements AfterContentInit, AfterViewInit, OnDestro
   @Input() settings;
   @ViewChild('glideRef', { static: true }) glideRef: ElementRef;
   @ViewChild('glideSlides', { static: true }) glideSlides: ElementRef;
+  updateTimeout;
   glideCarousel;
   glideCount = [];
   direction = 'ltr';
@@ -48,7 +49,7 @@ export class GlideComponent implements AfterContentInit, AfterViewInit, OnDestro
   }
 
   update() {
-    setTimeout(() => {
+    this.updateTimeout = setTimeout(() => {
       this.glideCarousel.update();
     }, 500);
   }
@@ -58,6 +59,8 @@ export class GlideComponent implements AfterContentInit, AfterViewInit, OnDestro
   }
 
   ngOnDestroy() {
+    clearTimeout(this.updateTimeout);
+    this.updateTimeout = null;
     this.glideCarousel.destroy();
     this.sidebarSubscription.unsubscribe();
   }

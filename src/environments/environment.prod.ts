@@ -19,7 +19,7 @@ export const environment = {
   isDarkSwitchActive: true,
   defaultDirection: 'ltr',
   themeRadiusStorageKey: 'vien-themeradius',
-  isAuthGuardActive: true,
+  isAuthGuardActive: false,
   firebase: {
     apiKey: 'AIzaSyCqoNLB_jTw4nncO12qR-eDH9gAeWiZVaw',
     authDomain: 'vien-angular-login.firebaseapp.com',
