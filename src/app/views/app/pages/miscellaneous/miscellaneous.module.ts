@@ -12,7 +12,9 @@ import { PricesComponent } from './prices/prices.component';
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 import { ComponentsCardsModule } from 'src/app/components/cards/components.cards.module';
 import { PagesContainersModule } from 'src/app/containers/pages/pages.containers.module';
-import { PaginationModule, CollapseModule } from 'ngx-bootstrap';
+import { PaginationModule } from 'ngx-bootstrap/pagination'; 
+import {   CollapseModule } from 'ngx-bootstrap/collapse';
+
 import { LayoutContainersModule } from 'src/app/containers/layout/layout.containers.module';
 
 @NgModule({

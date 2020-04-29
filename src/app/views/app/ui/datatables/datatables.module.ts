@@ -9,7 +9,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { PagesContainersModule } from 'src/app/containers/pages/pages.containers.module';
 import { ResponsiveComponent } from './responsive/responsive.component';
-import { PaginationModule } from 'ngx-bootstrap';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { LayoutContainersModule } from 'src/app/containers/layout/layout.containers.module';
 
 

@@ -6,7 +6,7 @@ import { ImageOverlayComponent } from './image-overlay/image-overlay.component';
 import { ImageCardListComponent } from './image-card-list/image-card-list.component';
 import { TabCardsComponent } from './tab-cards/tab-cards.component';
 import { UserCardsComponent } from './user-cards/user-cards.component';
-import { TabsModule } from 'ngx-bootstrap';
+import {  TabsModule  } from 'ngx-bootstrap/tabs';
 
 @NgModule({
   declarations: [

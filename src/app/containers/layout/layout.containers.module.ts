@@ -7,7 +7,11 @@ import { TopnavComponent } from './topnav/topnav.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { ColorSwitcherComponent } from './color-switcher/color-switcher.component';
-import { CollapseModule, BsDropdownModule, TooltipModule } from 'ngx-bootstrap';
+import {   TooltipModule } from 'ngx-bootstrap/tooltip';
+import {  CollapseModule  } from 'ngx-bootstrap/collapse';
+import {  BsDropdownModule  } from 'ngx-bootstrap/dropdown';
+
+
 import { FooterComponent } from './footer/footer.component';
 import { HeadingComponent } from './heading/heading.component';
 import { ApplicationMenuComponent } from './application-menu/application-menu.component';

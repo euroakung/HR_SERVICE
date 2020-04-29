@@ -16,7 +16,7 @@ import { ModalDirectiveComponent } from './modal-directive/modal-directive.compo
 import { ModalSizesComponent } from './modal-sizes/modal-sizes.component';
 import { ModalChildComponent } from './modal-child/modal-child.component';
 import { ModalInnerComponent } from './modal-component/modal-inner-component';
-import { ModalModule } from 'ngx-bootstrap';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [

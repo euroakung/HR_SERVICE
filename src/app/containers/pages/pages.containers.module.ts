@@ -1,7 +1,14 @@
+import { tap } from 'rxjs/operators';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { CollapseModule, RatingModule, TabsModule, AccordionModule, BsDropdownModule } from 'ngx-bootstrap';
+import {  RatingModule,     } from 'ngx-bootstrap/rating';
+
+import {  AccordionModule } from 'ngx-bootstrap/accordion';
+import {  BsDropdownModule  } from 'ngx-bootstrap/dropdown';
+import {  CollapseModule  } from 'ngx-bootstrap/collapse';
+import {  TabsModule  } from 'ngx-bootstrap/tabs';
+
 import { FormsModule } from '@angular/forms';
 import { LightboxModule } from 'ngx-lightbox';
 import { SharedModule } from 'src/app/shared/shared.module';

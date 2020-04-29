@@ -5,8 +5,9 @@
         <h5 class="mb-4">{{ 'form-components.date-picker' | translate }}</h5>
         <form [formGroup]="form" class="form-group mb-3">
           <label>{{ 'form-components.date' | translate }}</label>
-          <input type="text" placeholder="Datepicker" class="form-control" formControlName="basicDate"
-          bsDatepicker [container]="'html'" [bsConfig]="{ adaptivePosition: true, dateInputFormat: 'DD-MM-YYYY' }">
+         <input type="text" placeholder="Datepicker" class="form-control" formControlName="basicDate"
+          bsDatepicker [container]="'html'" [bsConfig]="{ adaptivePosition: true, dateInputFormat: 'DD/MM/YYYY' }">
+         
         </form>
         <div class="form-group mb-3">
           <label>{{ 'form-components.date-range' | translate }}</label>

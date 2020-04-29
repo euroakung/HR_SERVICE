@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { CollapseModule } from 'ngx-bootstrap';
+import {  CollapseModule  } from 'ngx-bootstrap/collapse';
 import { FormsModule } from '@angular/forms';
 import { AddNewTodoModalComponent } from './add-new-todo-modal/add-new-todo-modal.component';
 import { SharedModule } from 'src/app/shared/shared.module';

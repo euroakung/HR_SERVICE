@@ -12,7 +12,14 @@ import { PagesContainersModule } from 'src/app/containers/pages/pages.containers
 import { HotkeyModule } from 'angular2-hotkeys';
 import { ComponentsCardsModule } from 'src/app/components/cards/components.cards.module';
 import { ComponentsChartModule } from 'src/app/components/charts/components.charts.module';
-import { RatingModule, PaginationModule, TabsModule, ModalModule, BsDropdownModule, AccordionModule } from 'ngx-bootstrap';
+import { RatingModule  } from 'ngx-bootstrap/rating'; 
+import {  AccordionModule } from 'ngx-bootstrap/accordion';
+import {  BsDropdownModule  } from 'ngx-bootstrap/dropdown';
+import {  ModalModule  } from 'ngx-bootstrap/modal';
+import {  PaginationModule  } from 'ngx-bootstrap/pagination'; 
+import {  TabsModule  } from 'ngx-bootstrap/tabs'; 
+
+
 import { FormsModule as FormsModuleAngular, ReactiveFormsModule } from '@angular/forms';
 import { LayoutContainersModule } from 'src/app/containers/layout/layout.containers.module';
 import { ContextMenuModule } from 'ngx-contextmenu';

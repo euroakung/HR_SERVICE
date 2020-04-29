@@ -11,8 +11,12 @@ import { FormsModule } from '@angular/forms';
 import { HotkeyModule } from 'angular2-hotkeys';
 import { ApplicationsContainersModule } from 'src/app/containers/applications/applications.containers.module';
 import { ComponentsChartModule } from 'src/app/components/charts/components.charts.module';
-import { SortablejsModule } from 'ngx-sortablejs';
-import { CollapseModule, TabsModule, ProgressbarModule, ModalModule } from 'ngx-bootstrap';
+import { SortablejsModule } from 'ngx-sortablejs'; 
+import {  CollapseModule  } from 'ngx-bootstrap/collapse'; 
+import {  ModalModule  } from 'ngx-bootstrap/modal'; 
+import {  ProgressbarModule  } from 'ngx-bootstrap/progressbar'; 
+import {  TabsModule  } from 'ngx-bootstrap/tabs';  
+
 import { LayoutContainersModule } from 'src/app/containers/layout/layout.containers.module';
 
 @NgModule({

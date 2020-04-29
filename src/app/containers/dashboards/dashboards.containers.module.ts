@@ -29,7 +29,11 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { ComponentsCardsModule } from 'src/app/components/cards/components.cards.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { SortablejsModule } from 'ngx-sortablejs';
-import { RatingModule, ProgressbarModule, ModalModule, BsDropdownModule } from 'ngx-bootstrap';
+import { RatingModule  } from 'ngx-bootstrap/rating';
+import {  BsDropdownModule  } from 'ngx-bootstrap/dropdown';
+import {  ModalModule  } from 'ngx-bootstrap/modal';
+
+import {  ProgressbarModule  } from 'ngx-bootstrap/progressbar';
 import { FormsModule  } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 
