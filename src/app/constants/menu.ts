@@ -34,8 +34,6 @@ const data: IMenuItem[] = [{
   }
   ]
 },
-
-
  
 {
   id: 'profile',
@@ -96,7 +94,14 @@ const data: IMenuItem[] = [{
 }
   ]
 },
-
+{
+  id: 'approve-leave',
+  icon: 'iconsminds-check',
+  label: 'menu.approve-leave',
+ // to: 'http://app.personnel.up.ac.th/SalaryUP/',
+ to: '/app/pages/miscellaneous/search',
+  
+},
  
 {
    id: 'applications',

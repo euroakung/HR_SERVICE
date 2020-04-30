@@ -114,12 +114,12 @@
     "person-position": "การดำรงดำแหน่ง",
     "person-salary": "เงินเดือน",
     "person-document": "เอกสารต่างๆ",
-
+    
     "person-doc-copy": "คัดสำเนา",
     "person-certification": "หนังสือรับรอง",
     "person-pvd-fund": "กองทุนสำรองเลี้ยงชีพ",
     "person-benefit-fund": "เบิกสวัสดิการ",
-
+    "approve-leave": "อนุมัติการลา",
     "applications": "แอพ",
     "leave": "การลา",
     "app-leave": "การลา",
@@ -336,7 +336,8 @@
     "pending-tasks": "รอดำเนินการ",
     "completed-tasks": "อนุญาต",
     "categories": "Categories",
-    "labels": "Labels"
+    "labels": "Labels",
+    "results": "สถิติการลา"
   },
   "alert": {
     "rounded": "Rounded Alert",

@@ -2,14 +2,10 @@
   <div class=" row app-row survey-app pb-4">
     <ng-container *ngIf="currentSurvey; else loading">
       <div class="col-12">
-        <h1>
-          <i [ngClass]="{
-                  'heading-icon': true,
-                  'simple-icon-check': currentSurvey.status === 'COMPLETED',
-                  'simple-icon-refresh': currentSurvey.status !== 'COMPLETED'
-                }"></i>
+        <h1> 
+    <i class="  simple-icon-calendar "></i> 
           <span class="align-middle d-inline-block pt-1">
-            {{ currentSurvey.title }}
+          &nbsp;  {{ currentSurvey.title }} {{ currentSurvey.title }} 
           </span>
         </h1>
         <div class="top-right-button-container">
@@ -20,19 +16,15 @@
               class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" aria-controls="dropdown-split">
               <span class="caret"></span>
             </button>
-            <ul id="dropdown-split" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
-              <li role="menuitem"><a class="dropdown-item" href="javascript:;">{{ 'survey.edit' | translate }}</a></li>
-              <li role="menuitem"><a class="dropdown-item" href="javascript:;">{{ 'survey.delete' | translate }}</a>
-              </li>
-            </ul>
+            
           </div>
         </div>
-        <app-breadcrumb></app-breadcrumb>
+        <!-- <app-breadcrumb></app-breadcrumb> -->
 
         <tabset class="separator-tabs ml-0">
-          <tab [heading]="('survey.details' | translate)" class="tab-content">
+          <tab [heading]="('leave.detail' | translate)" class="tab-content">
             <div class="row">
-              <div class="col-12 col-lg-4 mb-4">
+              <div class="col-12 col-lg-8 mb-4">
                 <div class="card mb-4">
                   <div class="card-body">
                     <p class="list-item-heading mb-4">{{ 'survey.summary' | translate }}</p>
@@ -53,7 +45,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-12 col-lg-8">
+              <div class="col-12 col-lg-4">
                 <div class="sortable-survey" [sortablejs]="[1,2,3,4]" [sortablejsOptions]="{ handle: '.drag' }">
                   <app-question-builder *ngFor="let item of currentSurvey.questions; let i=index" [question]="item"
                     [sort]="i+1"></app-question-builder>
@@ -66,7 +58,7 @@
               </div>
             </div>
           </tab>
-          <tab [heading]="('survey.results' | translate)" class="tab-content">
+          <tab [heading]="('leave.results' | translate)" class="tab-content">
             <div class="row">
               <div class="col-12 col-lg-4">
                 <div class="card mb-4">
@@ -224,71 +216,67 @@
     </ng-template>
   </div>
   <app-application-menu>
-    <perfect-scrollbar class="scroll" [config]="{suppressScrollX: true, wheelPropagation: false}">
-      <div class="p-4 h-100">
-        <p class="text-muted text-small mb-3">{{ 'survey.status' | translate }}</p>
-        <ul class="list-unstyled mb-4">
-          <li class="nav-item">
-            <a href="#">
-              <i class="simple-icon-reload"></i>{{ 'survey.all-surveys' | translate }}
-              <span class="float-right">24</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#">
-              <i class="simple-icon-refresh"></i>{{ 'survey.active-surveys' | translate }}
-              <span class="float-right">20</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#">
-              <i class="simple-icon-check"></i>{{ 'survey.completed-surveys' | translate }}
-              <span class="float-right">4</span>
-            </a>
-          </li>
-        </ul>
-        <p class="text-muted text-small mb-4">
-          {{ 'survey.categories' | translate }}
-        </p>
-        <ul class="list-unstyled mb-5">
-          <li>
-            <div class="custom-control custom-checkbox mb-2">
-              <input type="checkbox" class="custom-control-input" id="category1">
-              <label class="custom-control-label" for="category1">Development</label>
-            </div>
-          </li>
-          <li>
-            <div class="custom-control custom-checkbox mb-2">
-              <input type="checkbox" class="custom-control-input" id="category2">
-              <label class="custom-control-label" for="category2">Workplace</label>
-            </div>
-          </li>
-          <li>
-            <div class="custom-control custom-checkbox ">
-              <input type="checkbox" class="custom-control-input" id="category3">
-              <label class="custom-control-label" for="category3">Hardware</label>
-            </div>
-          </li>
-        </ul>
-        <p class="text-muted text-small mb-3">{{ 'survey.labels' | translate }}</p>
-        <div>
-          <p class="d-sm-inline-block mb-1">
-            <a href="javascript:;">
-              <span class="badge badge-pill badge-outline-primary mb-1 mr-1">NEW FRAMEWORK</span>
-            </a>
-          </p>
-          <p class="d-sm-inline-block mb-1">
-            <a href="javascript:;">
-              <span class="badge badge-pill badge-outline-theme-3 mb-1 mr-1">EDUCATION</span>
-            </a>
-          </p>
-          <p class="d-sm-inline-block  mb-1">
-            <a href="javascript:;">
-              <span class="badge badge-pill badge-outline-secondary mb-1 mr-1">PERSONAL</span>
-            </a>
-          </p>
+    <div class="p-4 h-100">
+        <div class="scroll">
+            <h3 class="text-muted  ">{{ 'leave.summary' | translate }}</h3>
+            <ul class="list-unstyled mb-5">
+                <li class="active">
+                    <a href="javascript:;">
+                        <i class="simple-icon-check"></i>
+                        ลาป่วย
+                        <span class="float-right">12</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <i class="simple-icon-check"></i>
+                        ลากิจ
+                        <span class="float-right">24</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <i class="simple-icon-check"></i>
+                        ลาพักผ่อน
+                        <span class="float-right">10</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <i class="simple-icon-check"></i>
+                        ลาคลอด
+                        <span class="float-right">90</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <i class="simple-icon-check"></i>
+                        ช่วยภริยา
+                        <span class="float-right">15</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <i class="simple-icon-check"></i>
+                        อุปสมบท
+                        <span class="float-right">32</span>
+                    </a>
+                </li>
+            </ul>
+            <p class="text-muted text-small">{{ 'leave.lasttime' | translate }}</p>
+            <ul class="list-unstyled mb-5">
+                <li>   <a href="javascript:;"> 
+                         <i class="simple-icon-check"></i>ลากิจ    </a>
+                </li>
+                <li>   <a href="javascript:;"> 
+                         <i class="simple-icon-calendar"></i>12/04/62 - 12/04/62    </a>
+                </li>
+                <li>   <a href="javascript:;"> 
+                         <i class="simple-icon-calculator"></i> 0.5   </a>
+                    
+                </li>
+            </ul>  
         </div>
-      </div>
-    </perfect-scrollbar>
-  </app-application-menu>
+    </div>
+</app-application-menu>
 </div>

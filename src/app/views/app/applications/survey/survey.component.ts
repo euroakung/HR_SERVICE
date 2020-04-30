@@ -49,7 +49,7 @@ export class SurveyComponent implements OnInit, OnDestroy {
   }
 
   isSelected(p: ISurvey) {
-    return this.selected.findIndex(x => x.id === p.id) > -1;
+   // return this.selected.findIndex(x => x.id === p.id) > -1;
   }
   onSelect(item: ISurvey) {
     // if (this.isSelected(item)) {
