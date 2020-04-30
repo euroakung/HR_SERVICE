@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ApplicationsComponent } from './applications.component';
 import { TodoComponent } from './todo/todo.component';
+ import { LeaveComponent } from './leave/leave.component';
+ import { LeaveDetailComponent } from './leave-detail/leave-detail.component';
 import { SurveyComponent } from './survey/survey.component';
 import { ChatComponent } from './chat/chat.component';
 import { SurveyDetailComponent } from './survey-detail/survey-detail.component';
@@ -12,6 +14,8 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: 'todo', pathMatch: 'full' },
             { path: 'todo', component: TodoComponent },
+             { path: 'leave', component: LeaveComponent },
+             { path: 'leave/:id', component: LeaveDetailComponent },
             { path: 'survey/:id/:name', component: SurveyDetailComponent },
             { path: 'survey/:id', component: SurveyDetailComponent },
             { path: 'survey', component: SurveyComponent },

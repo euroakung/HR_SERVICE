@@ -5,7 +5,7 @@ import { IServiceResponse } from 'src/app/data/service-response';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-export interface ISurvey {
+export interface ILeave {
   id: number;
   title: string;
   detail: string;
@@ -14,36 +14,22 @@ export interface ISurvey {
   label: string;
   labelColor: string;
   date: string;
-  questions?: IQuestion[];
-}
-
-export interface IQuestion {
-  id: number;
-  title: string;
-  question: string;
-  answerType: number;
-  answers?: IAnswer[];
-}
-
-export interface IAnswer {
-  value: number;
-  label: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class SurveyService {
+export class LeaveService {
 
   constructor(private http: HttpClient) { }
 
 
-  getSurveyItems(): Observable<ISurvey[]> {
+  getLeaveItems(): Observable<ILeave[]> {
     const url = `${environment.apiUrl}/surveys`;
     return this.http.get(url)
       .pipe(
-        map((res: IServiceResponse<ISurvey>) => {
-            console.log("response[survey.service][getSurveyItems]", res);
+        map((res: IServiceResponse<ILeave>) => {
+          // console.log("response[todo.service][getTodoItems]", res);
           return res.data;
         })
       );

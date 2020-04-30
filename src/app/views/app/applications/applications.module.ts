@@ -1,7 +1,10 @@
-import { NgModule } from '@angular/core';
+
+import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApplicationsComponent } from './applications.component';
-import { TodoComponent } from './todo/todo.component';
+import { TodoComponent } from './todo/todo.component'; 
+import { LeaveComponent } from './leave/leave.component';
+import { LeaveDetailComponent } from './leave-detail/leave-detail.component';
 import { SurveyComponent } from './survey/survey.component';
 import { SurveyDetailComponent } from './survey-detail/survey-detail.component';
 import { ChatComponent } from './chat/chat.component';
@@ -20,7 +23,7 @@ import {  TabsModule  } from 'ngx-bootstrap/tabs';
 import { LayoutContainersModule } from 'src/app/containers/layout/layout.containers.module';
 
 @NgModule({
-  declarations: [ApplicationsComponent, TodoComponent, SurveyComponent, SurveyDetailComponent, ChatComponent],
+  declarations: [ApplicationsComponent, TodoComponent, SurveyComponent, SurveyDetailComponent, ChatComponent,LeaveComponent,LeaveDetailComponent],
   imports: [
     CommonModule,
     SharedModule,

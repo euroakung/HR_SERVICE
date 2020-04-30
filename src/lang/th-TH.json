@@ -115,12 +115,20 @@
     "person-salary": "เงินเดือน",
     "person-document": "เอกสารต่างๆ",
 
+    "person-doc-copy": "คัดสำเนา",
+    "person-certification": "หนังสือรับรอง",
+    "person-pvd-fund": "กองทุนสำรองเลี้ยงชีพ",
+    "person-benefit-fund": "เบิกสวัสดิการ",
+
     "applications": "แอพ",
+    "leave": "การลา",
     "app-leave": "การลา",
     "app-sick": "ลาป่วย/ลาคลอด/ลากิจ",
     "app-vacation": "ลาพักผ่อน",
     "app-ordain": "ลาอุปสมบท",
     "app-helping-wife": "ลาไปช่วยเหลือภริยา",
+
+ 
     
     "product": "สินค้า",
     "miscellaneous": "เบ็ดเตล็ด",
@@ -305,6 +313,28 @@
     "all-tasks": "All Tasks",
     "pending-tasks": "Pending Tasks",
     "completed-tasks": "Completed Tasks",
+    "categories": "Categories",
+    "labels": "Labels"
+  },
+  "leave": {
+    "add-new": "สร้างใบลา",
+    "add-new-title": "สร้างใบลา", 
+    "title": "ใบลา",
+    "detail": "รายละเอียด",
+    "category": "ประเภท",
+    "label": "Label",
+    "status": "สถานะ",
+    "summary":"ข้อมูลสรุปวันลา",
+    "lasttime":"ลาครั้งล่าสุด",
+    "cancel": "ยกเลิก",
+    "submit": "บันทึก",
+    "action": "Action",
+    "another-action": "Another action",
+    "display-options": "Display Options",
+    "orderby": "เรียงโดย : ",
+    "all-tasks": "ทั้งหมด",
+    "pending-tasks": "รอดำเนินการ",
+    "completed-tasks": "อนุญาต",
     "categories": "Categories",
     "labels": "Labels"
   },

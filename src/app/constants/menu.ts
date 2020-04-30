@@ -36,34 +36,7 @@ const data: IMenuItem[] = [{
 },
 
 
-
-// {
-//   id: 'applications',
-//   icon: 'iconsminds-air-balloon-1',
-//   label: 'menu.applications',
-//   to: '/app/applications',
-//   subs: [{
-//     icon: 'simple-icon-check',
-//     label: 'menu.todo',
-//     to: '/app/applications/todo'
-//   },
-//   {
-//     icon: 'simple-icon-calculator',
-//     label: 'menu.survey',
-//     to: '/app/applications/survey'
-//   },
-//   // {
-//   //   icon: 'simple-icon-calculator',
-//   //   label: 'menu.survey-detail',
-//   //   to: '/app/applications/survey-detail'
-//   // },
-//   {
-//     icon: 'simple-icon-bubbles',
-//     label: 'menu.chat',
-//     to: '/app/applications/chat'
-//   }
-//   ]
-// },
+ 
 {
   id: 'profile',
   icon: 'iconsminds-profile',
@@ -131,34 +104,30 @@ const data: IMenuItem[] = [{
     label: 'menu.applications',
   to: '/app/pages',
   subs: [{
-    id: 'pages-profile',
+    icon: 'simple-icon-handbag', 
     label: 'menu.app-leave',
-    to: '/app/ui/forms/components',
-    subs: [
-      {
-        icon: 'iconsminds-stethoscope',
-        label: 'menu.app-sick',
-        to: '/app/ui/forms/components',
-      },
-      {
-        icon: 'simple-icon-plane',
-        label: 'menu.app-vacation',
-        to: '/app/applications/survey'
-      },
-       {
-         icon: 'iconsminds-chinese-temple',
-         label: 'menu.app-ordain',
-         to: '/app/applications/todo'
-       },
-      {
-        icon: 'iconsminds-family-sign',
-        label: 'menu.app-helping-wife',
-        to: '/app/applications/todo'
-      }
-    ]
+    to: '/app/applications/leave',
   },
-    
-  ]
+   {
+    icon: 'iconsminds-check',
+    label: 'menu.person-certification',
+    to: '/app/applications/survey' 
+  },
+  {
+   icon: 'iconsminds-printer',
+   label: 'menu.person-doc-copy',
+   to: '/app/pages/profile/social' 
+ }, {
+  icon: 'iconsminds-financial',
+  label: 'menu.person-benefit-fund',
+  to: '/app/pages/profile/social' 
+}, 
+ {
+  icon: 'iconsminds-bank',
+  label: 'menu.person-pvd-fund',
+  to: '/app/pages/profile/social' 
+},  
+  ] 
 }, 
 {
   id: 'manual',

@@ -104,17 +104,21 @@
         <div class="loading"></div>
     </ng-template>
 </div>
+
+
+
 <app-add-new-survey-modal #addNewModalRef></app-add-new-survey-modal>
+<!-- ขวา -->
 <app-application-menu>
     <perfect-scrollbar class="scroll" [config]="{suppressScrollX: true, wheelPropagation: false}">
         <div class="p-4 h-100">
             <div class="scroll">
-                <p class="text-muted text-small">{{ 'survey.status' | translate }}</p>
+                <p class="text-muted text-small">{{ 'survey.summary' | translate }}</p>
                 <ul class="list-unstyled mb-4">
                     <li class="nav-item">
                         <a href="#">
                             <i class="simple-icon-reload"></i>{{ 'survey.all-surveys' | translate }}
-                            <span class="float-right">24</span>
+                            <span class="float-right">204</span>
                         </a>
                     </li>
                     <li class="nav-item">
