@@ -3,18 +3,20 @@
         <app-heading></app-heading>
         <div class="top-right-button-container text-zero">
 
-            <div class="btn-group" dropdown>
-                <button id="button-basic" dropdownToggle type="button" class="btn btn-outline-primary dropdown-toggle"
-                  aria-controls="dropdown-basic">
-                  Dropdown <span class="caret"></span>
+
+           
+
+
+            <div dropdown>
+                <button id="button-basic" dropdownToggle type="button" placement="bottom right"
+                  class="btn btn-outline-primary dropdown-toggle btn-lg" aria-controls="dropdown-basic">{{'leave.add-new' | translate }} <span
+                    class="caret"></span>
                 </button>
-                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-                  <li role="menuitem"><a class="dropdown-item" href="javascript:;">Action</a></li>
-                  <li role="menuitem"><a class="dropdown-item" href="javascript:;">Another action</a></li>
-                  <li role="menuitem"><a class="dropdown-item" href="javascript:;">Something else here</a></li>
-                  <li class="divider dropdown-divider"></li>
-                  <li role="menuitem"><a class="dropdown-item" href="javascript:;">Separated link</a>
-                  </li>
+                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu"
+                  aria-labelledby="button-basic">
+                  <li role="menuitem"><a class="dropdown-item" href="javascript:;">{{ 'pages.action' | translate }}</a></li>
+                  <li role="menuitem"><a class="dropdown-item"
+                      href="javascript:;">{{ 'pages.another-action' | translate }}</a></li>
                 </ul>
               </div>
             <!-- <button type="button" (click)="showAddNewModal()"
@@ -37,17 +39,7 @@
                   </div> -->
  
 
-                <div class="top-right-button-container">
-                    <div dropdown>
-                      <button dropdownToggle type="button" class="btn btn-outline-primary btn-lg flex-grow-1 dropdown-toggle">
-                        {{ 'leave.add-new' | translate}} <span class="caret"></span>
-                      </button>
-                      <ul *dropdownMenu class="dropdown-menu dropdown-menu-right">
-                        <li role="menuitem"><a class="dropdown-item" href="javascript:;">Action</a></li>
-                        <li role="menuitem"><a class="dropdown-item" href="javascript:;">Another action</a></li>
-                      </ul>
-                    </div>
-                  </div>
+             
 
             <!-- <div class="btn-group" dropdown>
                 <div class="btn btn-primary btn-lg pl-4 pr-0 check-button">
@@ -207,32 +199,14 @@
                          <i class="simple-icon-check"></i>ลากิจ    </a>
                 </li>
                 <li>   <a href="javascript:;"> 
-                         <i class="simple-icon-calendar"></i>12/04/62 - 12/04/62    </a>
+                         <i class="simple-icon-calendar"></i>  {{ 'leave.days' | translate }} 12/04/62 - 12/04/62    </a>
                 </li>
                 <li>   <a href="javascript:;"> 
-                         <i class="simple-icon-calculator"></i> 0.5   </a>
+                         <i class="simple-icon-calculator"></i>  {{ 'leave.amount' | translate }} 0.5    {{ 'leave.day' | translate }}</a>
                     
                 </li>
             </ul>
-            <p class="text-muted text-small">{{ 'leave.labels' | translate }}</p>
-            <div>
-                <p class="d-sm-inline-block mb-1">6
-                    <a href="javascript:;">
-                        <span class="badge badge-pill badge-outline-primary mb-1 mr-1">NEW FRAMEWORK</span>
-                    </a>
-                </p>
-
-                <p class="d-sm-inline-block mb-1">
-                    <a href="javascript:;">
-                        <span class="badge badge-pill badge-outline-theme-3 mb-1 mr-1">EDUCATION</span>
-                    </a>
-                </p>
-                <p class="d-sm-inline-block  mb-1">
-                    <a href="javascript:;">
-                        <span class="badge badge-pill badge-outline-secondary mb-1 mr-1">PERSONAL</span>
-                    </a>
-                </p>
-            </div>
+          
         </div>
     </div>
 </app-application-menu>

@@ -1,71 +1,106 @@
-<div class="disable-text-selection">
-  <div class=" row app-row survey-app pb-4">
-    <ng-container *ngIf="currentSurvey; else loading">
-      <div class="col-12">
-        <h1>
-          <i [ngClass]="{
-                  'heading-icon': true,
-                  'simple-icon-check': currentSurvey.status === 'COMPLETED',
-                  'simple-icon-refresh': currentSurvey.status !== 'COMPLETED'
-                }"></i>
-          <span class="align-middle d-inline-block pt-1">
-            {{ currentSurvey.title }}
-          </span>
-        </h1>
-        <div class="top-right-button-container">
-          <div class="btn-group" dropdown>
-            <button type="button"
-              class="btn btn-outline-primary btn-lg flex-grow-1">{{ 'survey.save' | translate }}</button>
-            <button id="button-split" type="button" dropdownToggle
-              class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" aria-controls="dropdown-split">
-              <span class="caret"></span>
-            </button>
-            <ul id="dropdown-split" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
-              <li role="menuitem"><a class="dropdown-item" href="javascript:;">{{ 'survey.edit' | translate }}</a></li>
-              <li role="menuitem"><a class="dropdown-item" href="javascript:;">{{ 'survey.delete' | translate }}</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <app-breadcrumb></app-breadcrumb>
+ 
 
+
+ 
+
+
+  <div class="    app-row  ">
+
+    <app-list-page-header [selectAllState]="selectAllState" (selectAllChange)="selectAllChange($event)"
+    [showOrderBy]="true" [showDisplayMode]="true" (searchKeyUp)="updateFilter($event)" [itemsPerPage]="itemsPerPage" [showItemsPerPage]="false">
+  </app-list-page-header>
+  
+ 
+ 
+    <ng-container *ngIf="currentSurvey; else loading">
+      <div class="col-12"> 
         <tabset class="separator-tabs ml-0">
           <tab [heading]="('survey.details' | translate)" class="tab-content">
-            <div class="row">
-              <div class="col-12 col-lg-4 mb-4">
-                <div class="card mb-4">
-                  <div class="card-body">
-                    <p class="list-item-heading mb-4">{{ 'survey.summary' | translate }}</p>
-                    <p class="text-muted text-small mb-2">{{ 'survey.title' | translate }}</p>
-                    <p class="mb-3">{{ currentSurvey.title }}</p>
-                    <p class="text-muted text-small mb-2">{{ 'survey.details-lowercase' | translate }}</p>
-                    <p class="mb-3" [innerHTML]="currentSurvey.detail"></p>
-                    <p class="text-muted text-small mb-2">{{ 'survey.category' | translate }}</p>
-                    <p class="mb-3">{{ currentSurvey.category }}</p>
-                    <p class="text-muted text-small mb-2">{{ 'survey.label' | translate }}</p>
-                    <div>
-                      <p class="d-sm-inline-block mb-1">
-                        <span
-                          [class]="'badge badge-pill badge-'+currentSurvey.labelColor">{{ currentSurvey.label }}</span>
-                      </p>
-                      <p class="d-sm-inline-block mb-1"></p>
-                    </div>
+            <div class="row ">
+              <div class="col-12 col-lg-12 mb-12">
+                <div class="card mb-12">
+                  <div class="card-body"> 
+                   
+                      
+                      <div class="row" >
+
+                        <div class="top-right-button-container text-zero">
+                          <button type="button"  
+                              class="top-right-button btn btn-primary btn-lg mr-1">{{ 'pages.add-new' | translate}} aaa</button>
+                          <div class="btn-group" dropdown>
+                              <div class="btn btn-primary btn-lg pl-4 pr-0 check-button">
+                                  <label class="custom-control custom-checkbox mb-0 d-inline-block">
+                                      <input type="checkbox" class="custom-control-input" [checked]="selectAllState==='checked'"
+                                          [indeterminate]="selectAllState === 'indeterminate'"  >
+                                      <span class="custom-control-label">&nbsp;</span>
+                                  </label>
+                              </div>
+                              <button id="button-split" type="button" dropdownToggle
+                                  class="btn btn-primary dropdown-toggle dropdown-toggle-split" aria-controls="dropdown-split">
+                                  <span class="caret"></span>
+                              </button>
+                              <ul id="dropdown-split" *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu"
+                                  aria-labelledby="button-split">
+                                  <li role="menuitem"><a class="dropdown-item"
+                                          href="javascript:;">{{ 'pages.action' | translate }}</a></li>
+                                  <li role="menuitem"><a class="dropdown-item"
+                                          href="javascript:;">{{ 'pages.another-action' | translate }}</a>
+                                  </li>
+                              </ul>
+                          </div>
+                      </div>
+                         <div class="col-12  data-table-rows data-table-scrollable">
+                          <ngx-datatable [rows]="rows" [columns]="columns" [columnMode]="ColumnMode.flex" #table [headerHeight]="20"
+                            [sorts]="[{ prop: 'title', dir: 'asc' }]" (select)="onSelect($event)" [selected]="selected"
+                            [selectionType]="SelectionType.checkbox">
+                            <ngx-datatable-column name="Title" [flexGrow]="1.2">
+                              <ng-template let-value="value" ngx-datatable-cell-template>
+                                <a class="c-pointer">{{ value }}</a>
+                              </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Sales" [flexGrow]="0.7">
+                              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                {{ value }}
+                              </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Category" [flexGrow]="1.1">
+                              <ng-template let-value="value" ngx-datatable-cell-template>
+                                {{ value }}
+                              </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Id" [width]="120" [sortable]="false" [canAutoResize]="false" [draggable]="false">
+                              <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
+                                let-selectFn="selectFn">
+                              </ng-template>
+                              <ng-template ngx-datatable-cell-template let-isSelected="isSelected" let-value="value"
+                                let-onCheckboxChangeFn="onCheckboxChangeFn">
+                                <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" class="custom-control-input" [id]="'customCheck'+value" [checked]="isSelected"
+                                    (change)="onCheckboxChangeFn($event)">
+                                  <label class="custom-control-label" [for]="'customCheck'+value"></label>
+                                </div>
+                              </ng-template>
+                            </ngx-datatable-column>
+                          </ngx-datatable>
+                          <div *ngIf="endOfTheList" class="text-center text-muted text-small">
+                            End of the list!
+                          </div>
+                        </div>  
+                   
+                    
+                    
+                      </div>
                   </div>
                 </div>
               </div>
-              <div class="col-12 col-lg-8">
-                <div class="sortable-survey" [sortablejs]="[1,2,3,4]" [sortablejsOptions]="{ handle: '.drag' }">
-                  <app-question-builder *ngFor="let item of currentSurvey.questions; let i=index" [question]="item"
-                    [sort]="i+1"></app-question-builder>
-                </div>
-                <div class="text-center">
-                  <button class="btn btn-outline-primary mt-3" (click)="addNewQuestion()"><i
-                      class="simple-icon-plus btn-group-icon"></i>
-                    {{ 'survey.add-question' | translate }}</button>
-                </div>
-              </div>
+               
             </div>
           </tab>
+
+
+
+
+
           <tab [heading]="('survey.results' | translate)" class="tab-content">
             <div class="row">
               <div class="col-12 col-lg-4">
@@ -223,6 +258,10 @@
       <div class="loading"></div>
     </ng-template>
   </div>
+
+
+
+
   <app-application-menu>
     <perfect-scrollbar class="scroll" [config]="{suppressScrollX: true, wheelPropagation: false}">
       <div class="p-4 h-100">
@@ -291,4 +330,4 @@
       </div>
     </perfect-scrollbar>
   </app-application-menu>
-</div>
+ 

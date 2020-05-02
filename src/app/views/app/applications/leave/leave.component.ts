@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, OnDestroy, Renderer2 } from '@angular/core';
 import { AddNewLeaveModalComponent } from 'src/app/containers/applications/add-new-leave-modal/add-new-leave-modal.component';
 import { LeaveService, ILeave } from  './leave.service'
+import { ContextMenuComponent } from 'ngx-contextmenu';
 @Component({
     selector: 'app-leave',
     templateUrl:  './leave.component.html'
@@ -17,13 +18,14 @@ import { LeaveService, ILeave } from  './leave.service'
       itemsPerPage = 10;
       itemOptionsPerPage = [5, 10, 20];
       selected = [];
+       temp = [];
       selectAllState = '';
       itemOrder = 'Title';
       itemOptionsOrders = ['Title', 'Category', 'Status', 'Label'];
       displayOptionsCollapsed = false;
     
       leaveItems: ILeave[] = [];
-    
+      @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
       @ViewChild('addNewModalRef', { static: true }) addNewModalRef: AddNewLeaveModalComponent;
     
       constructor(private leaveService: LeaveService, private renderer: Renderer2) { }
@@ -41,6 +43,7 @@ import { LeaveService, ILeave } from  './leave.service'
         this.leaveService.getLeaveItems()
           .subscribe(items => {
             this.leaveItems = items;
+            
           });
       }
     
@@ -77,6 +80,21 @@ import { LeaveService, ILeave } from  './leave.service'
           this.selected = [];
         }
         this.setSelectAllState();
+      }
+
+      updateFilter(event) {
+        alert("dddd");
+        const val = event.target.value.toLowerCase().trim();
+        const count = this.columns.length;
+        const keys = Object.keys(this.temp[0]);
+        const temp = this.leaveItems.filter(item => {
+          for (let i = 0; i < count; i++) {
+            if ((item[keys[i]] && item[keys[i]].toString().toLowerCase().indexOf(val) !== -1) || !val) {
+              return true;
+            }
+          }
+        });
+         
       }
     
     

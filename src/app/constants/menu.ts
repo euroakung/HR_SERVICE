@@ -22,16 +22,7 @@ const data: IMenuItem[] = [{
     label: 'menu.analytics',
     to: '/app/dashboards/analytics'
   },
-  {
-    icon: 'simple-icon-basket-loaded',
-    label: 'menu.ecommerce',
-    to: '/app/dashboards/ecommerce'
-  },
-  {
-    icon: 'simple-icon-doc',
-    label: 'menu.content',
-    to: '/app/dashboards/content'
-  }
+   
   ]
 },
  
@@ -97,9 +88,14 @@ const data: IMenuItem[] = [{
 {
   id: 'approve-leave',
   icon: 'iconsminds-check',
+  label: 'menu.approve-leave',  
+  to: '/app/',
+ subs: [{
+  icon: 'iconsminds-check', 
   label: 'menu.approve-leave',
- // to: 'http://app.personnel.up.ac.th/SalaryUP/',
- to: '/app/pages/miscellaneous/search',
+     to: '/app/applications/survey/1',
+  //to: '/app/applications/approveleave',
+}]
   
 },
  
