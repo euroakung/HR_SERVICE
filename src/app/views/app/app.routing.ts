@@ -10,6 +10,7 @@ const routes: Routes = [
             { path: '', pathMatch: 'full', redirectTo: 'dashboards' },
             { path: 'dashboards', loadChildren: () => import('./dashboards/dashboards.module').then(m => m.DashboardsModule) },
             { path: 'applications', loadChildren: () => import('./applications/applications.module').then(m => m.ApplicationsModule) },
+            { path: 'approve', loadChildren: () => import('./applications/applications.module').then(m => m.ApplicationsModule) },
             { path: 'pages', loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule) },
             { path: 'ui', loadChildren: () => import('./ui/ui.module').then(m => m.UiModule) },
           //  { path: 'menu', loadChildren: () => import('./menu/menu.module').then(m => m.MenuModule) },

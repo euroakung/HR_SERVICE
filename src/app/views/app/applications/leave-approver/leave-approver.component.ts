@@ -1,4 +1,4 @@
-import {  Component, OnInit, OnDestroy,ElementRef, HostListener, ViewChild, AfterContentInit , Renderer2 } from '@angular/core';
+import {  Component, OnInit, OnDestroy,ElementRef, HostListener, ViewChild, AfterContentInit , ChangeDetectorRef, Renderer2 } from '@angular/core';
 import { ISurvey, SurveyService } from '../survey/survey.service';
 import { Colors } from 'src/app/constants/colors.service';
 import { ChartService } from 'src/app/components/charts/chart.service';
@@ -6,18 +6,45 @@ import { ScrollableComponent } from 'src/app/views/app/ui/datatables/scrollable/
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
 import { ApiService, IProduct } from 'src/app/data/api.service';
 import { ContextMenuComponent } from 'ngx-contextmenu';
+
+import { ChatComponent } from 'src/app/views/app/applications/chat/chat.component';
+import { ChatService, IChatContact, IChatConversation } from 'src/app/views/app/applications/chat/chat.service';
+import { Observable, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+
+
+import { PerfectScrollbarComponent } from 'ngx-perfect-scrollbar';
 @Component({
-  selector: 'app-survey-detail',
-  templateUrl: './survey-detail.component.html'
+  selector: 'app-leave-approver',
+  templateUrl: './leave-approver.component.html'
 })
-export class SurveyDetailComponent implements OnInit, OnDestroy {
+export class LeaveApproveComponent implements OnInit, OnDestroy {
   @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
-  @ViewChild(DatatableComponent) table: DatatableComponent;
+  @ViewChild(DatatableComponent) table: DatatableComponent; 
+  
+  @ViewChild('scroll') scrollRef: PerfectScrollbarComponent;
+
+
   chartDataConfig: ChartService;
   productDataConfig: ApiService;
 
   currentSurvey: ISurvey;
   colors = Colors.getColors();
+ 
+
+  contacts: IChatContact[];
+  conversations: IChatConversation[];
+  currentUserId = 1;
+
+  selectedConversation: IChatConversation;
+
+  contacts$: Observable<IChatContact[]>;
+
+  searchTerms = new Subject<string>();
+  searchKeyword = '';
+  message = '';
+
+
 
 
 
@@ -136,16 +163,45 @@ export class SurveyDetailComponent implements OnInit, OnDestroy {
     }]
   };
 
-  constructor(private surveyService: SurveyService, private chartService: ChartService, private renderer: Renderer2,private apiService: ApiService, private el: ElementRef) {
+  constructor(private chatService: ChatService,private surveyService: SurveyService, private chartService: ChartService,
+     private    apiService: ApiService,    private changeDetectorRef: ChangeDetectorRef, private renderer: Renderer2,
+     
+       private el: ElementRef) {
     this.chartDataConfig = this.chartService;
     this.productDataConfig = this.apiService;
   }
 
-  ngOnInit() {
-    ///  this.renderer.addClass(document.body, 'right-menu');
-    this.onScroll(null);
+  
+ /// constructor(private chatService: ChatService, private changeDetectorRef: ChangeDetectorRef, private renderer: Renderer2) { }
+
+  // ngOnInit() {
+  //   ///  this.renderer.addClass(document.body, 'right-menu');
+  //   this.onScroll(null);
+  //     this.getItems();
+
+  //     this.getContacts();
+
+  //     this.contacts$ = this.searchTerms.pipe(
+  //       this.chat
+  //       debounceTime(300),
+  //       distinctUntilChanged(), 
+  //       switchMap((term: string) => this.chatService.searchContacts(this.currentUserId, term)),
+  //     );
+  //   }
+
+    ngOnInit() {
+      this.renderer.addClass(document.body, 'no-footer');
       this.getItems();
+      this.onScroll(null);
+      this.getContacts();
+  
+      this.contacts$ = this.searchTerms.pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        switchMap((term: string) => this.chatService.searchContacts(this.currentUserId, term)),
+      );
     }
+  
   
     ngAfterContentInit() {
     }
@@ -264,4 +320,91 @@ export class SurveyDetailComponent implements OnInit, OnDestroy {
     //   answers: []
     // });
   }
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+search(term: string): void {
+  this.searchKeyword = term;
+  this.searchTerms.next(term);
+}
+search2(term: string): void {
+  this.searchKeyword = term;
+  this.searchTerms.next(term);
+}
+
+getContacts() {
+  this.chatService.getContacts()
+    .subscribe(contacts => {
+      this.contacts = contacts;
+      this.getConversations();
+    });
+}
+
+getConversations() {
+  this.chatService.getConversations(this.currentUserId)
+    .subscribe(conversations => {
+      this.conversations = conversations;
+      this.selectedConversation = this.conversations[0];
+      this.changeDetectorRef.detectChanges();
+      if (this.scrollRef) {
+        this.scrollRef.directiveRef.scrollToBottom();
+      }
+    });
+}
+selectConversation(conversationId: number) {
+  this.selectedConversation = this.conversations.find(x => x.id === conversationId);
+  if (this.scrollRef) {
+    setTimeout(() => { this.scrollRef.directiveRef.scrollToBottom(); }, 100);
+  }
+}
+
+
+getOtherUser(users: number[]): IChatContact {
+  const otherId = users.find(x => x !== this.currentUserId);
+  return this.contacts.find(x => x.id === otherId);
+}
+getUser(id: number): IChatContact {
+  if (id === this.currentUserId) {
+    return {
+      id,
+      title: 'Sarah Kortney',
+      img: '/assets/img/profile-pic-l.jpg',
+      date: '5 minutes ago'
+    };
+  }
+  return this.contacts.find(x => x.id === id);
+}
+
+sendMessage() {
+  if (this.message.length > 0) {
+    const time = this.getCurrentTime();
+    this.selectedConversation.messages.push({ sender: this.currentUserId, text: this.message, time });
+    this.selectedConversation.lastMessageTime = time;
+    if (this.scrollRef) {
+      setTimeout(() => { this.scrollRef.directiveRef.scrollToBottom(); }, 100);
+    }
+    this.message = '';
+  }
+}
+
+messageInputKeyUp(event: KeyboardEvent) {
+  if (event.key === 'Enter') { this.sendMessage(); }
+}
+
+getCurrentTime(): string {
+  const now = new Date();
+  return this.pad(now.getHours(), 2) + ':' + this.pad(now.getMinutes(), 2);
+}
+
+pad(number, length) {
+  let str = '' + number;
+  while (str.length < length) {
+    str = '0' + str;
+  }
+  return str;
+}
+
+
 }

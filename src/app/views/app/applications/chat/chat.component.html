@@ -78,7 +78,10 @@
     <tabset class="card-tabs h-100" [justified]="true">
         <tab [heading]="'chat.messages' | translate" class="card-body h-100">
             <div class="chat-app-tab-pane-messages">
-
+                <div class="form-group">
+                    <input type="text" class="form-control rounded-100" placeholder="Search" #searchBoxContact1 id="search-box1"
+                        (input)="search2(searchBoxContact1.value)" />
+                </div>
                 <perfect-scrollbar class="scroll" [config]="{suppressScrollX: true, wheelPropagation: false}">
                     <div class="d-flex flex-row mb-1 border-bottom pb-3 mb-3" *ngFor="let item of conversations"
                         (click)="selectConversation(item.id)">
@@ -91,7 +94,7 @@
                                 class="pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero">
                                 <div class="min-width-zero">
                                     <a href="javascript:;">
-                                        <p class=" mb-0 truncate">{{getOtherUser(item.users).title}}</p>
+                                        <p class=" mb-0 truncate">{{getOtherUser(item.users).title}}  </p>
                                     </a>
                                     <p class="mb-1 text-muted text-small">{{item.lastMessageTime}}</p>
                                 </div>

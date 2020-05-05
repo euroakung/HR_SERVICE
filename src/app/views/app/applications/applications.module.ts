@@ -9,7 +9,7 @@ import { TodoComponent } from './todo/todo.component';
 
 import { LeaveComponent } from './leave/leave.component';
 import { LeaveDetailComponent } from './leave-detail/leave-detail.component';
-
+import { LeaveApproveComponent } from './leave-approver/leave-approver.component';
  
 
 import { SurveyComponent } from './survey/survey.component';
@@ -42,7 +42,7 @@ import { ComponentsModule } from 'src/app/views/app/ui/components/components.mod
 
 @NgModule({
   declarations: [ApplicationsComponent, TodoComponent, SurveyComponent,
-     SurveyDetailComponent, ChatComponent,LeaveComponent,LeaveDetailComponent  
+     SurveyDetailComponent, ChatComponent,LeaveComponent,LeaveDetailComponent  ,LeaveApproveComponent
       ],
   imports: [
     NgxDatatableModule,

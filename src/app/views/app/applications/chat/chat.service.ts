@@ -39,6 +39,19 @@ export class ChatService {
     return this.http.get(url)
       .pipe(
         map((res: IServiceResponse<IChatContact>) => {
+           console.log("response[chat.service][searchContacts]", res);
+          return res.data;
+        })
+      );
+  }
+
+
+
+  searchContactsChat(userId: number, searchKey: string): Observable<IChatContact[]> {
+    const url = `${environment.apiUrl}/contacts?search=${searchKey}`;
+    return this.http.get(url)
+      .pipe(
+        map((res: IServiceResponse<IChatContact>) => {
           // console.log("response[chat.service][searchContacts]", res);
           return res.data;
         })
@@ -60,8 +73,9 @@ export class ChatService {
     return this.http.get(url)
       .pipe(
         map((res: IServiceResponse<IChatConversation>) => {
-          // console.log("response[chat.service][getConversations]", res);
+         //   console.log("response[chat.service][getConversations]", res);
           return res.data;
+          
         })
       );
   }

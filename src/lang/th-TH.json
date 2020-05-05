@@ -18,6 +18,39 @@
     "username": "ชื่อผู้ใช้",
     "code": "รีเซ็ตรหัส"
   },
+  "person": {
+    "name": "ชื่อ-สกุล",
+    "fname": "ชื่อ",
+    "lname": "นามสกุล",
+    "title": "คำนำหน้าชื่อ",
+    "title_spcl": "คำนำหน้าชื่อทางวิชาการ",
+    "age_now": "อายุปัจจุบัน",
+    "per_type": "ประเภทพนักงาน",
+    "work_year": "อายุงาน(ปี)",
+    "work_month": "อายุงาน(เดือน)",
+    "workline": "สายงาน",
+    "position": "ตำแหน่งงาน",
+    "position_academic": "ตำแหน่งวิชาการ",
+    "position_executive": "ตำแหน่งทางบริหาร",
+    "dateinwork": "วันที่เริ่มงาน",
+    "dateplacement": "วันที่บรรจุ",
+    "division": "ส่วนงาน/สาขา",
+    "faculty": "คณะ/หน่วยงาน",
+    "contact_mobile": "เบอร์มือถือ",
+    "contact_office": "เบอร์สำนักงาน",
+    "address": "เลขที่บ้าน",
+    "moo": "หมู่ที่",
+    "village": "หมู่บ้าน",
+    "street": "ถนน",
+    "subdistict": "ตำบล",
+    "district": "อำเภอ",
+    "province": "จังหวัด",
+    "zipcode": "รหัสไปรษณีย์",
+    "status_work": "สถานะปฏิบัติงาน",
+    "marital": "สถานะภาพ",
+    "birthdate": "วันเดือนปีเกิด",
+    "id_card": "เลขที่บัตรประชาชน"
+  },
   "menu": {
     "app": "หน้าหลัก",
     "dashboards": "แดชบอร์ด",
@@ -119,8 +152,10 @@
     "person-certification": "หนังสือรับรอง",
     "person-pvd-fund": "กองทุนสำรองเลี้ยงชีพ",
     "person-benefit-fund": "เบิกสวัสดิการ",
-    "approve-leave": "อนุมัติการลา",
+    "leave-approve": "อนุมัติการลา",
+    "approve": "การอนุมัติการลา",
     "applications": "แอพ",
+
     "leave": "การลา",
     "app-leave": "การลา",
     "app-sick": "ลาป่วย/ลาคลอด/ลากิจ",
@@ -320,9 +355,9 @@
     "add-new": "สร้างใบลา",
     "add-new-title": "สร้างใบลา", 
     "title": "ใบลา",
-    "detail": "รายละเอียด",
+    "detail": "รายละเอียดการลา",
     "category": "ประเภท",
-    "label": "Label",
+   
     "status": "สถานะ",
     "summary":"ข้อมูลสรุปวันลา",
     "lasttime":"ลาครั้งล่าสุด",
@@ -336,11 +371,40 @@
     "pending-tasks": "รอดำเนินการ",
     "completed-tasks": "อนุญาต",
     "categories": "Categories",
-    "labels": "Labels",
+   
     "results": "สถิติการลา",
     "days": "วันที่",
     "amount": "จำนวน",
-    "day": "วัน"
+    "day": "วัน",
+    "budgetyear": "ปีงบประมาณ",
+    "daterequest": "วันที่ขอ",
+    "leave-users": "ผู้ลา",
+    "leave_type": "ประเภทการลา",
+    "cause": "เนื่องจาก",
+    "date_from": "ตั้งแต่วันที่",
+    "date_end": "ถึงวันที่",
+    "leave_contact": "ติดต่อระหว่างลา",
+    "leave_day": "จำนวนวันลา",
+    "leave_aboard": "ลาไปต่างประเทศ",
+    "leave_country": "ประเทศ",
+    "yes": "ใช่",
+    "no": "ไม่ใช่",
+    "leave_fullday": "เต็มวัน",
+    "leave_halfday": "ครึ่งวัน",
+    "before_leave": "ลาไปแล้ว",
+    "this_leave": "ลาครั้งนี้",
+    "this_summary": "รวมลาครั้งนี้",
+    "comment_leader": "ความเห็นหัวหน้า",
+    "comment_director": "ความเห็นผู้อำนวยการ",
+    "comment_president": "ความเห็นอธิการบดี",
+    "leave_attachment": "เอกสารประกอบ",
+    "leave_approve": "อนุญาต",
+    "leave_reject": "ไม่อนุญาต",
+
+    "leave_open": "เปิดดูเอกสารประกอบ"
+
+
+    
   }, 
    "approveleave": {
     "add-new": "สร้างใบลา",
@@ -365,7 +429,13 @@
     "labels": "Labels",
     "approvelist": " พิจารณาเรียบร้อย",
     "pendding": "รอพิจารณา",
-    "results": "ข้อมูลการอนุมัติ"
+    "results": "ข้อมูลการอนุมัติ" ,
+    "messages": "ข้อความ",
+      "contacts": "รายชื่อผู้ติดต่อ",
+      "saysomething": "พูดอะไรสักอย่าง..",
+
+      "leave-users": "ผู้ลา.."
+     
   },
   "alert": {
     "rounded": "Rounded Alert",

@@ -86,14 +86,14 @@ const data: IMenuItem[] = [{
   ]
 },
 {
-  id: 'approve-leave',
+  id: 'leave-approve',
   icon: 'iconsminds-check',
-  label: 'menu.approve-leave',  
-  to: '/app/',
+  label: 'menu.leave-approve',  
+  to: 'app/approve/leave-approve/',
  subs: [{
   icon: 'iconsminds-check', 
-  label: 'menu.approve-leave',
-     to: '/app/applications/survey/1',
+  label: 'menu.leave-approve',
+     to: '/app/approve/leave-approve',
   //to: '/app/applications/approveleave',
 }]
   
@@ -103,7 +103,7 @@ const data: IMenuItem[] = [{
    id: 'applications',
    icon: 'iconsminds-optimization',
     label: 'menu.applications',
-  to: '/app/pages',
+    to: '/app/applications',
   subs: [{
     icon: 'simple-icon-handbag', 
     label: 'menu.app-leave',
@@ -117,7 +117,7 @@ const data: IMenuItem[] = [{
   {
    icon: 'iconsminds-printer',
    label: 'menu.person-doc-copy',
-   to: '/app/pages/profile/social' 
+   to: '/app/applications/chat', 
  }, {
   icon: 'iconsminds-financial',
   label: 'menu.person-benefit-fund',

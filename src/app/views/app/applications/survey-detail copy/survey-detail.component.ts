@@ -1,10 +1,10 @@
 import {  Component, OnInit, OnDestroy,ElementRef, HostListener, ViewChild, AfterContentInit , Renderer2 } from '@angular/core';
 import { ISurvey, SurveyService } from '../survey/survey.service';
-import { Colors } from 'src/app/constants/colors.service';
-import { ChartService } from 'src/app/components/charts/chart.service';
-import { ScrollableComponent } from 'src/app/views/app/ui/datatables/scrollable/scrollable.component'; 
+import { Colors } from './node_modules/src/app/constants/colors.service';
+import { ChartService } from './node_modules/src/app/components/charts/chart.service';
+import { ScrollableComponent } from './node_modules/src/app/views/app/ui/datatables/scrollable/scrollable.component'; 
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
-import { ApiService, IProduct } from 'src/app/data/api.service';
+import { ApiService, IProduct } from './node_modules/src/app/data/api.service';
 import { ContextMenuComponent } from 'ngx-contextmenu';
 @Component({
   selector: 'app-survey-detail',

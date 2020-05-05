@@ -1,0 +1,546 @@
+<div class="    app-row  ">
+
+  <app-heading></app-heading>
+  <app-breadcrumb></app-breadcrumb>
+
+
+  <ng-container *ngIf="currentSurvey; else loading">
+    <div class="col-12">
+      <tabset class="separator-tabs ml-0">
+        <tab [heading]="('leave.detail' | translate)" class="tab-content">
+          <div class="row ">
+            <div class="col-12 col-lg-12 mb-12">
+              <div class="card mb-12">
+
+                <div class="card-body">
+                  <h5 class="mb-4">{{'leave.detail' | translate}}</h5>
+
+
+
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <div class="input-group ">
+                        <div class="input-group-prepend">
+                          <button class="btn btn-outline-primary default">{{'leave.leave-users' | translate}}</button>
+                        </div>
+                        <input type="text" class="form-control" placeholder="" aria-label="" readonly
+                          value="นายนพรัตน์ พระดวงงาม" aria-describedby="basic-addon1">
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <div class="input-group ">
+                        <div class="input-group-prepend">
+                          <span class="btn btn-outline-primary default">{{'person.position' | translate}}</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="" aria-label="" readonly
+                          value="นักวิชาการคอมพิวเตอร์" aria-describedby="basic-addon1">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <div class="input-group ">
+                        <div class="input-group-prepend">
+                          <span class="btn btn-outline-primary default">{{'person.per_type' | translate}}</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="" aria-label="" readonly
+                          value="พนักงานมหาวิทยาลัย" aria-describedby="basic-addon1">
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <div class="input-group ">
+                        <div class="input-group-prepend">
+                          <span class="btn btn-outline-primary default">{{'person.faculty' | translate}}</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="" aria-label="" readonly
+                          value="กองการเจ้าหน้าที" aria-describedby="basic-addon1">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <div class="input-group ">
+                        <div class="input-group-prepend">
+                          <span class="btn btn-outline-primary default">{{'person.division' | translate}}</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="" aria-label="" readonly
+                          value="งานสารสนเทศบุคลากร" aria-describedby="basic-addon1">
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <div class="input-group ">
+                        <div class="input-group-prepend">
+                          <span class="btn btn-outline-primary default">{{'person.workline' | translate}}</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="" aria-label="" readonly value="สายบริการ"
+                          aria-describedby="basic-addon1">
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-row">
+                    <div class="form-group col-md-3">
+                      <div class="input-group ">
+                        <div class="input-group-prepend">
+                          <span class="btn btn-outline-primary default">{{'leave.budgetyear' | translate}}</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="" aria-label="" readonly value="2563"
+                          aria-describedby="basic-addon1">
+                      </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <div class="input-group ">
+                        <div class="input-group-prepend">
+                          <span class="btn btn-outline-primary default">{{'leave.daterequest' | translate}}</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="" aria-label="" readonly value="12/04/2563"
+                          aria-describedby="basic-addon1">
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <div class="input-group ">
+                        <div class="input-group-prepend">
+                          <span class="btn btn-outline-primary default">{{'leave.leave_type' | translate}}</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="" aria-label="" readonly value="ลาป่วย"
+                          aria-describedby="basic-addon1">
+                      </div>
+                    </div>
+                   
+                  </div>
+                  <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <div class="input-group ">
+                      <div class="input-group-prepend">
+                        <span class="btn btn-outline-primary default">{{'leave.cause' | translate}}</span>
+                      </div>
+                      <input type="text" class="form-control" placeholder="" aria-label="" readonly value="ปวดศรีษะ"
+                        aria-describedby="basic-addon1">
+                    </div>
+                  </div>
+
+                  <div class="form-group col-md-3">
+                    <div class="input-group ">
+                      <div class="input-group-prepend">
+                        <span class="btn btn-outline-primary default">{{'leave.leave_aboard' | translate}}</span>
+                      </div> 
+                   
+                      <div class="form-group col-md-6 form-control">
+                        <div class="form-check form-check-inline  ">
+                          <input class="form-check-input" type="checkbox"   id="inlineCheckbox1" value="option1" disabled>
+                          <label class="form-check-label" for="inlineCheckbox1">{{'leave.yes' | translate}}</label>
+                        </div>
+                        <div class="form-check form-check-inline ">
+                          <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" checked disabled >
+                          <label class="form-check-label" for="inlineCheckbox2">{{'leave.no' | translate}}</label>
+                        </div>
+                      </div>
+                    
+                    </div>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <div class="input-group ">
+                      <div class="input-group-prepend">
+                        <span class="btn btn-outline-primary default">{{'leave.leave_country' | translate}}</span>
+                      </div>
+                      <input type="text" class="form-control" placeholder="" aria-label="" readonly value="ลาว"
+                        aria-describedby="basic-addon1">
+                    </div>
+                  </div>
+
+                </div>
+                  <div class="form-row">
+                   
+                  
+                 
+                  </div>
+
+
+
+                  <div class="form-row">
+                    <div class="form-group col-md-3">
+                      <div class="input-group ">
+                        <div class="input-group-prepend">
+                          <span class="btn btn-outline-primary default">{{'leave.date_from' | translate}}</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="" aria-label="" readonly value="12/08/2563"
+                          aria-describedby="basic-addon1">
+                          <div class="input-group-append"><span
+                            class="btn btn-outline-primary default">{{'leave.leave_fullday' | translate}}</span></div>
+                      </div>
+                    </div>
+               
+                   
+                    <div class="form-group col-md-3">
+                      <div class="input-group ">
+                        <div class="input-group-prepend">
+                          <span class="btn btn-outline-primary default">{{'leave.date_from' | translate}}</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="" aria-label="" readonly value="13/08/2563"
+                          aria-describedby="basic-addon1">
+                          <div class="input-group-append"><span
+                            class="btn btn-outline-primary default">{{'leave.leave_halfday' | translate}}</span></div>
+                      </div>
+                    </div>
+              
+              
+                 
+                    <div class="form-group col-md-2">
+                      <div class="input-group ">
+                        <div class="input-group-prepend"><span
+                            class="btn btn-outline-primary default">{{'leave.amount' | translate}}</span></div>
+                        <input type="text" class="form-control" placeholder="" aria-label="" readonly value="1.5"
+                          aria-describedby="basic-addon1">
+                        <div class="input-group-append"><span
+                            class="btn btn-outline-primary default">{{'leave.day' | translate}}</span></div>
+                      </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                      <div class="input-group ">
+                        <div class="input-group-prepend">
+                          <span class="btn btn-outline-primary default">{{'leave.leave_contact' | translate}}</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="" aria-label="" readonly value="0856699203"
+                          aria-describedby="basic-addon1">
+                      </div>
+                    </div>
+
+                  </div>
+
+
+
+                  <div class="form-row">
+                    
+                 
+                    <div class="form-group col-md-2">
+                      <div class="input-group ">
+                        <div class="input-group-prepend"><span
+                            class="btn btn-outline-primary default">{{'leave.before_leave' | translate}}</span></div>
+                        <input type="text" class="form-control" placeholder="" aria-label="" readonly value="6"
+                          aria-describedby="basic-addon1">
+                        <div class="input-group-append"><span
+                            class="btn btn-outline-primary default">{{'leave.day' | translate}}</span></div>
+                      </div>
+                    </div> 
+                     <div class="form-group col-md-2">
+                      <div class="input-group ">
+                        <div class="input-group-prepend"><span
+                            class="btn btn-outline-primary default">{{'leave.this_leave' | translate}}</span></div>
+                        <input type="text" class="form-control" placeholder="" aria-label="" readonly value="1.5"
+                          aria-describedby="basic-addon1">
+                        <div class="input-group-append"><span
+                            class="btn btn-outline-primary default">{{'leave.day' | translate}}</span></div>
+                      </div>
+                    </div> 
+                     <div class="form-group col-md-2">
+                      <div class="input-group ">
+                        <div class="input-group-prepend"><span
+                            class="btn btn-outline-primary default">{{'leave.this_summary' | translate}}</span></div>
+                        <input type="text" class="form-control" placeholder="" aria-label="" readonly value="7.5"
+                          aria-describedby="basic-addon1">
+                        <div class="input-group-append"><span
+                            class="btn btn-outline-primary default">{{'leave.day' | translate}}</span></div>
+                      </div>
+                    </div>
+                 
+                    <div class="form-group col-md-6">
+                      <div class="input-group ">
+                        <div class="input-group-prepend"><span
+                            class="btn btn-outline-primary default">{{'leave.leave_attachment' | translate}}</span></div> 
+                            <div class="  "><a class="btn btn-link " ng-reflect-router-link="#" href="/app/pages/miscellaneous/prices/%23"><i class="glyph-icon iconsminds-mail-attachement"></i>  {{'leave.leave_open' | translate}}   </a></div>
+                             
+                      </div>
+                    </div>
+                  
+
+                    
+
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                      <div class="input-group ">
+                        <div class="input-group-prepend">
+                          <span class="btn btn-outline-primary default">{{'leave.comment_leader' | translate}}</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="" aria-label="" readonly
+                          value="เห็นสมควรอนุญาต" aria-describedby="basic-addon1">
+                      </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                      <div class="input-group ">
+                        <div class="input-group-prepend">
+                          <span class="btn btn-outline-primary default">{{'leave.comment_director' | translate}}</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="" aria-label="" readonly value="อนุญาต"
+                          aria-describedby="basic-addon1">
+                      </div>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                      <div class="input-group ">
+                        <div class="input-group-prepend">
+                          <span class="btn btn-outline-primary default">{{'leave.comment_president' | translate}}</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="" aria-label="" readonly value="อนุญาต"
+                          aria-describedby="basic-addon1">
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-row">
+                    <div class=" card-body text-center ">
+                  <button type="button" class="btn btn-success mb-1 mr-2"> <i class="simple-icon-check"></i> {{'leave.leave_approve' | translate}}</button>
+                  <button type="button" class="btn btn-danger mb-1 ml-2 "> <i class="simple-icon-trash"></i> {{'leave.leave_reject' | translate}}</button> 
+                </div>
+              </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </tab>
+
+
+
+
+
+        <tab [heading]="('leave.summary' | translate)" class="tab-content">
+          <div class="row">
+            <div class="col-12 col-lg-4">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <p class="list-item-heading mb-4">{{ 'survey.quota' | translate }}</p>
+                  <div class="mb-4">
+                    <p class="mb-2">Gender</p>
+                    <progressbar class="" [value]="[{'value':60, type :'theme-1' },{'value':40, type :'theme-2' }]">
+                    </progressbar>
+                    <table class="table table-sm table-borderless">
+                      <tbody>
+                        <tr>
+                          <td class="p-0 pb-1 w-10">
+                            <span class="log-indicator border-theme-1 align-middle"></span>
+                          </td>
+                          <td class="p-0 pb-1">
+                            <span class="font-weight-medium text-muted text-small">105/125
+                              Male</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="p-0 pb-1 w-10">
+                            <span class="log-indicator border-theme-2 align-middle"></span>
+                          </td>
+                          <td class="p-0 pb-1">
+                            <span class="font-weight-medium text-muted text-small">90/125
+                              Female</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="mb-4">
+                    <p class="mb-2">Education</p>
+                    <div class="progress ">
+                      <progressbar class=""
+                        [value]="[{'value':80, type :'theme-1' },{'value':20, type :'theme-2' }]">
+                      </progressbar>
+                    </div>
+                    <table class="table table-sm table-borderless">
+                      <tbody>
+                        <tr>
+                          <td class="p-0 pb-1 w-10">
+                            <span class="log-indicator border-theme-1 align-middle"></span>
+                          </td>
+                          <td class="p-0 pb-1">
+                            <span class="font-weight-medium text-muted text-small">139/125
+                              College</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="p-0 pb-1 w-10">
+                            <span class="log-indicator border-theme-2 align-middle"></span>
+                          </td>
+                          <td class="p-0 pb-1">
+                            <span class="font-weight-medium text-muted text-small">95/125
+                              High School</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="mb-4">
+                    <p class="mb-2">Age</p>
+                    <progressbar class=""
+                      [value]="[{'value':35, type :'theme-1' },{'value':25, type :'theme-2' },{'value':40, type :'theme-3' }]">
+                    </progressbar>
+                    <table class="table table-sm table-borderless">
+                      <tbody>
+                        <tr>
+                          <td class="p-0 pb-1 w-10">
+                            <span class="log-indicator border-theme-1 align-middle"></span>
+                          </td>
+                          <td class="p-0 pb-1">
+                            <span class="font-weight-medium text-muted text-small">50/75
+                              18-24</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="p-0 pb-1 w-10">
+                            <span class="log-indicator border-theme-2 align-middle"></span>
+                          </td>
+                          <td class="p-0 pb-1">
+                            <span class="font-weight-medium text-muted text-small">40/75
+                              24-30</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="p-0 pb-1 w-10">
+                            <span class="log-indicator border-theme-3 align-middle"></span>
+                          </td>
+                          <td class="p-0 pb-1">
+                            <span class="font-weight-medium text-muted text-small">60/75
+                              30-40</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-8">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <h5 class="card-title">How old are you?</h5>
+                  <div class="chart-container">
+                    <app-doughnut-chart [shadow]="true" [options]="chartDataConfig.doughnutChartOptions"
+                      [data]="ageChartData">
+                    </app-doughnut-chart>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-4">
+                <div class="card-body">
+                  <h5 class="card-title">What is your gender?</h5>
+                  <div class="chart-container">
+                    <app-doughnut-chart [shadow]="true" [options]="chartDataConfig.doughnutChartOptions"
+                      [data]="genderChartData">
+                    </app-doughnut-chart>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-4">
+                <div class="card-body">
+                  <h5 class="card-title">What is your employment status?</h5>
+                  <div class="chart-container">
+                    <app-doughnut-chart [shadow]="true" [options]="chartDataConfig.doughnutChartOptions"
+                      [data]="workChartData">
+                    </app-doughnut-chart>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-4">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    What programming languages do you use?
+                  </h5>
+                  <div class="chart-container">
+                    <app-doughnut-chart [shadow]="true" [options]="chartDataConfig.doughnutChartOptions"
+                      [data]="codingChartData">
+                    </app-doughnut-chart>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </tab>
+      </tabset>
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    <div class="loading"></div>
+  </ng-template>
+</div>
+
+
+<app-application-menu>
+  <tabset class="card-tabs h-100" [justified]="true">
+    <tab [heading]="'approveleave.pendding' | translate" class="card-body h-100">
+      <div class="chat-app-tab-pane-messages">
+        <div class="form-group">
+          <input type="text" class="form-control rounded-100" placeholder="Search" #searchBoxContact1 id="search-box1"
+            (input)="search2(searchBoxContact1.value)" />
+        </div>
+        <perfect-scrollbar class="scroll" [config]="{suppressScrollX: true, wheelPropagation: false}">
+          <div class="d-flex flex-row mb-1 border-bottom pb-3 " *ngFor="let item of conversations"
+            (click)="selectConversation(item.id)">
+            <a class="d-flex" href="javascript:;">
+              <img [src]="getOtherUser(item.users).img" [alt]="getOtherUser(item.users).title"
+                class="img-thumbnail border-0 rounded-circle mr-3 list-thumbnail align-self-center xsmall">
+            </a>
+            <div class="d-flex flex-grow-1 min-width-zero">
+              <div class="pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero">
+                <div class="min-width-zero">
+                  <a href="javascript:;">
+                    <p class=" mb-0 truncate">{{getOtherUser(item.users).title}} </p>
+                  </a>
+                  <p class="mb-1 text-muted text-small">{{item.lastMessageTime}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </perfect-scrollbar>
+      </div>
+    </tab>
+    <tab [heading]="'approveleave.approvelist' | translate" class="card-body h-100">
+      <div class="form-group">
+        <input type="text" class="form-control rounded-100" placeholder="Search" #searchBoxContact id="search-box"
+          (input)="search(searchBoxContact.value)" />
+      </div>
+      <div class="chat-app-tab-pane-contacts">
+        <perfect-scrollbar class="scroll" [config]="{suppressScrollX: true, wheelPropagation: false}">
+          <ng-container *ngIf="searchKeyword===''">
+            <div class="d-flex flex-row  border-bottom pb-3" *ngFor="let contact of contacts">
+              <a class="d-flex" href="javascript:;">
+                <img [alt]="contact.title" [src]="contact.img"
+                  class="img-thumbnail border-0 rounded-circle mr-3 list-thumbnail align-self-center xsmall">
+              </a>
+              <div class="d-flex flex-grow-1 min-width-zero">
+                <div
+                  class="m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero">
+                  <div class="min-width-zero">
+                    <a href="javascript:;">
+                      <p class="mb-0 truncate">{{contact.title}}</p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="searchKeyword!==''">
+            <div class="d-flex flex-row  border-bottom pb-3" *ngFor="let contact of contacts$ | async">
+              <a class="d-flex" href="javascript:;">
+                <img [alt]="contact.title" [src]="contact.img"
+                  class="img-thumbnail border-0 rounded-circle mr-3 list-thumbnail align-self-center xsmall">
+              </a>
+              <div class="d-flex flex-grow-1 min-width-zero">
+                <div
+                  class="m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero">
+                  <div class="min-width-zero">
+                    <a href="javascript:;">
+                      <p class="mb-0 truncate">{{contact.title}}</p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </perfect-scrollbar>
+      </div>
+    </tab>
+  </tabset>
+</app-application-menu>

@@ -46,7 +46,10 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.searchKeyword = term;
     this.searchTerms.next(term);
   }
-
+  search2(term: string): void {
+    this.searchKeyword = term;
+    this.searchTerms.next(term);
+  }
 
   getContacts() {
     this.chatService.getContacts()
