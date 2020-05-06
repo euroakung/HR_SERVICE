@@ -12,7 +12,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
-import { RatingModule } from 'ngx-bootstrap/rating';
+//import { RatingModule } from 'ngx-bootstrap/rating';
 @NgModule({
   declarations: [],
   imports: [
@@ -29,7 +29,7 @@ import { RatingModule } from 'ngx-bootstrap/rating';
     TabsModule.forRoot(),
     TooltipModule.forRoot(),
     TypeaheadModule.forRoot(),
-    RatingModule.forRoot()
+   // RatingModule.forRoot()
   ],
   exports: [
     AccordionModule,
@@ -45,7 +45,7 @@ import { RatingModule } from 'ngx-bootstrap/rating';
     TabsModule,
     TooltipModule,
     TypeaheadModule,
-    RatingModule
+   // RatingModule
   ]
 })
 export class BootstrapModule { }

@@ -6,7 +6,7 @@
         <div class="form-group mb-0">
           <label>{{ 'form-components.interactive' | translate }}</label>
           <div>
-            <rating [max]="5" [(ngModel)]="rate" [customTemplate]="t"></rating>
+            <!-- <rating [max]="5" [(ngModel)]="rate" [customTemplate]="t"></rating> -->
             <ng-template #t let-index="index" let-value="value">{{index < value ? '' : ''}}</ng-template>
           </div>
         </div>
@@ -15,7 +15,7 @@
         <div class="form-group mb-0">
           <label>{{ 'form-components.readonly' | translate }}</label>
           <div>
-            <rating [readonly]="true" [max]="5" [(ngModel)]="rateReadonly" [customTemplate]="t"></rating>
+            <!-- <rating [readonly]="true" [max]="5" [(ngModel)]="rateReadonly" [customTemplate]="t"></rating> -->
             <ng-template #t let-index="index" let-value="value">{{index < value ? '' : ''}}</ng-template>
           </div>
         </div>

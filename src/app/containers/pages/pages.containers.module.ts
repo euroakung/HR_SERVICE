@@ -2,7 +2,7 @@ import { tap } from 'rxjs/operators';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import {  RatingModule,     } from 'ngx-bootstrap/rating';
+//import {  RatingModule,     } from 'ngx-bootstrap/rating';
 
 import {  AccordionModule } from 'ngx-bootstrap/accordion';
 import {  BsDropdownModule  } from 'ngx-bootstrap/dropdown';
@@ -75,7 +75,7 @@ import { ProductDetailTabsComponent } from './product-detail-tabs/product-detail
     ComponentsPagesModule,
     ComponentsCardsModule,
     ComponentsPlayerModule,
-    RatingModule.forRoot(),
+    //RatingModule.forRoot(),
     TabsModule.forRoot(),
     AccordionModule.forRoot(),
     BsDropdownModule.forRoot()

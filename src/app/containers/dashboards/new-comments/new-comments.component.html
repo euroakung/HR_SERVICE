@@ -15,8 +15,8 @@
                                 {{item.detail}}
                             </p>
                             <div *ngIf="displayRate" class="form-group mb-1 mt-2">
-                                <rating [readonly]="true" [max]="5" [(ngModel)]="item.rate" [customTemplate]="t">
-                                </rating>
+                                <!-- <rating [readonly]="true" [max]="5" [(ngModel)]="item.rate" [customTemplate]="t">
+                                </rating> -->
                                 <ng-template #t let-index="index" let-value="value">{{index < value ? '' : ''}}
                                 </ng-template>
                             </div>

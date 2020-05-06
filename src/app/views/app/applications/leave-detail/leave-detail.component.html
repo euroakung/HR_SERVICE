@@ -1,63 +1,223 @@
-<div class="disable-text-selection">
-  <div class=" row app-row survey-app pb-4">
-    <ng-container *ngIf="currentSurvey; else loading">
-      <div class="col-12">
-        <h1> 
-    <i class="  simple-icon-calendar "></i> 
-          <span class="align-middle d-inline-block pt-1">
-          &nbsp;  {{ currentSurvey.title }} {{ currentSurvey.title }} 
-          </span>
-        </h1>
-        <div class="top-right-button-container">
-          <div class="btn-group" dropdown>
-            <button type="button"
-              class="btn btn-outline-primary btn-lg flex-grow-1">{{ 'survey.save' | translate }}</button>
-            <button id="button-split" type="button" dropdownToggle
-              class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" aria-controls="dropdown-split">
-              <span class="caret"></span>
-            </button>
-            
-          </div>
-        </div>
-        <!-- <app-breadcrumb></app-breadcrumb> -->
+ 
 
+
+ 
+
+
+  <div class="    app-row  ">
+ 
+    <h1> 
+      <i class="  simple-icon-calendar "></i> 
+            <span class="align-middle d-inline-block pt-1">
+            &nbsp; {{'leave.detail' | translate}} 
+            </span>
+          </h1>
+ 
+    <ng-container *ngIf="currentSurvey; else loading">
+      <div class="col-12"> 
         <tabset class="separator-tabs ml-0">
           <tab [heading]="('leave.detail' | translate)" class="tab-content">
-            <div class="row">
-              <div class="col-12 col-lg-8 mb-4">
-                <div class="card mb-4">
-                  <div class="card-body">
-                    <p class="list-item-heading mb-4">{{ 'survey.summary' | translate }}</p>
-                    <p class="text-muted text-small mb-2">{{ 'survey.title' | translate }}</p>
-                    <p class="mb-3">{{ currentSurvey.title }}</p>
-                    <p class="text-muted text-small mb-2">{{ 'survey.details-lowercase' | translate }}</p>
-                    <p class="mb-3" [innerHTML]="currentSurvey.detail"></p>
-                    <p class="text-muted text-small mb-2">{{ 'survey.category' | translate }}</p>
-                    <p class="mb-3">{{ currentSurvey.category }}</p>
-                    <p class="text-muted text-small mb-2">{{ 'survey.label' | translate }}</p>
-                    <div>
-                      <p class="d-sm-inline-block mb-1">
-                        <span
-                          [class]="'badge badge-pill badge-'+currentSurvey.labelColor">{{ currentSurvey.label }}</span>
-                      </p>
-                      <p class="d-sm-inline-block mb-1"></p>
-                    </div>
+            <div class="row ">
+              <div class="col-12 col-lg-12 mb-12">
+                <div class="card mb-12">
+                  <div class="card-body">  
+                    <!-- <form #form="ngForm" (ngSubmit)="onSubmit()" novalidate class="tooltip-label-right">
+                      <div class="form-group">
+                        <label>{{ 'forms.name' | translate }}</label>
+                        <input type="text" class="form-control" name="name" ngModel required #name="ngModel" minlength="2" pattern="^[A-Za-z]+$">
+                        <small>Only letters and at least 2 characters</small>
+                        <div *ngIf="name?.errors?.required && form.submitted" class="invalid-tooltip">Name is required!</div>
+                        <div *ngIf="name?.errors?.minlength && form.submitted" class="invalid-tooltip">Name must contain at least 2 characters!</div>
+                        <div *ngIf="name?.errors?.pattern && form.submitted" class="invalid-tooltip">Name must only contain letters!</div>
+                      </div>
+                      <div class="form-group">
+                        <label>{{ 'forms.age' | translate }}</label>
+                        <input type="text" class="form-control" name="age" ngModel required #age="ngModel" pattern="^(?:1[01][0-9]|120|1[7-9]|[2-9][0-9])$">
+                        <small>Only numbers and between 18-99</small>
+                        <div *ngIf="age?.errors?.required && form.submitted" class="invalid-tooltip">Age is required!</div>
+                        <div *ngIf="age?.errors?.pattern && form.submitted" class="invalid-tooltip">Age must only contain numbers and be between 17-120!</div>
+                      </div>
+                      <div class="form-group">
+                        <label>{{ 'forms.email' | translate }}</label>
+                        <input type="text" class="form-control" name="email" ngModel required #email="ngModel" email>
+                        <small>Valid email</small>
+                        <div *ngIf="email?.errors?.required && form.submitted" class="invalid-tooltip">Email is required!</div>
+                        <div *ngIf="email?.errors?.email && form.submitted" class="invalid-tooltip">Email must be a valid address!</div>
+                      </div>
+                      <div class="form-group error-l-100">
+                        <label>{{ 'forms.email-confirm' | translate }}</label>
+                        <input type="text" class="form-control" name="emailConfirm" ngModel required #emailConfirm="ngModel" email>
+                        <small>Emails must match and be a valid address</small>
+                        <div *ngIf="emailConfirm?.errors?.required && form.submitted" class="invalid-tooltip">Email confirmation is required!</div>
+                        <div *ngIf="emailConfirm?.errors?.email && form.submitted" class="invalid-tooltip">Email must be a valid address!</div>
+                        <div *ngIf="(!emailConfirm?.errors?.email && (emailConfirm.value !== email.value)) && form.submitted" class="invalid-tooltip">Emails must match!</div>
+                      </div>
+                      <div class="form-group error-l-75">
+                        <label>{{ 'forms.password' | translate }}</label>
+                        <input type="text" class="form-control" name="password" ngModel required #password="ngModel" minlength="8" pattern="([A-Za-z]+[0-9]|[0-9]+[A-Za-z])[A-Za-z0-9]*">
+                        <small>Must contain at least a letter and number and must be 8 characters or longer</small>
+                        <div *ngIf="password?.errors?.required && form.submitted" class="invalid-tooltip">Password is required!</div>
+                        <div *ngIf="password?.errors?.pattern && form.submitted" class="invalid-tooltip">Paswsword must contain at least a letter and a number!</div>
+                        <div *ngIf="!password?.errors?.pattern && password?.errors?.minlength && form.submitted" class="invalid-tooltip">Paswsword must contain at least 8 characters!</div>
+                      </div>
+                      <div class="form-group">
+                        <label>{{ 'forms.options' | translate }}</label>
+                        <select class="custom-select" name="state" ngModel required #option="ngModel">
+                          <option value=""></option>
+                          <option value="1">One</option>
+                          <option value="2">Two</option>
+                          <option value="3">Three</option>
+                        </select>
+                        <div *ngIf="!option.valid && form.submitted" class="invalid-tooltip">Option is required</div>
+                      </div>
+                        <div class="form-group error-l-75">
+                        <label><span>{{ 'form-components.select' | translate }}</span></label>
+                        <ng-select appearance="outline" #agreeSelect labelForId="yesno" [searchable]="false" formControlName="ngSelect">
+                          <ng-option [value]="true">Yes</ng-option>
+                          <ng-option [value]="false">No</ng-option>
+                        </ng-select>
+                        <div *ngIf="formExternalComponents.get('ngSelect')?.errors?.required && form.submitted" class="invalid-tooltip">NgSelect is required!</div>
+                      </div>  
+                      <button class="btn btn-primary" type="submit">{{ 'forms.submit' | translate }}</button>
+                    </form> -->
+
+                    
+                    <form>
+                      <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label for="inputEmail4">{{ 'forms.email' | translate }}</label>
+                          <input type="email" class="form-control" id="inputEmail4" placeholder="{{ 'forms.email' | translate }}">
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label for="inputPassword4">{{ 'forms.password' | translate }}</label>
+                          <input type="password" class="form-control" id="inputPassword4" placeholder="{{ 'forms.password' | translate }}">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="inputAddress">{{ 'forms.address' | translate }}</label>
+                        <input type="text" class="form-control" id="inputAddress" placeholder="{{ 'forms.address' | translate }}">
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label for="inputCity">{{ 'forms.city' | translate }}</label>
+                          <input type="text" class="form-control" id="inputCity" placeholder="{{ 'forms.city' | translate }}">
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="inputState">{{ 'forms.state' | translate }}</label>
+                          <select id="inputState" class="form-control">
+                            <option selected>{{ 'input-groups.choose' | translate }}</option>
+                            <option>...</option>
+                          </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                          <label for="inputZip">{{ 'forms.zip' | translate }}</label>
+                          <input type="text" class="form-control" id="inputZip" placeholder="{{ 'forms.zip' | translate }}">
+                        </div>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                        <label class="form-check-label" for="inlineCheckbox1">1</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                        <label class="form-check-label" for="inlineCheckbox2">2</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
+                        <label class="form-check-label" for="inlineCheckbox3">3 (disabled)</label>
+                      </div>
+                      <button type="submit" class="btn btn-primary d-block mt-3">{{ 'forms.signup' | translate }}</button>
+
+
+
+
+
+
+
+
+
+                      <div class="row">
+                        <div class="col-12 col-lg-6 mb-4">
+                          <label><span>{{ 'form-components.basic' | translate }}</span></label>
+                          <ng-select appearance="outline" #agreeSelect labelForId="yesno" [searchable]="false">
+                            <ng-option [value]="true">Yes</ng-option>
+                            <ng-option [value]="false">No</ng-option>
+                          </ng-select>
+                        </div>
+              
+                        <div class="col-12 col-lg-6 mb-4">
+                          <label><span>{{ 'form-components.tags' | translate }}</span></label>
+                          <ng-select [items]="companies" [addTag]="addTagFn" [hideSelected]="true" multiple="true" bindLabel="name"
+                            [(ngModel)]="selectedCompanies">
+                          </ng-select>
+                        </div>
+              
+                        <div class="col-12 col-lg-6 mb-4">
+                          <label><span>{{ 'form-components.single' | translate }}</span></label>
+                          <ng-select [items]="people" bindLabel="name" bindValue="id" [(ngModel)]="selectedPersonId">
+                          </ng-select>
+                        </div>
+              
+                        <div class="col-12 col-lg-6 mb-4">
+                          <label><span>{{ 'form-components.multiple' | translate }}</span></label>
+                          <ng-select [items]="people" [multiple]="true" bindLabel="name" [closeOnSelect]="false"
+                            [(ngModel)]="selectedPeople">
+                          </ng-select>
+                        </div>
+              
+                        <div class="col-12 col-lg-6 mb-4">
+                          <label><span>{{ 'form-components.async' | translate }}</span></label>
+                          <ng-select [items]="peopleAsync | async" bindLabel="name" bindValue="id"
+                            [(ngModel)]="selectedPersonIdAsync">
+                          </ng-select>
+                        </div>
+              
+                        <div class="col-12 col-lg-6 mb-4">
+                          <label><span>{{ 'form-components.ajax' | translate }}</span></label>
+                          <ng-select [items]="githubUsers$ | async" [multiple]="true" bindLabel="login" bindValue="login"
+                            [(ngModel)]="selectedUsers">
+                            <ng-template ng-label-tmp let-item="item" let-clear="clear">
+                              <span class="ng-value-label"><img [src]="item.avatar_url" width="12px" height="12px">
+                                {{item.login}}</span>
+                            </ng-template>
+                            <ng-template ng-option-tmp let-item="item">
+                              <img [src]="item.avatar_url" width="12px" height="12px"> {{item.login}}
+                            </ng-template>
+                          </ng-select>
+                        </div>
+                        <div class="form-group error-l-75">
+                          <label>{{ 'form-components.date-picker' | translate }}</label>
+                          <input type="text" class="form-control" formControlName="basicDate"
+                          bsDatepicker [container]="'html'" [bsConfig]="{ adaptivePosition: true, dateInputFormat: 'DD-MM-YYYY' }">
+                          <!-- <div *ngIf="formExternalComponents.get('basicDate')?.errors?.required && form.submitted" class="invalid-tooltip">Date is required!</div> -->
+                        </div>
+                        <div class="col-12 col-lg-6 mb-4">
+                          <label><span>{{ 'form-components.search' | translate }}</span></label>
+                          <ng-select [items]="people" bindLabel="name" [loading]="peopleLoading">
+                          </ng-select>
+                        </div>
+              
+                        <div class="col-12 col-lg-6 mb-4">
+                          <label><span>{{ 'form-components.search-async' | translate }}</span></label>
+                          <ng-select [items]="peopleAsyncSearch | async" bindLabel="name" [addTag]="true" [multiple]="true"
+                            [hideSelected]="true" [trackByFn]="trackByFn" [minTermLength]="2" [loading]="peopleLoadingAsyncSearch"
+                            typeToSearchText="Please enter 2 or more characters" [typeahead]="peopleInputAsyncSearch"
+                            [(ngModel)]="selectedPersonsAsyncSearch">
+                          </ng-select>
+                        </div>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
-              <div class="col-12 col-lg-4">
-                <div class="sortable-survey" [sortablejs]="[1,2,3,4]" [sortablejsOptions]="{ handle: '.drag' }">
-                  <app-question-builder *ngFor="let item of currentSurvey.questions; let i=index" [question]="item"
-                    [sort]="i+1"></app-question-builder>
-                </div>
-                <div class="text-center">
-                  <button class="btn btn-outline-primary mt-3" (click)="addNewQuestion()"><i
-                      class="simple-icon-plus btn-group-icon"></i>
-                    {{ 'survey.add-question' | translate }}</button>
-                </div>
-              </div>
+               
             </div>
           </tab>
+
+
+
+
+
           <tab [heading]="('leave.results' | translate)" class="tab-content">
             <div class="row">
               <div class="col-12 col-lg-4">
@@ -215,6 +375,8 @@
       <div class="loading"></div>
     </ng-template>
   </div>
+
+
   <app-application-menu>
     <div class="p-4 h-100">
         <div class="scroll">
@@ -279,4 +441,4 @@
         </div>
     </div>
 </app-application-menu>
-</div>
+ 

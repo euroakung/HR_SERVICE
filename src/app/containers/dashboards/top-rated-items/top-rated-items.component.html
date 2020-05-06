@@ -15,7 +15,7 @@
           <span class="mr-2">{{item.order}}.</span>
           {{item.title}}
         </h6>
-        <rating [readonly]="true" [max]="5" [(ngModel)]="item.rate" [customTemplate]="t"></rating>
+        <!-- <rating [readonly]="true" [max]="5" [(ngModel)]="item.rate" [customTemplate]="t"></rating> -->
         <ng-template #t let-index="index" let-value="value">{{index < value ? '' : ''}}</ng-template>
         <p class="text-small text-muted mb-0 d-inline-block">({{item.rateCount}})</p>
       </div>

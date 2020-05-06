@@ -16,8 +16,7 @@ import { SurveyComponent } from './survey/survey.component';
 import { SurveyDetailComponent } from './survey-detail/survey-detail.component';
 import { ChatComponent } from './chat/chat.component';
 import { ApplicationsRoutingModule } from './applications.routing';
- 
-import { FormsModule } from '@angular/forms';
+  
 import { HotkeyModule } from 'angular2-hotkeys';
 import { ApplicationsContainersModule } from 'src/app/containers/applications/applications.containers.module';
 import { ComponentsChartModule } from 'src/app/components/charts/components.charts.module';
@@ -36,19 +35,21 @@ import { LayoutContainersModule } from 'src/app/containers/layout/layout.contain
 
 import {  BsDropdownModule  } from 'ngx-bootstrap/dropdown';
 import { ComponentsModule } from 'src/app/views/app/ui/components/components.module';
-
-
-
-
+ 
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker'; 
+import { CalendarModule, DateAdapter, CalendarNativeDateFormatter, DateFormatterParams, CalendarDateFormatter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { FormsModule as FormsModuleAngular, ReactiveFormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormValidationsContainersModule } from 'src/app/containers/form-validations/form.validations.containers.module';
 @NgModule({
   declarations: [ApplicationsComponent, TodoComponent, SurveyComponent,
-     SurveyDetailComponent, ChatComponent,LeaveComponent,LeaveDetailComponent  ,LeaveApproveComponent
+     SurveyDetailComponent, ChatComponent,LeaveComponent,LeaveDetailComponent  ,LeaveApproveComponent 
       ],
   imports: [
     NgxDatatableModule,
     CommonModule,
-    SharedModule,
-    FormsModule,
+    SharedModule, 
     ApplicationsRoutingModule,
     LayoutContainersModule,
     ApplicationsContainersModule, 
@@ -56,7 +57,12 @@ import { ComponentsModule } from 'src/app/views/app/ui/components/components.mod
     SortablejsModule, 
     NgxDatatableModule,
     ComponentsModule,
-    PagesContainersModule,
+    FormsModuleAngular,
+    ReactiveFormsModule,
+    PagesContainersModule, 
+    FormValidationsContainersModule,
+    NgSelectModule,
+    BsDatepickerModule.forRoot(),
     BsDropdownModule.forRoot(),
     HotkeyModule.forRoot(),
     CollapseModule.forRoot(),

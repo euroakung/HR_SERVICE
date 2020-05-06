@@ -19,7 +19,7 @@
     </p>
     <p class="text-muted text-small mb-2">{{ 'pages.rating' | translate }}</p>
     <div class="mb-3">
-      <rating [readonly]="true" [max]="5" [(ngModel)]="rate" [customTemplate]="ttt"></rating>
+      <!-- <rating [readonly]="true" [max]="5" [(ngModel)]="rate" [customTemplate]="ttt"></rating> -->
       <ng-template #ttt let-index="index" let-value="value">{{index < value ? '' : ''}}</ng-template>
     </div>
     <p class="text-muted text-small mb-2">{{ 'pages.price' | translate }}</p>

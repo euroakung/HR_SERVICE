@@ -7,7 +7,7 @@ import { DatepickerComponent } from './datepicker/datepicker.component';
 import { TimepickerComponent } from './timepicker/timepicker.component';
 import { DropzoneComponent } from './dropzone/dropzone.component';
 import { SliderComponent } from './slider/slider.component';
-import { RatingComponent } from './rating/rating.component';
+//import { RatingComponent } from './rating/rating.component';
 import { SwitchComponent } from './switch/switch.component';
 import { FormsModule as FormsModuleAngular, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -15,7 +15,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { NouisliderModule } from 'ng2-nouislider';
-import { RatingModule } from 'ngx-bootstrap/rating';
+//import { RatingModule } from 'ngx-bootstrap/rating';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
@@ -27,7 +27,7 @@ import { TranslateModule } from '@ngx-translate/core';
     TimepickerComponent,
     DropzoneComponent,
     SliderComponent,
-    RatingComponent,
+  //  RatingComponent,
     SwitchComponent],
   imports: [
     CommonModule,
@@ -36,7 +36,7 @@ import { TranslateModule } from '@ngx-translate/core';
     ReactiveFormsModule,
     BsDatepickerModule.forRoot(),
     TimepickerModule.forRoot(),
-    RatingModule,
+  //  RatingModule,
     DropzoneModule,
     NouisliderModule,
     TranslateModule
@@ -50,7 +50,7 @@ import { TranslateModule } from '@ngx-translate/core';
     TimepickerComponent,
     DropzoneComponent,
     SliderComponent,
-    RatingComponent,
+    //RatingComponent,
     SwitchComponent
   ]
 })
