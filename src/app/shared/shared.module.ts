@@ -4,16 +4,17 @@ import { ErrorComponent } from '../views/error/error.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+ 
 @NgModule({
   declarations: [ErrorComponent],
   imports: [
     RouterModule,
     CommonModule,
     TranslateModule,
-    PerfectScrollbarModule,
+    PerfectScrollbarModule, 
   ],
   exports: [
-    PerfectScrollbarModule,
+    PerfectScrollbarModule, 
     RouterModule,
     ErrorComponent,
     TranslateModule,

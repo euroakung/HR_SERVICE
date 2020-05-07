@@ -4979,6 +4979,19 @@ div.error:not(.simple-notification) {
   color: $button-text-color;
 }
 
+.form-control.ng-select .ng-select-container {
+  color: #333;
+  background-color: #fff;
+  border-radius: 4px;
+    border: 0px solid #ccc !important;  
+  
+  min-height: 36px; 
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+
+
 .input-group-text {
   background-color: rgba($input-background, 0.1);
   border-color: $separator-color;
