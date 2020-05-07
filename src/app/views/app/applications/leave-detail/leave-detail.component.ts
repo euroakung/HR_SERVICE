@@ -12,7 +12,9 @@ import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from '
 import { concat, Observable, of, Subject } from 'rxjs';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { defineLocale } from 'ngx-bootstrap/chronos';
-import { thBeLocale } from 'ngx-bootstrap/locale';
+import { thBeLocale } from 'ngx-bootstrap/locale';  
+import {timeRequired} from 'src/app/containers/form-validations/custom.validators'; 
+
 defineLocale('th-be', thBeLocale);
 @Component({ 
   selector: 'app-leave-detail',
@@ -180,6 +182,13 @@ selectedPersonsAsyncSearch = [{ name: 'Karyn Wright' }, { name: 'Other' }];
    this.localeService.use('th-be');
   //   this.maxDate.setDate(this.maxDate.getDate() + 7);
   //   this.bsRangeValue = [this.bsValue, this.maxDate];
+  
+  this.formExternalComponents = new FormGroup({
+    name: new FormControl(null, [Validators.required, Validators.minLength(2), Validators.pattern('^[A-Za-z]+$')]),
+    ngSelect: new FormControl(null, [Validators.required]),
+    basicTime: new FormControl(null, [timeRequired()]),
+    basicDate: new FormControl(null, [Validators.required]) 
+  });
  
   }
 
@@ -233,7 +242,9 @@ selectedPersonsAsyncSearch = [{ name: 'Karyn Wright' }, { name: 'Other' }];
  }
 
 
-
+ onSubmit() {
+  console.log(this.formExternalComponents);
+}
 
    ///select//
 
