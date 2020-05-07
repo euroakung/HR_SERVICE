@@ -12,7 +12,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { LayoutsValidationComponent } from './layouts/layouts-validation.component';
 import { TooltipPositionsComponent } from './tooltip-positions/tooltip-positions.component';
-
+ 
 @NgModule({
   declarations: [
     TemplateBasicComponent,

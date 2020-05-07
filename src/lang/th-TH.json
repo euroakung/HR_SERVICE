@@ -400,8 +400,10 @@
     "leave_approve": "อนุญาต",
     "leave_reject": "ไม่อนุญาต",
 
-    "leave_open": "เปิดดูเอกสารประกอบ"
-
+    "leave_open": "เปิดดูเอกสารประกอบ",
+    "leave_save": "บันทึก",
+    "leave_cancel": "ยกเลิก",
+    "leave_edit": "แก้ไข"
 
     
   }, 
