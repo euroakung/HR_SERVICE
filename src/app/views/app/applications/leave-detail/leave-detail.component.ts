@@ -22,6 +22,7 @@ defineLocale('th-be', thBeLocale);
 })
 export class LeaveDetailComponent implements OnInit, OnDestroy {
   formExternalComponents: FormGroup;
+  model: any = {};
   @ViewChild('form') form: FormGroup;
   @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
   @ViewChild(DatatableComponent) table: DatatableComponent;

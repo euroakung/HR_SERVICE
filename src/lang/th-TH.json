@@ -403,8 +403,9 @@
     "leave_open": "เปิดดูเอกสารประกอบ",
     "leave_save": "บันทึก",
     "leave_cancel": "ยกเลิก",
-    "leave_edit": "แก้ไข"
-
+    "leave_edit": "แก้ไข",
+    "least6characters": "รหัสผ่านต้องไม่น้อยกว่า 6 ตัวอักษร"
+    
     
   }, 
    "approveleave": {
