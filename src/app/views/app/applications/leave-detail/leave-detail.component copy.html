@@ -1,0 +1,621 @@
+<div class="    app-row  ">
+
+  <h1>
+    <i class="  simple-icon-calendar "></i>
+    <span class="align-middle d-inline-block pt-1">
+      &nbsp; {{'leave.detail' | translate}}
+    </span>
+  </h1>
+
+  <ng-container *ngIf="currentSurvey; else loading">
+    <div class="col-12">
+      <tabset class="separator-tabs ml-0">
+        <tab [heading]="('leave.detail' | translate)" class="tab-content">
+          <div class="row ">
+            <div class="col-12 col-lg-12 mb-12">
+              <div class="card mb-12">
+                <div class="card-body">
+                  <!-- <form #overLineForm="ngForm" novalidate> -->
+
+
+
+                  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                    <div class="form-row">
+
+                      <div class="form-group col-lg-12 mb-4">
+                        <label>{{'leave.write-at'|translate}}</label>
+                        <input type="text" name="firstName" class="form-control" [(ngModel)]="model.firstName"
+                          ng-value="มหาวิทยาลัยพะเยา" #firstName="ngModel"
+                          [ngClass]="{ 'is-invalid': f.submitted && firstName.invalid }" required>
+                        <div *ngIf="f.submitted && firstName.invalid" class="invalid-feedback">
+                          <div *ngIf="firstName.errors.required">First Name is required</div>
+                        </div>
+                      </div>
+                      <!-- <div class="form-group col-lg-6 mb-4">
+              <label>{{'leave.write-at'|translate}}</label>
+              <input type="text" name="lastName" class="form-control" [(ngModel)]="model.lastName" #lastName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && lastName.invalid }" required>
+              <div *ngIf="f.submitted && lastName.invalid" class="invalid-feedback">
+                  <div *ngIf="lastName.errors.required">Last Name is required</div>
+              </div>
+          </div> -->
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col ">
+                        <label>{{'leave.subject'|translate}} </label>
+                        <select name="title" class="form-control" [(ngModel)]="model.title" #title="ngModel"
+                          [ngClass]="{ 'is-invalid': f.submitted && title.invalid }" required>
+                          <option value="">{{'message.please-choose'|translate}} </option>
+                          <option value="Mr">{{'leave.leave-sick'|translate}} </option>
+                          <option value="Mrs">{{'leave.leave-personal'|translate}} </option>
+                        </select>
+                        <div *ngIf="f.submitted && title.invalid" class="invalid-feedback">
+                          <div *ngIf="title.errors.required">Title is required</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-12 col-lg-12 mb-4">
+                        <label><span>{{'leave.inform'|translate}}</span></label>
+                        <ng-select [items]="githubUsers$ | async" [multiple]="false" bindLabel="login" bindValue="login"
+                          [(ngModel)]="model.selectedUsers" #selectedUsers="ngModel" name="selectedUsers"
+                          class="form-control" [ngClass]="{ 'is-invalid': f.submitted && selectedUsers.invalid }"
+                          required>
+                          <ng-template ng-label-tmp let-item="item" let-clear="clear">
+                            <span class="ng-value-label"><img [src]="item.avatar_url" width="12px" height="12px">
+                              {{item.login}}</span>
+                          </ng-template>
+                          <ng-template ng-option-tmp let-item="item">
+                            <img [src]="item.avatar_url" width="12px" height="12px"> {{item.login}}
+                          </ng-template>
+                        </ng-select>
+                        <div *ngIf="f.submitted && selectedUsers.invalid" class="invalid-feedback">
+                          <div *ngIf="selectedUsers.errors.required">{{ 'forms.state' | translate }} is selectedUsers
+                          </div>
+                        </div>
+                      </div>
+
+
+
+                    </div>
+
+                    <div class="form-row">
+                      <div class="form-group col">
+                        <label class="form-group  ">
+                          <input type="text" name="date3" class="form-control" bsDatepicker [container]="'html'"
+                            [(ngModel)]="model.date3" #date3="ngModel"
+                            [ngClass]="{ 'is-invalid': f.submitted && date3.invalid }" required>
+                          <span>{{ 'leave.date_from' | translate }}</span>
+                          <div *ngIf="f.submitted && date3.invalid" class="invalid-feedback">
+                            <div *ngIf="date3.errors.required">date required</div>
+                          </div>
+                          <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="customSwitch2" checked>
+                            <label class="custom-control-label" for="customSwitch2">
+                              {{'leave.leave_fullday' | translate}}</label>
+                          </div>
+                        </label>
+
+                         
+                      </div>
+                      <div class="form-group col">
+                        <label class="form-group  ">
+                          <input type="text" name="date4" class="form-control" bsDatepicker [container]="'html'"
+                            [(ngModel)]="model.date4" #date4="ngModel"
+                            [ngClass]="{ 'is-invalid': f.submitted && date4.invalid }" required>
+                          <span>{{ 'leave.date_from' | translate }}</span>
+                          <div *ngIf="f.submitted && date4.invalid" class="invalid-feedback">
+                            <div *ngIf="date4.errors.required">date required</div>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+
+
+
+
+
+
+
+
+                    <div class="form-row"> 
+                        <div class="  col-lg-6 ">
+                      
+                          <div class="  col-lg-6 ">
+                          
+  
+                        </div>
+                 
+                      
+
+                    </div>
+
+                  </div>
+
+
+
+
+
+                    <div class="form-group">
+                      <label>Email</label>
+                      <input type="text" name="email" class="form-control" [(ngModel)]="model.email" #email="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
+                      <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                        <div *ngIf="email.errors.required">Email is required</div>
+                        <div *ngIf="email.errors.email">Email must be a valid email address</div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col">
+                        <label>Password</label>
+                        <input type="password" name="password" class="form-control" [(ngModel)]="model.password"
+                          #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required
+                          minlength="6">
+                        <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+                          <div *ngIf="password.errors.required">Password is required</div>
+                          <div *ngIf="password.errors.minlength"> {{'leave.least6characters'|translate}} Password must
+                            be at least 6 characters</div>
+                        </div>
+                      </div>
+                      <div class="form-group col">
+                        <label>Confirm Password</label>
+                        <input type="password" name="confirmPassword" class="form-control"
+                          [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel"
+                          [ngClass]="{ 'is-invalid': f.submitted && confirmPassword.invalid }" required>
+                        <div *ngIf="f.submitted && confirmPassword.invalid" class="invalid-feedback">
+                          <div *ngIf="confirmPassword.errors.required">Confirm Password is required</div>
+                          <div *ngIf="confirmPassword.errors.mustMatch">Passwords must match</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-row">
+                      <div class="form-group col  ">
+                        <div class="form-group col has-float-label">
+                          <label>{{ 'forms.state' | translate }} </label>
+                          <ng-select [items]="[{id:0, name:'Cake'}, {id:1, name:'Dessert'}, {id:2, name:'Cupcake'}]"
+                            bindLabel="name" bindValue="id" name="ngSelectSingle3" class="form-control"
+                            [(ngModel)]="model.ngSelectSingle3" #ngSelectSingle3="ngModel"
+                            [ngClass]="{ 'is-invalid': f.submitted && ngSelectSingle3.invalid }" required>
+                          </ng-select>
+                          <div *ngIf="f.submitted && ngSelectSingle3.invalid" class="invalid-feedback">
+                            <div *ngIf="ngSelectSingle3.errors.required">{{ 'forms.state' | translate }} is required
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+
+
+
+                    <div class="form-group col has-float-label">
+                      <label>Title</label>
+                      <select name="title" class="form-control" [(ngModel)]="model.title" #title="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && title.invalid }" required>
+                        <option value=""></option>
+                        <option value="Mr">Mr</option>
+                        <option value="Mrs">Mrs</option>
+                        <option value="Miss">Miss</option>
+                        <option value="Ms">Ms</option>
+                      </select>
+                      <div *ngIf="f.submitted && title.invalid" class="invalid-feedback">
+                        <div *ngIf="title.errors.required">Title is required</div>
+                      </div>
+                    </div>
+
+
+                    <div class="col-12 col-lg-6 mb-4">
+                      <label><span>{{ 'form-components.basic' | translate }}</span></label>
+                      <ng-select appearance="outline" #agreeSelect labelForId="yesno" [searchable]="false">
+                        <ng-option [value]="true">Yes</ng-option>
+                        <ng-option [value]="false">No</ng-option>
+                      </ng-select>
+                    </div>
+
+
+                    <div class="col-12 col-lg-6 mb-4">
+                      <label><span>{{'leave.inform'|translate}}</span></label>
+                      <ng-select [items]="githubUsers$ | async" [multiple]="false" bindLabel="login" bindValue="login"
+                        [(ngModel)]="model.selectedUsers" #selectedUsers="ngModel" name="selectedUsers"
+                        class="form-control" [ngClass]="{ 'is-invalid': f.submitted && selectedUsers.invalid }"
+                        required>
+                        <ng-template ng-label-tmp let-item="item" let-clear="clear">
+                          <span class="ng-value-label"><img [src]="item.avatar_url" width="12px" height="12px">
+                            {{item.login}}</span>
+                        </ng-template>
+                        <ng-template ng-option-tmp let-item="item">
+                          <img [src]="item.avatar_url" width="12px" height="12px"> {{item.login}}
+                        </ng-template>
+                      </ng-select>
+                      <div *ngIf="f.submitted && selectedUsers.invalid" class="invalid-feedback">
+                        <div *ngIf="selectedUsers.errors.required">{{ 'forms.state' | translate }} is selectedUsers
+                        </div>
+                      </div>
+                    </div>
+                    <div class="custom-control custom-switch">
+                      <input type="checkbox" class="custom-control-input" id="customSwitch1" checked>
+                      <label class="custom-control-label" for="customSwitch1">
+                        {{'leave.leave_fullday' | translate}}</label>
+                    </div>
+                    <div class="custom-control custom-switch">
+                      <input type="checkbox" class="custom-control-input" id="customSwitch2" checked>
+                      <label class="custom-control-label" for="customSwitch2">
+                        {{'leave.leave_fullday' | translate}}</label>
+                    </div>
+
+
+
+
+                    <div class="form-group form-check">
+                      <input type="checkbox" name="acceptTerms" id="acceptTerms" class="custom-control-input"
+                        [(ngModel)]="model.acceptTerms" #acceptTerms="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && acceptTerms.invalid }" required>
+                      <label for="acceptTerms" class="form-check-label">Accept Terms & Conditions</label>
+                      <div *ngIf="f.submitted && acceptTerms.invalid" class="invalid-feedback">Accept Ts & Cs is
+                        required</div>
+                    </div>
+                    <div class="text-center">
+                      <button class="btn btn-primary mr-1">Register</button>
+                      <button class="btn btn-secondary" type="reset">Cancel</button>
+                    </div>
+                  </form>
+
+                  <!--                     
+                    <form>
+                      <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label for="inputEmail4">{{ 'forms.email' | translate }}</label>
+                          <input type="email" class="form-control" id="inputEmail4" placeholder="{{ 'forms.email' | translate }}">
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label for="inputPassword4">{{ 'forms.password' | translate }}</label>
+                          <input type="password" class="form-control" id="inputPassword4" placeholder="{{ 'forms.password' | translate }}">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="inputAddress">{{ 'forms.address' | translate }}</label>
+                        <input type="text" class="form-control" id="inputAddress" placeholder="{{ 'forms.address' | translate }}">
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label for="inputCity">{{ 'forms.city' | translate }}</label>
+                          <input type="text" class="form-control" id="inputCity" placeholder="{{ 'forms.city' | translate }}">
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="inputState">{{ 'forms.state' | translate }}</label>
+                          <select id="inputState" class="form-control">
+                            <option selected>{{ 'input-groups.choose' | translate }}</option>
+                            <option>...</option>
+                          </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                          <label for="inputZip">{{ 'forms.zip' | translate }}</label>
+                          <input type="text" class="form-control" id="inputZip" placeholder="{{ 'forms.zip' | translate }}">
+                        </div>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                        <label class="form-check-label" for="inlineCheckbox1">1</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                        <label class="form-check-label" for="inlineCheckbox2">2</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
+                        <label class="form-check-label" for="inlineCheckbox3">3 (disabled)</label>
+                      </div>
+                      <button type="submit" class="btn btn-primary d-block mt-3">{{ 'forms.signup' | translate }}</button>
+
+
+
+
+
+
+
+
+
+                      <div class="row">
+                        <div class="col-12 col-lg-6 mb-4">
+                          <label><span>{{ 'form-components.basic' | translate }}</span></label>
+                          <ng-select appearance="outline" #agreeSelect labelForId="yesno" [searchable]="false">
+                            <ng-option [value]="true">Yes</ng-option>
+                            <ng-option [value]="false">No</ng-option>
+                          </ng-select>
+                        </div>
+              
+                        <div class="col-12 col-lg-6 mb-4">
+                          <label><span>{{ 'form-components.tags' | translate }}</span></label>
+                          <ng-select [items]="companies" [addTag]="addTagFn" [hideSelected]="true" multiple="true" bindLabel="name"
+                            [(ngModel)]="selectedCompanies">
+                          </ng-select>
+                        </div>
+              
+                        <div class="col-12 col-lg-6 mb-4">
+                          <label><span>{{ 'form-components.single' | translate }}</span></label>
+                          <ng-select [items]="people" bindLabel="name" bindValue="id" [(ngModel)]="selectedPersonId">
+                          </ng-select>
+                        </div>
+              
+                        <div class="col-12 col-lg-6 mb-4">
+                          <label><span>{{ 'form-components.multiple' | translate }}</span></label>
+                          <ng-select [items]="people" [multiple]="true" bindLabel="name" [closeOnSelect]="false"
+                            [(ngModel)]="selectedPeople">
+                          </ng-select>
+                        </div>
+              
+                        <div class="col-12 col-lg-6 mb-4">
+                          <label><span>{{ 'form-components.async' | translate }}</span></label>
+                          <ng-select [items]="peopleAsync | async" bindLabel="name" bindValue="id"
+                            [(ngModel)]="selectedPersonIdAsync">
+                          </ng-select>
+                        </div>
+              
+                        <div class="col-12 col-lg-6 mb-4">
+                          <label><span>{{ 'form-components.ajax' | translate }}</span></label>
+                          <ng-select [items]="githubUsers$ | async" [multiple]="true" bindLabel="login" bindValue="login"
+                            [(ngModel)]="selectedUsers">
+                            <ng-template ng-label-tmp let-item="item" let-clear="clear">
+                              <span class="ng-value-label"><img [src]="item.avatar_url" width="12px" height="12px">
+                                {{item.login}}</span>
+                            </ng-template>
+                            <ng-template ng-option-tmp let-item="item">
+                              <img [src]="item.avatar_url" width="12px" height="12px"> {{item.login}}
+                            </ng-template>
+                          </ng-select>
+                        </div>
+                        <div class="form-group error-l-75">
+                          <label>{{ 'form-components.date-picker' | translate }}</label>
+                          <input type="text" class="form-control" formControlName="basicDate"
+                          bsDatepicker [container]="'html'" [bsConfig]="{ adaptivePosition: true, dateInputFormat: 'DD-MM-YYYY' }">
+                           <div *ngIf="formExternalComponents.get('basicDate')?.errors?.required && form.submitted" class="invalid-tooltip">Date is required!</div>  
+                        </div>
+                        <div class="col-12 col-lg-6 mb-4">
+                          <label><span>{{ 'form-components.search' | translate }}</span></label>
+                          <ng-select [items]="people" bindLabel="name" [loading]="peopleLoading">
+                          </ng-select>
+                        </div>
+              
+                        <div class="col-12 col-lg-6 mb-4">
+                          <label><span>{{ 'form-components.search-async' | translate }}</span></label>
+                          <ng-select [items]="peopleAsyncSearch | async" bindLabel="name" [addTag]="true" [multiple]="true"
+                            [hideSelected]="true" [trackByFn]="trackByFn" [minTermLength]="2" [loading]="peopleLoadingAsyncSearch"
+                            typeToSearchText="Please enter 2 or more characters" [typeahead]="peopleInputAsyncSearch"
+                            [(ngModel)]="selectedPersonsAsyncSearch">
+                          </ng-select>
+                        </div>
+                      </div>
+                    </form> -->
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </tab>
+
+
+
+
+
+        <tab [heading]="('leave.results' | translate)" class="tab-content">
+          <div class="row">
+            <div class="col-12 col-lg-4">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <p class="list-item-heading mb-4">{{ 'survey.quota' | translate }}</p>
+                  <div class="mb-4">
+                    <p class="mb-2">Gender</p>
+                    <progressbar class="mb-3" [value]="[{'value':60, type :'theme-1' },{'value':40, type :'theme-2' }]">
+                    </progressbar>
+                    <table class="table table-sm table-borderless">
+                      <tbody>
+                        <tr>
+                          <td class="p-0 pb-1 w-10">
+                            <span class="log-indicator border-theme-1 align-middle"></span>
+                          </td>
+                          <td class="p-0 pb-1">
+                            <span class="font-weight-medium text-muted text-small">105/125
+                              Male</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="p-0 pb-1 w-10">
+                            <span class="log-indicator border-theme-2 align-middle"></span>
+                          </td>
+                          <td class="p-0 pb-1">
+                            <span class="font-weight-medium text-muted text-small">90/125
+                              Female</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="mb-4">
+                    <p class="mb-2">Education</p>
+                    <div class="progress mb-3">
+                      <progressbar class="mb-3"
+                        [value]="[{'value':80, type :'theme-1' },{'value':20, type :'theme-2' }]">
+                      </progressbar>
+                    </div>
+                    <table class="table table-sm table-borderless">
+                      <tbody>
+                        <tr>
+                          <td class="p-0 pb-1 w-10">
+                            <span class="log-indicator border-theme-1 align-middle"></span>
+                          </td>
+                          <td class="p-0 pb-1">
+                            <span class="font-weight-medium text-muted text-small">139/125
+                              College</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="p-0 pb-1 w-10">
+                            <span class="log-indicator border-theme-2 align-middle"></span>
+                          </td>
+                          <td class="p-0 pb-1">
+                            <span class="font-weight-medium text-muted text-small">95/125
+                              High School</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="mb-4">
+                    <p class="mb-2">Age</p>
+                    <progressbar class="mb-3"
+                      [value]="[{'value':35, type :'theme-1' },{'value':25, type :'theme-2' },{'value':40, type :'theme-3' }]">
+                    </progressbar>
+                    <table class="table table-sm table-borderless">
+                      <tbody>
+                        <tr>
+                          <td class="p-0 pb-1 w-10">
+                            <span class="log-indicator border-theme-1 align-middle"></span>
+                          </td>
+                          <td class="p-0 pb-1">
+                            <span class="font-weight-medium text-muted text-small">50/75
+                              18-24</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="p-0 pb-1 w-10">
+                            <span class="log-indicator border-theme-2 align-middle"></span>
+                          </td>
+                          <td class="p-0 pb-1">
+                            <span class="font-weight-medium text-muted text-small">40/75
+                              24-30</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="p-0 pb-1 w-10">
+                            <span class="log-indicator border-theme-3 align-middle"></span>
+                          </td>
+                          <td class="p-0 pb-1">
+                            <span class="font-weight-medium text-muted text-small">60/75
+                              30-40</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-8">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <h5 class="card-title">How old are you?</h5>
+                  <div class="chart-container">
+                    <app-doughnut-chart [shadow]="true" [options]="chartDataConfig.doughnutChartOptions"
+                      [data]="ageChartData">
+                    </app-doughnut-chart>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-4">
+                <div class="card-body">
+                  <h5 class="card-title">What is your gender?</h5>
+                  <div class="chart-container">
+                    <app-doughnut-chart [shadow]="true" [options]="chartDataConfig.doughnutChartOptions"
+                      [data]="genderChartData">
+                    </app-doughnut-chart>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-4">
+                <div class="card-body">
+                  <h5 class="card-title">What is your employment status?</h5>
+                  <div class="chart-container">
+                    <app-doughnut-chart [shadow]="true" [options]="chartDataConfig.doughnutChartOptions"
+                      [data]="workChartData">
+                    </app-doughnut-chart>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-4">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    What programming languages do you use?
+                  </h5>
+                  <div class="chart-container">
+                    <app-doughnut-chart [shadow]="true" [options]="chartDataConfig.doughnutChartOptions"
+                      [data]="codingChartData">
+                    </app-doughnut-chart>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </tab>
+      </tabset>
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    <div class="loading"></div>
+  </ng-template>
+</div>
+
+
+<app-application-menu>
+  <div class="p-4 h-100">
+    <div class="scroll">
+      <h3 class="text-muted  ">{{ 'leave.summary' | translate }}</h3>
+      <ul class="list-unstyled mb-5">
+        <li class="active">
+          <a href="javascript:;">
+            <i class="simple-icon-check"></i>
+            ลาป่วย
+            <span class="float-right">12</span>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;">
+            <i class="simple-icon-check"></i>
+            ลากิจ
+            <span class="float-right">24</span>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;">
+            <i class="simple-icon-check"></i>
+            ลาพักผ่อน
+            <span class="float-right">10</span>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;">
+            <i class="simple-icon-check"></i>
+            ลาคลอด
+            <span class="float-right">90</span>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;">
+            <i class="simple-icon-check"></i>
+            ช่วยภริยา
+            <span class="float-right">15</span>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;">
+            <i class="simple-icon-check"></i>
+            อุปสมบท
+            <span class="float-right">32</span>
+          </a>
+        </li>
+      </ul>
+      <p class="text-muted text-small">{{ 'leave.lasttime' | translate }}</p>
+      <ul class="list-unstyled mb-5">
+        <li> <a href="javascript:;">
+            <i class="simple-icon-check"></i>ลากิจ </a>
+        </li>
+        <li> <a href="javascript:;">
+            <i class="simple-icon-calendar"></i>12/04/62 - 12/04/62 </a>
+        </li>
+        <li> <a href="javascript:;">
+            <i class="simple-icon-calculator"></i> 0.5 </a>
+
+        </li>
+      </ul>
+    </div>
+  </div>
+</app-application-menu>
