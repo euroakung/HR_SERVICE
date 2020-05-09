@@ -7,7 +7,7 @@ import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-dat
 import { ApiService, IProduct } from 'src/app/data/api.service';
 import { SelectDataService, Person } from 'src/app/containers/forms/select/select.data.service';
 import { ContextMenuComponent } from 'ngx-contextmenu';
-import { FormGroup , FormControl, Validators } from '@angular/forms';
+import { FormGroup ,FormBuilder, FormControl, Validators } from '@angular/forms';
 import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 import { concat, Observable, of, Subject } from 'rxjs';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
@@ -21,7 +21,8 @@ defineLocale('th-be', thBeLocale);
   templateUrl: './leave-detail.component.html'
 })
 export class LeaveDetailComponent implements OnInit, OnDestroy {
-  formExternalComponents: FormGroup;
+  registerForm: FormGroup;
+  submitted = false;
   model: any = {};
   @ViewChild('form') form: FormGroup;
   @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
@@ -176,7 +177,7 @@ selectedPersonsAsyncSearch = [{ name: 'Karyn Wright' }, { name: 'Other' }];
 
 /////select///
 
-  constructor(private localeService: BsLocaleService,private surveyService: SurveyService, private chartService: ChartService, private renderer: Renderer2,private apiService: ApiService, private el: ElementRef,private selectDataService: SelectDataService) {
+  constructor(private localeService: BsLocaleService,private surveyService: SurveyService, private chartService: ChartService, private renderer: Renderer2,private apiService: ApiService, private el: ElementRef,private selectDataService: SelectDataService,private formBuilder: FormBuilder) {
     this.chartDataConfig = this.chartService;
     this.people = selectDataService.people;
   //  console.log(locales);
@@ -184,12 +185,12 @@ selectedPersonsAsyncSearch = [{ name: 'Karyn Wright' }, { name: 'Other' }];
   //   this.maxDate.setDate(this.maxDate.getDate() + 7);
   //   this.bsRangeValue = [this.bsValue, this.maxDate];
   
-  this.formExternalComponents = new FormGroup({
-    name: new FormControl(null, [Validators.required, Validators.minLength(2), Validators.pattern('^[A-Za-z]+$')]),
-    ngSelect: new FormControl(null, [Validators.required]),
-    basicTime: new FormControl(null, [timeRequired()]),
-    basicDate: new FormControl(null, [Validators.required]) 
-  });
+  // this.formExternalComponents = new FormGroup({
+  //   name: new FormControl(null, [Validators.required, Validators.minLength(2), Validators.pattern('^[A-Za-z]+$')]),
+  //   ngSelect: new FormControl(null, [Validators.required]),
+  //   basicTime: new FormControl(null, [timeRequired()]),
+  //   basicDate: new FormControl(null, [Validators.required]) 
+  // });
  
   }
 
@@ -209,13 +210,18 @@ selectedPersonsAsyncSearch = [{ name: 'Karyn Wright' }, { name: 'Other' }];
 
       ///////form/////
 
-      this.formExternalComponents = new FormGroup({
-        // name: new FormControl(null, [Validators.required, Validators.minLength(2), Validators.pattern('^[A-Za-z]+$')]),
-        // ngSelect: new FormControl(null, [Validators.required]),
-        // basicDate: new FormControl(null, [Validators.required]), 
-        // switch: new FormControl(null, [Validators.requiredTrue])
-      });
-
+      this.registerForm = this.formBuilder.group({
+        txtwrite: ['มหาวิทยาลัยพะเยา', Validators.required],
+        subject: ['', Validators.required],
+        inform: ['1', Validators.required],
+        leave_aboard: [false, Validators.required],
+        leave_country: ['',""],
+        date_from: ['', [Validators.required]],
+        leave_fullday_date_from: [true,""],
+        date_end: ['', Validators.required],
+        leave_fullday_date_end: [true,""],
+        leave_contact: ['', Validators.required] 
+    } );
         ///////form/////
     ///select///
 
@@ -242,10 +248,25 @@ selectedPersonsAsyncSearch = [{ name: 'Karyn Wright' }, { name: 'Other' }];
       ///select//
  }
 
+  // convenience getter for easy access to form fields
+  get f() { return this.registerForm.controls; }
 
- onSubmit() {
-  console.log(this.formExternalComponents);
-}
+    onSubmit() {
+        this.submitted = true;
+
+        // stop here if form is invalid
+        if (this.registerForm.invalid) {
+            return;
+        }
+
+        // display form values on success
+        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
+    }
+    onReset() {
+      this.submitted = false;
+      this.registerForm.reset();
+  }
+ 
 
    ///select//
 
