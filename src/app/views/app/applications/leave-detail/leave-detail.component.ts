@@ -252,7 +252,17 @@ selectedPersonsAsyncSearch = [{ name: 'Karyn Wright' }, { name: 'Other' }];
   get f() { return this.registerForm.controls; }
 
     onSubmit() {
-        this.submitted = true;
+        this.submitted = true; 
+ ///check leave_aboard condition
+      if (this.registerForm.value.leave_aboard){ 
+      this.registerForm.get('leave_country').setValidators([Validators.required]); 
+      this.registerForm.get('leave_country').updateValueAndValidity();
+
+      }else{
+        this.registerForm.get('leave_country').clearValidators();
+        this.registerForm.get('leave_country').updateValueAndValidity();
+      }
+ 
 
         // stop here if form is invalid
         if (this.registerForm.invalid) {
@@ -260,8 +270,29 @@ selectedPersonsAsyncSearch = [{ name: 'Karyn Wright' }, { name: 'Other' }];
         }
 
         // display form values on success
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
+      //  alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
     }
+
+    onChangeAboard() { 
+///check leave_aboard condition
+    if (this.registerForm.value.leave_aboard){ 
+    this.registerForm.get('leave_country').setValidators([Validators.required]); 
+    this.registerForm.get('leave_country').updateValueAndValidity();
+
+    }else{
+      this.registerForm.get('leave_country').clearValidators();
+      this.registerForm.get('leave_country').updateValueAndValidity();
+    }
+
+
+      // stop here if form is invalid
+      if (this.registerForm.invalid) {
+          return;
+      }
+
+      // display form values on success
+    //  alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
+  }
     onReset() {
       this.submitted = false;
       this.registerForm.reset();

@@ -47,8 +47,8 @@ import { ContextMenuComponent } from 'ngx-contextmenu';
           });
       }
     
-      showAddNewModal() {
-        this.addNewModalRef.show();
+      showAddNewModal(leavetype: number) {
+        this.addNewModalRef.show(leavetype);
       }
     
       isSelected(p: ILeave) {

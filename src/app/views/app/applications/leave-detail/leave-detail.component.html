@@ -38,6 +38,11 @@
                           [ngClass]="{ 'is-invalid':submitted && f.subject.invalid }"  > 
                           <option value="Mr">{{'leave.leave-sick'|translate}} </option>
                           <option value="Mrs">{{'leave.leave-personal'|translate}} </option>
+                          <option value="Mrs">{{'leave.app-maternity'|translate}} </option>
+                          <option value="Mrs">{{'leave.app-vacation'|translate}} </option>
+                          <option value="Mrs">{{'leave.app-ordain'|translate}} </option>
+                          <option value="Mrs">{{'leave.app-helping-wife'|translate}} </option> 
+                         
                         </select>
                         <div *ngIf=" submitted && f.subject.invalid" class="invalid-feedback">
                           <div *ngIf="f.subject.errors.required">{{'message.please-choose'|translate}} </div>
@@ -63,18 +68,14 @@
                           <div *ngIf="f.inform.errors.required">{{ 'forms.state' | translate }} is selectedUsers
                           </div>
                         </div>
-                      </div>
-
-
-
+                      </div> 
                     </div>
-
-
+ 
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="leave_aboard"> <h6>{{ 'leave.leave_aboard' | translate }}</h6></label>
                         <div class="custom-control custom-switch">
-                          <input type="checkbox" class="custom-control-input"   formControlName="leave_aboard"     [ngClass]="{ 'is-invalid':submitted && f.leave_aboard.invalid }" required >
+                          <input type="checkbox" class="custom-control-input"   (change)="onChangeAboard()" formControlName="leave_aboard"   id="leave_aboard"   [ngClass]="{ 'is-invalid':submitted && f.leave_aboard.invalid }" required >
                         
                           <label class="custom-control-label" for="leave_aboard">
                             {{'leave.yes' | translate}}</label>
@@ -86,7 +87,7 @@
                         <ng-select [items]="githubUsers$ | async" [multiple]="false" bindLabel="login" bindValue="login"
                         formControlName="leave_country"
                         class="form-control" [ngClass]="{ 'is-invalid':submitted && f.leave_country.invalid }"
-                        required>
+                        *ngIf="{ required: f.leave_aboard.value  } "   >
                         <ng-template ng-label-tmp let-item="item" let-clear="clear">
                           <span class="ng-value-label"><img [src]="item.avatar_url" width="12px" height="12px">
                             {{item.login}}</span>
@@ -95,8 +96,8 @@
                           <img [src]="item.avatar_url" width="12px" height="12px"> {{item.login}}
                         </ng-template>
                       </ng-select>
-                      <div *ngIf=" submitted && f.leave_country.invalid" class="invalid-feedback">
-                        <div *ngIf="f.leave_country.errors.required">{{ 'leave.selectedCountry' | translate }} is selectedCountry
+                      <div *ngIf=" submitted && f.leave_country.invalid  " class="invalid-feedback">
+                        <div *ngIf="f.leave_country.errors.required">  {{ f.leave_aboard.value }}  {{ 'leave.selectedCountry' | translate }} is selectedCountry
                         </div>
                       </div>
                       </div> 
@@ -117,7 +118,7 @@
                       <div class="form-group col-md-1">
                         <label for="leave_fullday_date_from"> {{'leave.leave_fullday' | translate}}/{{'leave.leave_halfday' | translate}}</label>
                         <div class="custom-control custom-switch">
-                          <input type="checkbox" class="custom-control-input"  formControlName="leave_fullday_date_from"  checked>
+                          <input type="checkbox" class="custom-control-input"  formControlName="leave_fullday_date_from" id="leave_fullday_date_from"   >
                           <label class="custom-control-label" for="leave_fullday_date_from">
                             {{'leave.leave_fullday' | translate}}</label>
                         </div>
@@ -135,7 +136,7 @@
                       <div class="form-group col-md-1">
                         <label for="leave_fullday_date_end"> {{'leave.leave_fullday' | translate}}/{{'leave.leave_halfday' | translate}}</label>
                         <div class="custom-control custom-switch">
-                          <input type="checkbox" class="custom-control-input"  formControlName="leave_fullday_date_end" checked>
+                          <input type="checkbox" class="custom-control-input"  formControlName="leave_fullday_date_end" id="leave_fullday_date_end"  checked>
                           <label class="custom-control-label" for="leave_fullday_date_end">
                             {{'leave.leave_fullday' | translate}}</label>
                         </div>
@@ -155,8 +156,7 @@
                     <div class="form-row">
                       <div class=" card-body text-center ">
                     <button   class="btn btn-success mb-1 mr-2"> <i class="iconsminds-save"></i> {{'leave.leave_save' | translate}}</button>
-                    <button  class="btn btn-danger mb-1 ml-2 "> <i class="simple-icon-trash"></i> {{'leave.leave_cancel' | translate}}</button> 
-                    <button class="btn btn-secondary" type="reset" (click)="onReset()">{{'leave.leave_cancel' | translate}}</button>
+                    <button  class="btn btn-danger mb-1 ml-2 "> <i class="simple-icon-trash"></i> {{'leave.leave_cancel' | translate}}</button>  
                   </div>
                 </div>
                   </form> 

@@ -14,17 +14,24 @@
                 </button>
                 <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu"
                   aria-labelledby="button-basic">
-                  <li role="menuitem"><a class="dropdown-item" href="javascript:;">{{ 'leave.app-sick' | translate }}</a></li>
-                  <li role="menuitem"><a class="dropdown-item" href="javascript:;">{{ 'leave.app-vacation' | translate }}</a></li>
-                  <li role="menuitem"><a class="dropdown-item" href="javascript:;">{{ 'leave.app-ordain' | translate }}</a></li>
-                  <li role="menuitem"><a class="dropdown-item" href="javascript:;">{{ 'leave.app-helping-wife' | translate }}</a></li>
+                  <li role="menuitem"><a class="dropdown-item" href="javascript:;"  (click)="showAddNewModal(2)">{{ 'leave.leave-sick' | translate }}</a></li>
+                  <li role="menuitem"><a class="dropdown-item" href="javascript:;"  (click)="showAddNewModal(3)">{{ 'leave.leave-personal' | translate }}</a></li>
+                  <li role="menuitem"><a class="dropdown-item" href="javascript:;"  (click)="showAddNewModal(4)">{{ 'leave.leave-maternity' | translate }}</a></li>
+                  <li role="menuitem"><a class="dropdown-item" href="javascript:;"  (click)="showAddNewModal(1)">{{ 'leave.app-vacation' | translate }}</a></li>
+                  <li role="menuitem"><a class="dropdown-item" href="javascript:;"  (click)="showAddNewModal(5)">{{ 'leave.app-ordain' | translate }}</a></li>
+                  <li role="menuitem"><a class="dropdown-item" href="javascript:;"  (click)="showAddNewModal(11)">{{ 'leave.app-helping-wife' | translate }}</a></li>
+                  <li role="menuitem"><a class="dropdown-item" href="javascript:;"  (click)="showAddNewModal(10)">{{ 'leave.app-personal-baby' | translate }}</a></li>
+                  
                 </ul>
-              </div>
-            <!-- <button type="button" (click)="showAddNewModal()"
-                class="top-right-button btn btn-primary btn-lg mr-1">{{ 'leave.add-new' | translate}}</button> -->
-
-
-
+               </div>
+               
+               <!--  <option value="Mr">{{'leave.leave-sick'|translate}} </option>
+              <option value="Mrs">{{'leave.leave-personal'|translate}} </option>
+              <option value="Mrs">{{'leave.app-maternity'|translate}} </option>
+              <option value="Mrs">{{'leave.app-vacation'|translate}} </option>
+              <option value="Mrs">{{'leave.app-ordain'|translate}} </option>
+              <option value="Mrs">{{'leave.app-helping-wife'|translate}} </option>  -->
+              
                 <!-- <div class="d-inline-block position-relative" dropdown #dropdown="bs-dropdown" [autoClose]="false">
                     <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
                         {{ 'leave.add-new' | translate}} <span class="caret"></span>
