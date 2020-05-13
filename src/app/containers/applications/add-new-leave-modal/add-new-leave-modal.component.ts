@@ -82,7 +82,7 @@ selectedPersonsAsyncSearch = [{ name: 'Karyn Wright' }, { name: 'Other' }];
    this.localeService.use('th-be');
 
    }
-
+   leave_type_name: string;
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       txtwrite: ['มหาวิทยาลัยพะเยา', Validators.required],
@@ -102,6 +102,8 @@ selectedPersonsAsyncSearch = [{ name: 'Karyn Wright' }, { name: 'Other' }];
   show(leaveType:number) { 
     
     this.registerForm.get('subject').setValue(leaveType ); 
+    ///แสดงประเภทการลาตามที่ทำการเลือก
+    this.leave_type_name = leaveType.toString();
     this.modalRef = this.modalService.show(this.template, this.config);
   }
 

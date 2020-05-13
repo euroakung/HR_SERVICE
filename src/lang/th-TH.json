@@ -231,8 +231,8 @@
   "pages": {
     "add-new": "ADD NEW",
     "add-new-modal-title": "Add New Item",
-    "display-options": "Display Options",
-    "orderby": "Order By : ",
+    "display-options": "ตัวเลือกการแสดงผล",
+    "orderby": "เรียงลำดับ : ",
     "product-name": "Product Name",
     "category": "Category",
     "description": "Description",
@@ -314,8 +314,8 @@
     "cancel": "Cancel",
     "submit": "Submit",
     "another-action": "Another action",
-    "display-options": "Display Options",
-    "orderby": "Order By : ",
+    "display-options": "ตัวเลือกการแสดงผล",
+    "orderby": "เรียงลำดับ : ",
     "all-surveys": "All Surveys",
     "completed-surveys": "Completed Surveys",
     "categories": "Categories",
@@ -340,8 +340,8 @@
     "submit": "Submit",
     "action": "Action",
     "another-action": "Another action",
-    "display-options": "Display Options",
-    "orderby": "Order By : ",
+    "display-options": "ตัวเลือกการแสดงผล",
+    "orderby": "เรียงลำดับ : ",
     "all-tasks": "All Tasks",
     "pending-tasks": "Pending Tasks",
     "completed-tasks": "Completed Tasks",
@@ -357,6 +357,7 @@
 
     "title": "ใบลา",
     "detail": "รายละเอียดการลา",
+    "leave-code": "เลขคำขอ",
     "leave-sick": "ลาป่วย",
     "leave-personal": "ลากิจส่วนตัว",
     "app-sick": "ลาป่วย/ลากิจ",
@@ -371,10 +372,12 @@
     "summary":"ข้อมูลสรุปวันลา",
     "lasttime":"ลาครั้งล่าสุด",
     "cancel": "ยกเลิก",
+    "leave-delete": "ลบข้อมูลใบลา",
+    "leave-cancel": "ยกเลิกวันลา",
     "submit": "บันทึก",
     "action": "Action",
     "another-action": "Another action",
-    "display-options": "Display Options",
+    "display-options": "ตัวเลือกการแสดงผล",
     "orderby": "เรียงโดย : ",
     "all-tasks": "ทั้งหมด",
     "pending-tasks": "รอดำเนินการ",
@@ -409,13 +412,13 @@
     "leave_attachment": "เอกสารประกอบ",
     "leave_approve": "อนุญาต",
     "leave_reject": "ไม่อนุญาต",
-
+    
     "leave_open": "เปิดดูเอกสารประกอบ",
     "leave_save": "บันทึก",
     "leave_cancel": "ยกเลิก",
     "leave_edit": "แก้ไข",
-    "least6characters": "รหัสผ่านต้องไม่น้อยกว่า 6 ตัวอักษร"
-    
+    "least6characters": "รหัสผ่านต้องไม่น้อยกว่า 6 ตัวอักษร",
+    "search": "ค้นหา"
     
   }, 
    "approveleave": {
@@ -432,7 +435,7 @@
     "submit": "บันทึก",
     "action": "Action",
     "another-action": "Another action",
-    "display-options": "Display Options",
+    "display-options": "ตัวเลือกการแสดงผล",
     "orderby": "เรียงโดย : ",
     "all-tasks": "ทั้งหมด",
     "pending-tasks": "รอดำเนินการ",

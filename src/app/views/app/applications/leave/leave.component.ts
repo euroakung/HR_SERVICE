@@ -9,7 +9,7 @@ import { ContextMenuComponent } from 'ngx-contextmenu';
   export class LeaveComponent implements OnInit, OnDestroy {
 
     columns = [
-        { prop: 'title', name: 'Title' },
+        { prop: 'เลขคำขอ', name: 'เลขคำขอ' },
         { prop: 'sales', name: 'Sales' },
         { prop: 'stock', name: 'Stock' },
         { prop: 'category', name: 'Category' },
@@ -20,8 +20,8 @@ import { ContextMenuComponent } from 'ngx-contextmenu';
       selected = [];
        temp = [];
       selectAllState = '';
-      itemOrder = 'Title';
-      itemOptionsOrders = ['Title', 'Category', 'Status', 'Label'];
+      itemOrder = 'เลขคำขอ';
+      itemOptionsOrders = ['ประเภทการลา', 'วันที่ลา', 'สถานะ', 'เลขคำขอ'];
       displayOptionsCollapsed = false;
     
       leaveItems: ILeave[] = [];
