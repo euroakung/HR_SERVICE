@@ -84,6 +84,7 @@ selectedPersonsAsyncSearch = [{ name: 'Karyn Wright' }, { name: 'Other' }];
    }
    leave_type_name: string;
   ngOnInit() {
+
     this.registerForm = this.formBuilder.group({
       txtwrite: ['มหาวิทยาลัยพะเยา', Validators.required],
       subject: ['', Validators.required],
@@ -94,6 +95,9 @@ selectedPersonsAsyncSearch = [{ name: 'Karyn Wright' }, { name: 'Other' }];
       leave_fullday_date_from: [true,""],
       date_end: ['', Validators.required],
       leave_fullday_date_end: [true,""],
+      leader: ['', Validators.required],
+      director: ['',""],
+      approve: ['',Validators.required],
       leave_contact: ['', Validators.required] 
   } );
 
@@ -113,16 +117,23 @@ selectedPersonsAsyncSearch = [{ name: 'Karyn Wright' }, { name: 'Other' }];
 
     onSubmit() {
         this.submitted = true; 
-        console.log(this.registerForm.value);
+     //   console.log(this.registerForm.value);
  ///check leave_aboard condition
-      if (this.registerForm.value.leave_aboard){ 
-      this.registerForm.get('leave_country').setValidators([Validators.required]); 
-      this.registerForm.get('leave_country').updateValueAndValidity();
+ if (this.registerForm.value.leave_aboard){ 
+  this.registerForm.get('leave_country').setValidators([Validators.required]); 
+  this.registerForm.get('leave_country').updateValueAndValidity();
+  this.registerForm.get('director').setValidators([Validators.required]); 
+  this.registerForm.get('director').updateValueAndValidity();
 
-      }else{
-        this.registerForm.get('leave_country').clearValidators();
-        this.registerForm.get('leave_country').updateValueAndValidity();
-      }
+   
+
+  }else{
+    this.registerForm.get('leave_country').clearValidators();
+    this.registerForm.get('leave_country').updateValueAndValidity();
+
+    this.registerForm.get('director').clearValidators();
+    this.registerForm.get('director').updateValueAndValidity();
+  }
  
 
         // stop here if form is invalid
@@ -136,14 +147,21 @@ selectedPersonsAsyncSearch = [{ name: 'Karyn Wright' }, { name: 'Other' }];
 
     onChangeAboard() { 
 ///check leave_aboard condition
-    if (this.registerForm.value.leave_aboard){ 
-    this.registerForm.get('leave_country').setValidators([Validators.required]); 
+if (this.registerForm.value.leave_aboard){ 
+  this.registerForm.get('leave_country').setValidators([Validators.required]); 
+  this.registerForm.get('leave_country').updateValueAndValidity();
+  this.registerForm.get('director').setValidators([Validators.required]); 
+  this.registerForm.get('director').updateValueAndValidity();
+
+   
+
+  }else{
+    this.registerForm.get('leave_country').clearValidators();
     this.registerForm.get('leave_country').updateValueAndValidity();
 
-    }else{
-      this.registerForm.get('leave_country').clearValidators();
-      this.registerForm.get('leave_country').updateValueAndValidity();
-    }
+    this.registerForm.get('director').clearValidators();
+    this.registerForm.get('director').updateValueAndValidity();
+  }
 
 
       // stop here if form is invalid

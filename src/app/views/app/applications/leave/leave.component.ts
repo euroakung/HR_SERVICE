@@ -9,10 +9,10 @@ import { ContextMenuComponent } from 'ngx-contextmenu';
   export class LeaveComponent implements OnInit, OnDestroy {
 
     columns = [
-        { prop: 'เลขคำขอ', name: 'เลขคำขอ' },
-        { prop: 'sales', name: 'Sales' },
-        { prop: 'stock', name: 'Stock' },
-        { prop: 'category', name: 'Category' },
+        { prop: 'category', name: 'category' },
+        { prop: 'detail', name: 'detail' },
+        { prop: 'label', name: 'label' },
+        { prop: 'labelColor', name: 'labelColor' },
         { prop: 'id', name: 'Id' }
       ];
       itemsPerPage = 10;
@@ -23,11 +23,11 @@ import { ContextMenuComponent } from 'ngx-contextmenu';
       itemOrder = 'เลขคำขอ';
       itemOptionsOrders = ['ประเภทการลา', 'วันที่ลา', 'สถานะ', 'เลขคำขอ'];
       displayOptionsCollapsed = false;
-    
+      //rows = ILeave.slice(0, 20).map(({ title, sales, stock, category, id }) => ({ title, sales, stock, category, id }));
       leaveItems: ILeave[] = [];
       @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
       @ViewChild('addNewModalRef', { static: true }) addNewModalRef: AddNewLeaveModalComponent;
-    
+   
       constructor(private leaveService: LeaveService, private renderer: Renderer2) { }
     
       ngOnInit() {
@@ -83,16 +83,20 @@ import { ContextMenuComponent } from 'ngx-contextmenu';
       }
 
       updateFilter(event) {
-        alert("dddd");
-        const val = event.target.value.toLowerCase().trim();
-        const count = this.columns.length;
-        const keys = Object.keys(this.temp[0]);
+         
+         const val = event.target.value.toLowerCase().trim();
+         const count = this.columns.length;
+         console.log(this.temp);
+         
+          const keys = Object.keys(this.temp[0]);
+        console.log(this.leaveItems);
+        
         const temp = this.leaveItems.filter(item => {
-          for (let i = 0; i < count; i++) {
-            if ((item[keys[i]] && item[keys[i]].toString().toLowerCase().indexOf(val) !== -1) || !val) {
-              return true;
-            }
-          }
+          // for (let i = 0; i < count; i++) {
+          //   if ((item[keys[i]] && item[keys[i]].toString().toLowerCase().indexOf(val) !== -1) || !val) {
+          //     return true;
+          //   }
+          // }
         });
          
       }

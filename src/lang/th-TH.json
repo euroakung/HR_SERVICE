@@ -406,6 +406,12 @@
     "before_leave": "ลาไปแล้ว",
     "this_leave": "ลาครั้งนี้",
     "this_summary": "รวมลาครั้งนี้",
+
+
+    "leader": "หัวหน้าส่วนงาน",
+    "director": "ผู้อำนวยการ/คณบดี",
+    "approve": "ผู้อนุญาต",
+
     "comment_leader": "ความเห็นหัวหน้า",
     "comment_director": "ความเห็นผู้อำนวยการ",
     "comment_president": "ความเห็นอธิการบดี",

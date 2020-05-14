@@ -55,8 +55,8 @@
                 </div>
                 <div class="d-inline-block">
                     <div class="search-sm d-inline-block float-md-left mr-1 mb-1 align-top">
-                        <input class="form-control" placeholder=" {{ 'leave.search' | translate}}  ">
-                        <!-- (keyup)="updateFilter($event)" -->
+                        <input class="form-control"  placeholder=" {{ 'leave.search' | translate}}   "    (keyup)="updateFilter($event)" >
+                       
                     </div>
                 </div>
                 <div class="float-right" id="pageCountDatatable">
@@ -83,7 +83,7 @@
                 <div class="d-flex flex-grow-1 min-width-zero">
                     <div
                         class="align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center card-body">
-                        <a class="list-item-heading mb-0 truncate w-40 w-xs-100  mb-1 mt-1" id="toggler1" 
+                        <a class=" mb-0 truncate w-20 w-xs-100  mb-1 mt-1" id="toggler1" 
                         [routerLink]="'/app/applications/leave/'+ item.id">
                             <i
                                 [ngClass]="{'heading-icon':true, 'simple-icon-user-following' : item.status === 'COMPLETED', 'iconsminds-stethoscope' : item.status !== 'COMPLETED' }"></i>
@@ -91,16 +91,15 @@
                             <span *ngIf="item.status == 'COMPLETED'"  class="align-middle d-inline-block"> {{'leave.leave-personal' | translate}} </span>
                         
                         </a>
-                        <a class="  mb-0 truncate w-40   mb-1 mt-1" id="toggler1" 
+                        <a class="  mb-0 truncate w-20   mb-1 mt-1" id="toggler1" 
                             [routerLink]="'/app/applications/leave/'+ item.id">
                                 <i  class="iconsminds-qr-code"></i> <span class="align-middle" > {{'leave.leave-code' | translate}} :  63252136464 </span>
-                                
-                            
+                             
                         </a>
-                        <p class="mb-1 text-muted   w-15 w-xs-100"> 2.5 {{'leave.day' | translate}} </p>
-                        <p class="mb-1 text-muted text-small w-150 w-xs-150">{{ item.date }} - {{ item.date }} </p>
-                        <div class="w-15 w-xs-300"><span
-                                [class]="'badge badge-pill badge-' + item.labelColor">อนุญาต  {{item.labelColor}}</span></div>
+                        <p class="mb-1      w-10 w-xs-100">{{'leave.amount' | translate}}   2.5  {{'leave.day' | translate}} </p>
+                        <p class="mb-1    w-20 w-xs-150"> {{'leave.days' | translate}}  {{ item.date }} - {{ item.date }} </p>
+                        <div class="w-10 w-xs-300"><span
+                                [class]="'badge badge-pill badge-' + item.labelColor">อนุญาต  </span></div>
                     </div>
                     <div  *ngIf="item.status == 'ACTIVE'"  class="custom-control custom-checkbox pl-1 align-self-center mr-4 c-pointer"> 
                         <a     class="btn btn-xs btn-warning mb-1 ml-2 " (click)="showAddNewModal(10)"> <i class="iconsminds-power-2"></i> {{'leave.leave-cancel' | translate}}</a>  
@@ -171,7 +170,7 @@
             <p class="text-muted text-small">{{ 'leave.lasttime' | translate }}</p>
             <ul class="list-unstyled mb-5">
                 <li>   <a href="javascript:;"> 
-                         <i class="simple-icon-check"></i>ลากิจ    </a>
+                         <i class="simple-icon-check"></i>ลากิจ</a>
                 </li>
                 <li>   <a href="javascript:;"> 
                          <i class="simple-icon-calendar"></i>  {{ 'leave.days' | translate }} 12/04/62 - 12/04/62    </a>
