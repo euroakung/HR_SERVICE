@@ -12,6 +12,7 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { LayoutContainersModule } from './containers/layout/layout.containers.module';
 
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -21,8 +22,7 @@ import { LayoutContainersModule } from './containers/layout/layout.containers.mo
     BrowserAnimationsModule,
     TranslateModule.forRoot(),
     BsDatepickerModule.forRoot(),
-    HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    HttpClientModule, 
   ],
   declarations: [
     AppComponent

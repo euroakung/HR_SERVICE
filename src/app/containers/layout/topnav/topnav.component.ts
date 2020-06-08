@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
 export class TopnavComponent implements OnInit, OnDestroy {
   sidebar: ISidebar;
   subscription: Subscription;
-  displayName = 'Sarah Cortney';
+  displayName = 'Nopparat Ph';
   languages: Language[];
   currentLanguage: string;
   isSingleLang;

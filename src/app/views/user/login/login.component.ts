@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/shared/auth.service';
 export class LoginComponent implements OnInit {
   @ViewChild('loginForm') loginForm: NgForm;
   emailModel = 'demo@vien.com';
-  passwordModel = 'demovien1122';
+  passwordModel = 'demovien11222222222';
 
   buttonDisabled = false;
   buttonState = '';
@@ -29,6 +29,9 @@ export class LoginComponent implements OnInit {
     this.buttonState = 'show-spinner';
 
     this.authService.signIn(this.loginForm.value).subscribe((user) => {
+
+      console.log(user);
+      
       this.router.navigate(['/']);
     }, (error) => {
       this.buttonDisabled = false;

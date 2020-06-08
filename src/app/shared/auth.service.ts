@@ -1,7 +1,10 @@
+import { HttpClient } from '@angular/common/http';
+import { environment } from './../../environments/environment.prod';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
-import { Observable, from } from 'rxjs';
+import { Observable, from } from 'rxjs'; 
+ 
 
 export interface ISignInCredentials {
   email: string;
@@ -22,12 +25,17 @@ export interface IPasswordReset {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  constructor(private afAuth: AngularFireAuth) { }
+  private loginPath = environment.apiUrl+'login';
+  constructor(private afAuth: AngularFireAuth,private http:HttpClient) { }
 
   signIn(credentials: ISignInCredentials): Observable<auth.UserCredential> {
     return from(this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password));
   }
 
+  login(data): Observable<any>{
+
+    return  this.http.post(this.loginPath,data);
+  }
   signOut() {
     return from(this.afAuth.auth.signOut());
   }
