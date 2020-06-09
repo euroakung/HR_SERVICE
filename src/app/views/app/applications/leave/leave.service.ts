@@ -21,11 +21,9 @@ export interface ILeave {
 })
 export class LeaveService {
 
-  constructor(private http: HttpClient) { }
-
-
+  constructor(private http: HttpClient) { }  
   getLeaveItems(): Observable<ILeave[]> {
-    const url = `${environment.apiUrl}/surveys`;
+    const url = `${environment.apiUrl}/api/Authent`;
     return this.http.get(url)
       .pipe(
         map((res: IServiceResponse<ILeave>) => {

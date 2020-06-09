@@ -16,7 +16,9 @@
     "reset-password-button": "ตั้งค่าใหม่",
     "buy": "ซื้อ",
     "username": "ชื่อผู้ใช้",
-    "code": "รีเซ็ตรหัส"
+    "code": "รีเซ็ตรหัส",
+    "username-required": "กรุณาระบุชื่อผู้ใช้",
+    "password-required": "กรุณาระบุรหัสผ่าน"
   },
   "person": {
     "name": "ชื่อ-สกุล",

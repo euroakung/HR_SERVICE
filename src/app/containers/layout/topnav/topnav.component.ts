@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { SidebarService, ISidebar } from '../sidebar/sidebar.service';
 import { Router } from '@angular/router';
 import { LangService, Language } from 'src/app/shared/lang.service';
-import { AuthService } from 'src/app/shared/auth.service';
+  import { AuthenticationService } from 'src/app/shared/authentication.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -21,7 +21,7 @@ export class TopnavComponent implements OnInit, OnDestroy {
   isDarkModeActive = false;
   searchKey = '';
 
-  constructor(private sidebarService: SidebarService, private authService: AuthService, private router: Router, private langService: LangService) {
+  constructor(private sidebarService: SidebarService,  private authService:AuthenticationService, private router: Router, private langService: LangService) {
     this.languages = this.langService.supportedLanguages;
     this.currentLanguage = this.langService.languageShorthand;
     this.isSingleLang = this.langService.isSingleLang;
@@ -62,8 +62,8 @@ export class TopnavComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    if (this.authService.user) {
-      this.displayName = this.authService.user.displayName;
+    if (this.authService.currentUser) {
+      this.displayName = this.authService.currentUserValue.firstName;
     }
     this.subscription = this.sidebarService.getSidebar().subscribe(
       res => {
@@ -101,9 +101,15 @@ export class TopnavComponent implements OnInit, OnDestroy {
   }
 
   onSignOut() {
-    this.authService.signOut().subscribe(() => {
-      this.router.navigate(['/']);
-    });
+   if ( this.authService.signOut() ){
+  //  this.authService.currentUserValue =null;
+    localStorage.removeItem('token');
+     this.router.navigate(['user/login']);
+
+   }
+    
+
+  
   }
 
   searchKeyUp(event: KeyboardEvent) {

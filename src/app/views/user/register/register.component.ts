@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AuthService } from 'src/app/shared/auth.service';
+//import { AuthService } from 'src/app/shared/auth.service';
 import { NotificationsService, NotificationType } from 'angular2-notifications';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
   buttonDisabled = false;
   buttonState = '';
 
-  constructor(private authService: AuthService, private notifications: NotificationsService, private router: Router) { }
+  constructor(  private notifications: NotificationsService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -25,12 +25,6 @@ export class RegisterComponent implements OnInit {
     this.buttonDisabled = true;
     this.buttonState = 'show-spinner';
 
-    this.authService.register(this.registerForm.value).subscribe(() => {
-      this.router.navigate(['/']);
-    }, (error) => {
-      this.notifications.create('Error', error.message, NotificationType.Bare, { theClass: 'outline primary', timeOut: 6000, showProgressBar: false });
-      this.buttonDisabled = false;
-      this.buttonState = '';
-    });
+     
   }
 }

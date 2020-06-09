@@ -11,22 +11,27 @@
     <a class="c-pointer">
       <span class="logo-single"></span>
     </a>
-    <h6 class="mb-4">Login</h6>
+    <h6 class="mb-4">{{ 'user.login-title' | translate }}</h6>
 
-    <form #loginForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <label class="form-group has-float-label">
-        <input class="form-control" required email ngModel #email="ngModel" name="email" [(ngModel)]="emailModel" />
-        <span>{{ 'user.email' | translate }}</span>
-        <div *ngIf="!email.valid && loginForm.submitted" class="invalid-tooltip">Email is required!</div>
+        <input type="text" class="form-control" formControlName="txtUserName"
+        [ngClass]="{ 'is-invalid':submitted && f.txtUserName.invalid }">
+        <span>{{ 'user.username' | translate }}</span>
+        <div *ngIf=" submitted && f.txtUserName.invalid" class="invalid-feedback">
+          <div *ngIf="f.txtUserName.errors.required">{{'user.username-required'|translate}}</div>
+        </div>
       </label>
       <label class="form-group has-float-label">
-        <input class="form-control" type="password" placeholder="" required ngModel #password="ngModel" name="password"
-          [(ngModel)]="passwordModel" />
+        <input type="password" class="form-control" formControlName="txtPassword"
+        [ngClass]="{ 'is-invalid':submitted && f.txtPassword.invalid }">
         <span>{{ 'user.password' | translate }}</span>
-        <div *ngIf="!password.valid && loginForm.submitted" class="invalid-tooltip">Password is required!</div>
+        <div *ngIf=" submitted && f.txtPassword.invalid" class="invalid-feedback">
+          <div *ngIf="f.txtPassword.errors.required">{{'user.password-required'|translate}}</div>
+        </div>
       </label>
       <div class="d-flex justify-content-between align-items-center">
-        <a routerLink="/user/forgot-password">{{ 'user.forgot-password' | translate }}?</a>
+        <!-- <a routerLink="/user/forgot-password">{{ 'user.forgot-password' | translate }}?</a> -->
         <app-state-button [btnClass]="'btn btn-primary btn-lg btn-shadow'" [currentState]="buttonState"
           [isDisabled]="buttonDisabled" click="onLoginClick()">
           {{ 'user.login-button' | translate | uppercase }}

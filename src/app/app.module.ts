@@ -7,12 +7,15 @@ import { ViewsModule } from './views/views.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { HttpClientModule } from '@angular/common/http';
-import { AngularFireModule } from '@angular/fire';
+
+import { AngularFireModule } from '@angular/fire'; 
 import { environment } from '../environments/environment';
 import { LayoutContainersModule } from './containers/layout/layout.containers.module';
 
 
+import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
+import { JwtInterceptor, ErrorInterceptor } from './helpers';0
+import { fakeBackendProvider } from './helpers';
 @NgModule({
   imports: [
     BrowserModule,
@@ -23,11 +26,16 @@ import { LayoutContainersModule } from './containers/layout/layout.containers.mo
     TranslateModule.forRoot(),
     BsDatepickerModule.forRoot(),
     HttpClientModule, 
+     AngularFireModule.initializeApp(environment.firebase)
   ],
   declarations: [
     AppComponent
   ],
-  providers: [BrowserModule],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    fakeBackendProvider,
+    BrowserModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
