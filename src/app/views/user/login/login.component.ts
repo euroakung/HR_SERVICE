@@ -28,6 +28,15 @@ export class LoginComponent implements OnInit {
       txtUserName: ['', Validators.required],
       txtPassword: ['', Validators.required]
     });
+
+
+   if( localStorage.getItem('token')  !=null){
+         this.router.navigate(['/']);
+
+   }
+         
+
+
   }
   get f() { return this.loginForm.controls; }
   onSubmit() {

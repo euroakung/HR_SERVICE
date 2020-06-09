@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
 export class TopnavComponent implements OnInit, OnDestroy {
   sidebar: ISidebar;
   subscription: Subscription;
-  displayName = 'Nopparat Ph';
+  displayName = ' ';
   languages: Language[];
   currentLanguage: string;
   isSingleLang;
@@ -63,7 +63,7 @@ export class TopnavComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (this.authService.currentUser) {
-      this.displayName = this.authService.currentUserValue.firstName;
+      this.displayName = this.authService.currentUserValue.splNameth;
     }
     this.subscription = this.sidebarService.getSidebar().subscribe(
       res => {

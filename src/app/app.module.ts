@@ -14,8 +14,8 @@ import { LayoutContainersModule } from './containers/layout/layout.containers.mo
 
 
 import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
-import { JwtInterceptor, ErrorInterceptor } from './helpers';0
-import { fakeBackendProvider } from './helpers';
+import { AuthInterceptor, ErrorInterceptor } from './helpers';
+ 
 @NgModule({
   imports: [
     BrowserModule,
@@ -32,9 +32,8 @@ import { fakeBackendProvider } from './helpers';
     AppComponent
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    fakeBackendProvider,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }, 
     BrowserModule],
   bootstrap: [AppComponent]
 })
