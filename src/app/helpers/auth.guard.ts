@@ -4,8 +4,7 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from
 import { AuthenticationService } from '../shared/authentication.service';
 
 import { AngularFireAuthGuard, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
-const redirectUnauthorizedToLogin = () =>  redirectUnauthorizedTo(['/user']) ;
-const redirectLoggedInToItems = () => redirectLoggedInTo(['/app']);
+ 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
     constructor(
@@ -14,28 +13,17 @@ export class AuthGuard implements CanActivate {
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+       const currentUser = this.authenticationService.currentUserValue; 
+        if (currentUser) {
+            return true;
+       }else{
+          // / alert("false canActivate");
 
+      //  not logged in so redirect to login page with the return url
+      this.router.navigate(['user/login']);
+       return false;
 
-      // const currentUser = this.authenticationService.currentUserValue;
-      if (localStorage.getItem('token') != null) {
-          return true;
-      }else{
-        this.router.navigate(['user/login']);
-          return false;
-
-      }
-
-      
-    //     if (currentUser) {
-    //         return true;
-    //    }else{
-    //       // / alert("false canActivate");
-
-    //   //  not logged in so redirect to login page with the return url
-    //   this.router.navigate(['user/login']);
-    //    return false;
-
-    //    }
+       }
 
  
     }

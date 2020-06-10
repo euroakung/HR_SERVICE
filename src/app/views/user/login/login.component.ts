@@ -28,15 +28,6 @@ export class LoginComponent implements OnInit {
       txtUserName: ['', Validators.required],
       txtPassword: ['', Validators.required]
     });
-
-
-   if( localStorage.getItem('token')  !=null){
-         this.router.navigate(['/']);
-
-   }
-         
-
-
   }
   get f() { return this.loginForm.controls; }
   onSubmit() {
@@ -68,12 +59,12 @@ export class LoginComponent implements OnInit {
     this.authService.signIn(this.loginForm.value.txtUserName, this.loginForm.value.txtPassword)
       .pipe(first())
       .subscribe(
-        (res: any) => {
-      
-          localStorage.setItem('token', res.token)
+        (res: any) => { 
+          localStorage.setItem('token', res.token);
+          localStorage.setItem('userId', res.userId);
           this.router.navigate(['/']);
         },
-        error => {
+        error => {  
           this.buttonDisabled = false;
           this.buttonState = '';
           this.notifications.create('Error', error.message, NotificationType.Bare, { theClass: 'outline primary', timeOut: 6000, showProgressBar: false });
