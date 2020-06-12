@@ -84,27 +84,26 @@
                     <div
                         class="align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center card-body">
                         <a class=" mb-0 truncate w-20 w-xs-100  mb-1 mt-1" id="toggler1" 
-                        [routerLink]="'/app/applications/leave/'+ item.id">
+                        [routerLink]="'/app/applications/leave/'+ item.requestId">
                             <i
                                 [ngClass]="{'heading-icon':true, 'simple-icon-user-following' : item.status === 'COMPLETED', 'iconsminds-stethoscope' : item.status !== 'COMPLETED' }"></i>
-                            <span *ngIf="item.status == 'ACTIVE'" class="align-middle d-inline-block">{{'leave.leave-sick' | translate}} </span>
-                            <span *ngIf="item.status == 'COMPLETED'"  class="align-middle d-inline-block"> {{'leave.leave-personal' | translate}} </span>
+        
+                            <span  class="align-middle d-inline-block">  {{ item.leaveTypeName }} </span>
                         
                         </a>
                         <a class="  mb-0 truncate w-20   mb-1 mt-1" id="toggler1" 
                             [routerLink]="'/app/applications/leave/'+ item.id">
-                                <i  class="iconsminds-qr-code"></i> <span class="align-middle" > {{'leave.leave-code' | translate}} :  63252136464 </span>
+                                <i  class="iconsminds-qr-code"></i> <span class="align-middle" > {{'leave.leave-code' | translate}} :   {{ item.requestBarcodenum }}  </span>
                              
                         </a>
-                        <p class="mb-1      w-10 w-xs-100">{{'leave.amount' | translate}}   2.5  {{'leave.day' | translate}} </p>
-                        <p class="mb-1    w-20 w-xs-150"> {{'leave.days' | translate}}  {{ item.date }} - {{ item.date }} </p>
-                        <div class="w-10 w-xs-300"><span
-                                [class]="'badge badge-pill badge-' + item.labelColor">อนุญาต  </span></div>
+                        <p class="mb-1      w-10 w-xs-100">{{'leave.amount' | translate}}   {{ item.leaveDay }}   {{'leave.day' | translate}} </p>
+                        <p class="mb-1    w-20 w-xs-150"> {{'leave.days' | translate}}  {{ item.startDate }} - {{ item.endDate }} </p>
+                        <div class="w-10 w-xs-300"><span class="badge badge-pill badge-success"> อนุญาต  </span></div>
                     </div>
-                    <div  *ngIf="item.status == 'ACTIVE'"  class="custom-control custom-checkbox pl-1 align-self-center mr-4 c-pointer"> 
+                    <div    class="custom-control custom-checkbox pl-1 align-self-center mr-4 c-pointer"> 
                         <a     class="btn btn-xs btn-warning mb-1 ml-2 " (click)="showAddNewModal(10)"> <i class="iconsminds-power-2"></i> {{'leave.leave-cancel' | translate}}</a>  
                     </div>
-                    <div  *ngIf="item.status == 'COMPLETED'"  class="custom-control custom-checkbox pl-1 align-self-center mr-4 c-pointer"> 
+                    <div     class="custom-control custom-checkbox pl-1 align-self-center mr-4 c-pointer"> 
                         <a    class="btn btn-xs btn-danger mb-1 ml-2 " (click)="showAddNewModal(10)"> <i class="simple-icon-trash"></i> {{'leave.leave-delete' | translate}}</a>  
                     </div>
                 </div>

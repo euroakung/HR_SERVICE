@@ -14,7 +14,8 @@ import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { thBeLocale } from 'ngx-bootstrap/locale';  
 import {timeRequired} from 'src/app/containers/form-validations/custom.validators'; 
-
+import { LeaveService, ILeave }  from '../leave/leave.service'
+import { ActivatedRoute  } from '@angular/router';
 defineLocale('th-be', thBeLocale);
 @Component({ 
   selector: 'app-leave-detail',
@@ -30,7 +31,7 @@ export class LeaveDetailComponent implements OnInit, OnDestroy {
   chartDataConfig: ChartService;
   productDataConfig: ApiService;
 
-  currentSurvey: ISurvey;
+  leaveItems = [];
   colors = Colors.getColors();
 
 
@@ -56,9 +57,7 @@ export class LeaveDetailComponent implements OnInit, OnDestroy {
   selectAllState = '';
   endOfTheList = false;
 
-
-
-
+  
   ageChartData = {
     labels: ['12-24', '24-30', '30-40', '40-50', '50-60'],
     datasets: [{
@@ -154,32 +153,32 @@ export class LeaveDetailComponent implements OnInit, OnDestroy {
 
 /////select///
 
-people: Person[];
-selectedPersonId = '5a15b13c36e7a7f00cf0d7cb';
-selectedPeople = [{ name: 'Karyn Wright' }];
+// people: Person[];
+// selectedPersonId = '5a15b13c36e7a7f00cf0d7cb';
+// selectedPeople = [{ name: 'Karyn Wright' }];
 
-selectedCompanies;
-companies: any[] = [];
-companiesNames = ['Uber', 'Microsoft', 'Flexigen'];
+// selectedCompanies;
+// companies: any[] = [];
+// companiesNames = ['Uber', 'Microsoft', 'Flexigen'];
 
-peopleAsync: Observable<Person[]>;
-selectedPersonIdAsync = '5a15b13c605403381eec5019';
+// peopleAsync: Observable<Person[]>;
+// selectedPersonIdAsync = '5a15b13c605403381eec5019';
 
-githubUsers$: Observable<any[]>;
-selectedUsers = [];
+// githubUsers$: Observable<any[]>;
+// selectedUsers = [];
 
-peopleLoading = false;
+// peopleLoading = false;
 
-peopleAsyncSearch: Observable<Person[]>;
-peopleLoadingAsyncSearch = false;
-peopleInputAsyncSearch = new Subject<string>();
-selectedPersonsAsyncSearch = [{ name: 'Karyn Wright' }, { name: 'Other' }];
+// peopleAsyncSearch: Observable<Person[]>;
+// peopleLoadingAsyncSearch = false;
+// peopleInputAsyncSearch = new Subject<string>();
+// selectedPersonsAsyncSearch = [{ name: 'Karyn Wright' }, { name: 'Other' }];
 
 /////select///
 
-  constructor(private localeService: BsLocaleService,private surveyService: SurveyService, private chartService: ChartService, private renderer: Renderer2,private apiService: ApiService, private el: ElementRef,private selectDataService: SelectDataService,private formBuilder: FormBuilder) {
-    this.chartDataConfig = this.chartService;
-    this.people = selectDataService.people;
+  constructor(private localeService: BsLocaleService, private surveyService: SurveyService, private chartService: ChartService, private renderer: Renderer2, private apiService: ApiService, private el: ElementRef, private selectDataService: SelectDataService, private leaveService:LeaveService, private formBuilder: FormBuilder,private route:  ActivatedRoute) {
+    // this.chartDataConfig = this.chartService;
+    // this.people = selectDataService.people;
   //  console.log(locales);
    this.localeService.use('th-be');
   //   this.maxDate.setDate(this.maxDate.getDate() + 7);
@@ -199,14 +198,23 @@ selectedPersonsAsyncSearch = [{ name: 'Karyn Wright' }, { name: 'Other' }];
 
   ngOnInit() {
     ///  this.renderer.addClass(document.body, 'right-menu');
+    this.route.paramMap.subscribe(params => {
+      var id = params.get('id');
+      
+      this.getItems(id);
+    });
     this.onScroll(null);
-      this.getItems();
+    
 
-      this.companiesNames.forEach((c, i) => {
-        this.companies.push({ id: i, name: c });
-      });
+      // this.companiesNames.forEach((c, i) => {
+      //   this.companies.push({ id: i, name: c });
+      // });
 
+    ///  const firstParam: string = this.route.sna.queryParamMap.get('firstParamKey');
 
+  
+     /// let id = this.route.snapshot.params.id;
+  
 
       ///////form/////
 
@@ -228,26 +236,26 @@ selectedPersonsAsyncSearch = [{ name: 'Karyn Wright' }, { name: 'Other' }];
         ///////form/////
     ///select///
 
-    this.peopleAsync = this.selectDataService.getPeople();
-    this.githubUsers$ = this.selectDataService.getGithubAccounts('anjm');
+    // this.peopleAsync = this.selectDataService.getPeople();
+    // this.githubUsers$ = this.selectDataService.getGithubAccounts('anjm');
 
-    this.peopleLoading = true;
-    this.selectDataService.getPeople().subscribe(x => {
-      this.people = x;
-      this.peopleLoading = false;
-    });
+    // this.peopleLoading = true;
+    // this.selectDataService.getPeople().subscribe(x => {
+    //   this.people = x;
+    //   this.peopleLoading = false;
+    // });
 
-    this.peopleAsyncSearch = concat(
-      of([]), // default items
-      this.peopleInputAsyncSearch.pipe(
-        distinctUntilChanged(),
-        tap(() => this.peopleLoadingAsyncSearch = true),
-        switchMap(term => this.selectDataService.getPeople(term).pipe(
-          catchError(() => of([])), // empty list on error
-          tap(() => this.peopleLoadingAsyncSearch = false)
-        ))
-      )
-    );
+    // this.peopleAsyncSearch = concat(
+    //   of([]), // default items
+    //   this.peopleInputAsyncSearch.pipe(
+    //     distinctUntilChanged(),
+    //     tap(() => this.peopleLoadingAsyncSearch = true),
+    //     switchMap(term => this.selectDataService.getPeople(term).pipe(
+    //       catchError(() => of([])), // empty list on error
+    //       tap(() => this.peopleLoadingAsyncSearch = false)
+    //     ))
+    //   )
+    // );
       ///select//
  }
 
@@ -427,12 +435,16 @@ selectedPersonsAsyncSearch = [{ name: 'Karyn Wright' }, { name: 'Other' }];
   ngOnDestroy() {
   //  this.renderer.removeClass(document.body, 'right-menu');
   }
-  getItems() {
-    this.surveyService.getSurveyItems()
-      .subscribe(items => {
-        this.currentSurvey = items[0];
-      });
-  }
+  getItems(id: string) { 
+    this.leaveService.getLeaveItemsById(id).subscribe((data: any[])=>{
+      console.log(data);
+      this.leaveItems = data;
+     /// console.log(  this.leaveItems);
+      
+
+    }) ;
+  
+  } ;
 
   addNewQuestion() {
     // this.currentSurvey.questions.push({

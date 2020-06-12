@@ -24,7 +24,7 @@ import { ContextMenuComponent } from 'ngx-contextmenu';
       itemOptionsOrders = ['ประเภทการลา', 'วันที่ลา', 'สถานะ', 'เลขคำขอ'];
       displayOptionsCollapsed = false;
       //rows = ILeave.slice(0, 20).map(({ title, sales, stock, category, id }) => ({ title, sales, stock, category, id }));
-      leaveItems: ILeave[] = [];
+      leaveItems = [];
       @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
       @ViewChild('addNewModalRef', { static: true }) addNewModalRef: AddNewLeaveModalComponent;
    
@@ -39,12 +39,19 @@ import { ContextMenuComponent } from 'ngx-contextmenu';
         this.renderer.removeClass(document.body, 'right-menu');
       }
     
-      getItems() {
-        this.leaveService.getLeaveItems()
-          .subscribe(items => {
-            this.leaveItems = items;
+      getItems() { 
+        this.leaveService.getLeaveItems().subscribe((data: any[])=>{
+          console.log(data);
+          this.leaveItems = data;
+          console.log(  this.leaveItems);
+          
+
+        })  
+        // this.leaveService.getLeaveItems()
+        //   .subscribe(items => {
+        //     this.leaveItems = items;
             
-          });
+        //   });
       }
     
       showAddNewModal(leavetype: number) {
@@ -52,11 +59,11 @@ import { ContextMenuComponent } from 'ngx-contextmenu';
       }
     
       isSelected(p: ILeave) {
-        return this.selected.findIndex(x => x.id === p.id) > -1;
+        return this.selected.findIndex(x => x.id === p.RequestId) > -1;
       }
       onSelect(item: ILeave) {
         if (this.isSelected(item)) {
-          this.selected = this.selected.filter(x => x.id !== item.id);
+          this.selected = this.selected.filter(x => x.id !== item.RequestId);
         } else {
           this.selected.push(item);
         }

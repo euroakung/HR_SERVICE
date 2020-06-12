@@ -7,7 +7,7 @@
     </span>
   </h1>
 
-  <ng-container *ngIf="currentSurvey; else loading">
+  <ng-container *ngIf="leaveItems; else loading">
     <div class="col-12">
       <tabset class="separator-tabs ml-0">
         <tab [heading]="('leave.detail' | translate)" class="tab-content">
@@ -52,7 +52,7 @@
                     <div class="form-row">
                       <div class="col-12 col-lg-12 mb-4">
                         <label><span>{{'leave.inform'|translate}}</span></label>
-                        <ng-select [items]="githubUsers$ | async" [multiple]="false" bindLabel="login" bindValue="login"
+                        <!-- <ng-select [items]="githubUsers$ | async" [multiple]="false" bindLabel="login" bindValue="login"
                         formControlName="inform" 
                           class="form-control" [ngClass]="{ 'is-invalid':submitted && f.inform.invalid }"
                           required>
@@ -63,7 +63,7 @@
                           <ng-template ng-option-tmp let-item="item">
                             <img [src]="item.avatar_url" width="12px" height="12px"> {{item.login}}
                           </ng-template>
-                        </ng-select>
+                        </ng-select> -->
                         <div *ngIf=" submitted && f.inform.invalid" class="invalid-feedback">
                           <div *ngIf="f.inform.errors.required">{{ 'forms.state' | translate }} is selectedUsers
                           </div>
@@ -84,7 +84,7 @@
                       </div>
                       <div class="form-group col-md-6">
                         <label class="font-lg"> <h6>{{'leave.leave_country'|translate}} </h6> </label>
-                        <ng-select [items]="githubUsers$ | async" [multiple]="false" bindLabel="login" bindValue="login"
+                        <!-- <ng-select [items]="githubUsers$ | async" [multiple]="false" bindLabel="login" bindValue="login"
                         formControlName="leave_country"
                         class="form-control" [ngClass]="{ 'is-invalid':submitted && f.leave_country.invalid }"
                         *ngIf="{ required: f.leave_aboard.value  } "   >
@@ -95,7 +95,7 @@
                         <ng-template ng-option-tmp let-item="item">
                           <img [src]="item.avatar_url" width="12px" height="12px"> {{item.login}}
                         </ng-template>
-                      </ng-select>
+                      </ng-select> -->
                       <div *ngIf=" submitted && f.leave_country.invalid  " class="invalid-feedback">
                         <div *ngIf="f.leave_country.errors.required">  {{ f.leave_aboard.value }}  {{ 'leave.selectedCountry' | translate }} is selectedCountry
                         </div>
@@ -156,7 +156,7 @@
                     <div class="form-row">
                     <div class="form-group col-md-6">
                       <label class="font-lg"> <h6>{{'leave.leader'|translate}} </h6> </label>
-                      <ng-select [items]="githubUsers$ | async" [multiple]="false" bindLabel="login" bindValue="login"
+                      <!-- <ng-select [items]="githubUsers$ | async" [multiple]="false" bindLabel="login" bindValue="login"
                       formControlName="leader"
                       class="form-control" [ngClass]="{ 'is-invalid':submitted && f.leader.invalid }"
                        required   >
@@ -167,7 +167,7 @@
                       <ng-template ng-option-tmp let-item="item">
                         <img [src]="item.avatar_url" width="12px" height="12px"> {{item.login}}
                       </ng-template>
-                    </ng-select>
+                    </ng-select> -->
                     <div *ngIf=" submitted && f.leader.invalid  " class="invalid-feedback">
                       <div *ngIf="f.leader.errors.required">  {{ f.leave_aboard.value }}  {{ 'leave.selectedCountry' | translate }} is selectedCountry
                       </div>
@@ -178,7 +178,7 @@
 
                     <div class="form-group col-md-6">
                       <label class="font-lg"> <h6>{{'leave.director'|translate}} </h6> </label>
-                      <ng-select [items]="githubUsers$ | async" [multiple]="false" bindLabel="login" bindValue="login"
+                      <!-- <ng-select [items]="githubUsers$ | async" [multiple]="false" bindLabel="login" bindValue="login"
                       formControlName="director"
                       class="form-control" [ngClass]="{ 'is-invalid':submitted && f.director.invalid }"
                       *ngIf="{ required: f.leave_aboard.value  } "   >
@@ -189,7 +189,7 @@
                       <ng-template ng-option-tmp let-item="item">
                         <img [src]="item.avatar_url" width="12px" height="12px"> {{item.login}}
                       </ng-template>
-                    </ng-select>
+                    </ng-select> -->
                     <div *ngIf=" submitted && f.director.invalid  " class="invalid-feedback">
                       <div *ngIf="f.director.errors.required">  {{ f.leave_aboard.value }}  {{ 'leave.selectedCountry' | translate }} is selectedCountry
                       </div>
@@ -203,7 +203,7 @@
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <label class="font-lg"> <h6>{{'leave.approve'|translate}} </h6> </label>
-                      <ng-select [items]="githubUsers$ | async" [multiple]="false" bindLabel="login" bindValue="login"
+                      <!-- <ng-select [items]="githubUsers$ | async" [multiple]="false" bindLabel="login" bindValue="login"
                       formControlName="approve"
                       class="form-control" [ngClass]="{ 'is-invalid':submitted && f.approve.invalid }" required   >
                       <ng-template ng-label-tmp let-item="item" let-clear="clear">
@@ -213,7 +213,7 @@
                       <ng-template ng-option-tmp let-item="item">
                         <img [src]="item.avatar_url" width="12px" height="12px"> {{item.login}}
                       </ng-template>
-                    </ng-select>
+                    </ng-select> -->
                     <div *ngIf=" submitted && f.approve.invalid  " class="invalid-feedback">
                       <div *ngIf="f.approve.errors.required"> {{ f.approve.value }}{{ 'leave.selectedCountry' | translate }} is selectedCountry
                       </div>

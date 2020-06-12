@@ -1,17 +1,19 @@
 ﻿import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 import { User } from '../models';
-import { environment } from '../../environments/environment'; 
-   
+import { environment } from '../../environments/environment';
+
 
 
 
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
+
+    private token = "Some token";
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
 
@@ -40,8 +42,23 @@ export class AuthenticationService {
         this.currentUserSubject.next(null);
         return true;
     }
-}
+
+    verifyToken(): Observable<boolean> {
+        alert('verifyToken');
+        const token = localStorage.getItem('token');
+        return token
+            ? this.http.post(`${environment.apiUrl}/api/Authent/ValidateCurrentToken`, { verify: token }).pipe(
+                tap(res => (
  
+                   localStorage.data = JSON.stringify(res)
+                    )
+                    ),
+                map(res => true, error => false)
+            )
+            : of(false);
+    }
+}
+
 
 
 
@@ -51,7 +68,7 @@ export class AuthenticationService {
 // export class AuthenticationService {
 //     private currentUserSubject: BehaviorSubject<User>;
 //     public currentUser: Observable<User>;
-  
+
 //     constructor(private http: HttpClient) {
 //         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
 //         this.currentUser = this.currentUserSubject.asObservable();
@@ -68,7 +85,7 @@ export class AuthenticationService {
 //      //  return this.http.post(this.BaseURI, { username, password });
 
 
-        
+
 //         return this.http.post<any>(this.BaseURI, { username, password })
 //             .pipe(map(user => {
 //                 // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -76,7 +93,7 @@ export class AuthenticationService {
 //                 localStorage.setItem('token' ,user.token); 
 //                 localStorage.setItem('userId' ,user.userId); 
 //                 this.currentUserSubject.next(user);
-    
+
 //     /// alert ('dsadasdasd    '+ localStorage.getItem('token'));
 
 
@@ -91,7 +108,7 @@ export class AuthenticationService {
 //                          return next.handle(cloneReq).pipe(
 //                              tap(
 //                                  succ=>{
-         
+
 //                                  },err=>{
 //                                      if( err.status == 401){ 
 //                                               this.router.navigate(['user/login']);
@@ -99,15 +116,15 @@ export class AuthenticationService {
 //                                  }
 //                              )
 //                          )
-         
+
 //                  }
 
 
 
 
-                
+
 //                 return user;
-               
+
 //             }));
 
 //            // return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { username, password })
@@ -122,7 +139,7 @@ export class AuthenticationService {
 //         //             lastName: user.lastName,
 //         //             token: 'fake-jwt-token'
 //         //         };
-               
+
 //         //     }));
 //     }
 
