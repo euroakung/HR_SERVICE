@@ -42,7 +42,7 @@ export class LeaveService {
   public getLeaveItemsById(id: string ){
     const url = `${environment.apiUrl}/api/Leave/${id}`;
   //  const opts = { params: new HttpParams({fromString: "_page=1&_limit=10"}) };
-  const opts = { params: new HttpParams({fromString: "_id="+id}) };
+  //const opts = { params: new HttpParams({fromString: "_id="+id}) };
     return this.http.get(url);
   }
 

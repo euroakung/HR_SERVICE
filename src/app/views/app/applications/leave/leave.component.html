@@ -97,7 +97,7 @@
                              
                         </a>
                         <p class="mb-1      w-10 w-xs-100">{{'leave.amount' | translate}}   {{ item.leaveDay }}   {{'leave.day' | translate}} </p>
-                        <p class="mb-1    w-20 w-xs-150"> {{'leave.days' | translate}}  {{ item.startDate }} - {{ item.endDate }} </p>
+                        <p class="mb-1    w-20 w-xs-150"> {{'leave.days' | translate}}   {{item.startDate | date}}   -  {{item.endDate | date}} </p>
                         <div class="w-10 w-xs-300"><span class="badge badge-pill badge-success"> อนุญาต  </span></div>
                     </div>
                     <div    class="custom-control custom-checkbox pl-1 align-self-center mr-4 c-pointer"> 

@@ -14,6 +14,7 @@ export class TopnavComponent implements OnInit, OnDestroy {
   sidebar: ISidebar;
   subscription: Subscription;
   displayName = '';
+  displayPic= '';
   languages: Language[];
   currentLanguage: string;
   isSingleLang;
@@ -58,12 +59,18 @@ export class TopnavComponent implements OnInit, OnDestroy {
 
   onLanguageChange(lang) {
     this.langService.language = lang.code;
+
     this.currentLanguage = this.langService.languageShorthand;
   }
 
   ngOnInit() {
     if (this.authService.currentUser) {
       this.displayName = this.authService.currentUserValue.nameTh;
+      this.displayPic = `http://hr.up.ac.th/resources/images/staff_pic/${this.authService.currentUserValue.pictureProfile}`;
+    }else{
+
+      this.displayName = this.authService.currentUserValue.nameTh;
+    //  this.displayPic = `http://hr.up.ac.th/resources/images/staff_pic/${this.authService.currentUserValue.pictureProfile}`;
     }
     this.subscription = this.sidebarService.getSidebar().subscribe(
       res => {
@@ -101,14 +108,10 @@ export class TopnavComponent implements OnInit, OnDestroy {
   }
 
   onSignOut() {
-   if ( this.authService.signOut() ){
+    
   //  this.authService.currentUserValue =null;
     localStorage.removeItem('token');
-     this.router.navigate(['user/login']);
-
-   }
-    
-
+     this.router.navigate(['user/login']); 
   
   }
 

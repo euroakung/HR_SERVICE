@@ -134,7 +134,7 @@ html {
 
 body {
   font-family: "Nunito", sans-serif;
-  font-size: 0.8rem;
+  // font-size: 0.8rem;
   font-weight: 400;
   color: $primary-color;
   background: $background-color;
@@ -536,7 +536,7 @@ a {
 }
 
 p {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   line-height: 1.3rem;
   font-family: "Nunito", sans-serif;
 }
@@ -3987,7 +3987,7 @@ div[data-notify="container"] {
   border-radius: $border-radius;
   outline: initial !important;
   box-shadow: initial !important;
-  font-size: 0.8rem;
+  // font-size: 0.8rem;
   padding: 0.5rem 0.75rem;
   line-height: 1;
   border: 1px solid $separator-color;
@@ -4833,7 +4833,7 @@ div.error:not(.simple-notification) {
 .ng-select .ng-select-container {
   border-radius: $border-radius !important;
   border: 1px solid $separator-color;
-  font-size: 0.8rem;
+  // font-size: 0.8rem;
   padding: 0.15rem;
   line-height: 1;
   outline: initial !important;

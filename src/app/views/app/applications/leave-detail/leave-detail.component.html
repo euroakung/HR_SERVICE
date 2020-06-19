@@ -1,401 +1,573 @@
-<div class="    app-row  ">
-
+<div class="app-row">
   <h1>
-    <i class="  simple-icon-calendar "></i>
+    <i class="simple-icon-calendar"></i>
     <span class="align-middle d-inline-block pt-1">
-      &nbsp; {{'leave.detail' | translate}}
+      &nbsp; {{ "leave.detail" | translate }}
     </span>
   </h1>
 
   <ng-container *ngIf="leaveItems; else loading">
     <div class="col-12">
       <tabset class="separator-tabs ml-0">
-        <tab [heading]="('leave.detail' | translate)" class="tab-content">
-          <div class="row ">
+        <tab [heading]="'leave.detail' | translate" class="tab-content">
+          <div class="row">
             <div class="col-12 col-lg-12 mb-12">
               <div class="card mb-12">
                 <div class="card-body">
                   <!-- <form #overLineForm="ngForm" novalidate> -->
 
-                    <h2 class="mb-4"> {{'leave.detail' | translate}}</h2>
+                  <h2 class="mb-4">{{ "leave.detail" | translate }}</h2>
 
-                    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                     <div class="form-row">
-
                       <div class="form-group col-lg-12 mb-4">
-                        <label>{{'leave.write-at'|translate}}</label>
-                        <input  type="text" class="form-control" formControlName="txtwrite"  
-                          [ngClass]="{ 'is-invalid':submitted && f.txtwrite.invalid }"  >
-                        <div *ngIf=" submitted && f.txtwrite.invalid" class="invalid-feedback">
-                          <div *ngIf="f.txtwrite.errors.required">First Name is required</div>
+                        <label>{{ "leave.write-at" | translate }}</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          formControlName="txtwrite"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.txtwrite.invalid
+                          }"
+                        />
+                        <div
+                          *ngIf="submitted && f.txtwrite.invalid"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.txtwrite.errors.required">
+                            First Name is required
+                          </div>
                         </div>
-                      </div> 
+                      </div>
                     </div>
                     <div class="form-row">
-                      <div class="form-group col ">
-                        <label>{{'leave.subject'|translate}} </label>
-                        <select   class="form-control"  formControlName="subject"
-                          [ngClass]="{ 'is-invalid':submitted && f.subject.invalid }"  > 
-                          <option value="Mr">{{'leave.leave-sick'|translate}} </option>
-                          <option value="Mrs">{{'leave.leave-personal'|translate}} </option>
-                          <option value="Mrs">{{'leave.app-maternity'|translate}} </option>
-                          <option value="Mrs">{{'leave.app-vacation'|translate}} </option>
-                          <option value="Mrs">{{'leave.app-ordain'|translate}} </option>
-                          <option value="Mrs">{{'leave.app-helping-wife'|translate}} </option> 
-                         
+                      <div class="form-group col">
+                        <label>{{ "leave.subject" | translate }} </label>
+                        <select
+                          class="form-control"
+                          formControlName="subject"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.subject.invalid
+                          }"
+                        >
+                          <option value="2"
+                            >{{ "leave.leave-sick" | translate }}
+                          </option>
+                          <option value="3"
+                            >{{ "leave.leave-personal" | translate }}
+                          </option>
+                          <option value="4"
+                            >{{ "leave.app-maternity" | translate }}
+                          </option>
+                          <option value="1"
+                            >{{ "leave.app-vacation" | translate }}
+                          </option>
+                          <option value="5"
+                            >{{ "leave.app-ordain" | translate }}
+                          </option>
+                          <option value="11"
+                            >{{ "leave.app-helping-wife" | translate }}
+                          </option>
                         </select>
-                        <div *ngIf=" submitted && f.subject.invalid" class="invalid-feedback">
-                          <div *ngIf="f.subject.errors.required">{{'message.please-choose'|translate}} </div>
+                        <div
+                          *ngIf="submitted && f.subject.invalid"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.subject.errors.required">
+                            {{ "message.please-choose" | translate }}
+                          </div>
                         </div>
                       </div>
                     </div>
                     <div class="form-row">
                       <div class="col-12 col-lg-12 mb-4">
-                        <label><span>{{'leave.inform'|translate}}</span></label>
-                        <!-- <ng-select [items]="githubUsers$ | async" [multiple]="false" bindLabel="login" bindValue="login"
-                        formControlName="inform" 
-                          class="form-control" [ngClass]="{ 'is-invalid':submitted && f.inform.invalid }"
-                          required>
-                          <ng-template ng-label-tmp let-item="item" let-clear="clear">
-                            <span class="ng-value-label"><img [src]="item.avatar_url" width="12px" height="12px">
-                              {{item.login}}</span>
+                        <label
+                          ><span>{{ "leave.inform" | translate }}</span></label
+                        >
+                        <ng-select
+                          [items]="selectedApprover | async"
+                          [multiple]="false"
+                          bindLabel="approvE_NAME1"
+                          bindValue="approvE_ID"
+                          formControlName="inform"
+                          class="form-control"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.inform.invalid
+                          }"
+                          required
+                        >
+                          <ng-template
+                            ng-label-tmp
+                            let-item="item"
+                            let-clear="clear"
+                          >
+                            <span class="ng-value-label"
+                              >
+                              <!-- <img
+                                [src]="item.avatar_url"
+                                width="12px"
+                                height="12px"
+                              /> -->
+                              {{ item.approvE_NAME1 }}</span
+                            >
                           </ng-template>
                           <ng-template ng-option-tmp let-item="item">
-                            <img [src]="item.avatar_url" width="12px" height="12px"> {{item.login}}
+                            <!-- <img
+                              [src]="item.avatar_url"
+                              width="12px"
+                              height="12px"
+                            /> -->
+                            {{ item.approvE_NAME1 }}
                           </ng-template>
-                        </ng-select> -->
-                        <div *ngIf=" submitted && f.inform.invalid" class="invalid-feedback">
-                          <div *ngIf="f.inform.errors.required">{{ 'forms.state' | translate }} is selectedUsers
+                        </ng-select>
+                        <div
+                          *ngIf="submitted && f.inform.invalid"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.inform.errors.required">
+                            {{ "forms.state" | translate }} is selectedUsers
                           </div>
                         </div>
-                      </div> 
+                      </div>
                     </div>
- 
+
                     <div class="form-row">
                       <div class="form-group col-md-6">
-                        <label for="leave_aboard"> <h6>{{ 'leave.leave_aboard' | translate }}</h6></label>
+                        <label for="leave_aboard">
+                          <h6>{{ "leave.leave_aboard" | translate }}</h6></label
+                        >
                         <div class="custom-control custom-switch">
-                          <input type="checkbox" class="custom-control-input"   (change)="onChangeAboard()" formControlName="leave_aboard"   id="leave_aboard"   [ngClass]="{ 'is-invalid':submitted && f.leave_aboard.invalid }" required >
-                        
-                          <label class="custom-control-label" for="leave_aboard">
-                            {{'leave.yes' | translate}}</label>
-                        </div>
+                          <input
+                            type="checkbox"
+                            class="custom-control-input"
+                            (change)="onChangeAboard()"
+                            formControlName="leave_aboard"
+                            id="leave_aboard"
+                            [ngClass]="{
+                              'is-invalid': submitted && f.leave_aboard.invalid
+                            }"
+                            required
+                          />
 
+                          <label
+                            class="custom-control-label"
+                            for="leave_aboard"
+                          >
+                            {{ "leave.yes" | translate }}</label
+                          >
+                        </div>
                       </div>
                       <div class="form-group col-md-6">
-                        <label class="font-lg"> <h6>{{'leave.leave_country'|translate}} </h6> </label>
-                        <!-- <ng-select [items]="githubUsers$ | async" [multiple]="false" bindLabel="login" bindValue="login"
-                        formControlName="leave_country"
-                        class="form-control" [ngClass]="{ 'is-invalid':submitted && f.leave_country.invalid }"
-                        *ngIf="{ required: f.leave_aboard.value  } "   >
-                        <ng-template ng-label-tmp let-item="item" let-clear="clear">
-                          <span class="ng-value-label"><img [src]="item.avatar_url" width="12px" height="12px">
-                            {{item.login}}</span>
+                        <label class="font-lg">
+                          <h6>{{ "leave.leave_country" | translate }}</h6>
+                        </label>
+                         <ng-select
+                          [items]="selectedCountry | async"
+                          [multiple]="false"
+                          bindLabel="countryNameTh"
+                          bindValue="countryid"
+                          formControlName="leave_country"
+                          class="form-control"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.leave_country.invalid
+                          }"
+                          *ngIf="{ required: f.leave_aboard.value }"
+                        >
+                          <ng-template
+                            ng-label-tmp
+                            let-item="item"
+                            let-clear="clear"
+                          >
+                            <span class="ng-value-label"
+                              ><img
+                                [src]="item.avatar_url"
+                                width="12px"
+                                height="12px"
+                              />
+                              {{ item.countryNameTh }}  ({{ item.countryFormalNameTh }}) </span>
+                          </ng-template>
+                          <ng-template ng-option-tmp let-item="item">
+                            <img
+                              [src]="item.avatar_url"
+                              width="12px"
+                              height="12px"
+                            />
+                            {{ item.countryNameTh }}   ({{ item.countryFormalNameTh }}) 
+                          </ng-template>
+                        </ng-select>  
+                        <div
+                          *ngIf="submitted && f.leave_country.invalid"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.leave_country.errors.required">
+                            {{ f.leave_aboard.value }}
+                            {{ "leave.selectedCountry" | translate }} is
+                            selectedCountry
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-lg-12 mb-4">
+                        <label>{{ "leave.cause" | translate }}</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          formControlName="txtCause"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.txtCause.invalid
+                          }"
+                        />
+                        <div
+                          *ngIf="submitted && f.txtCause.invalid"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.txtwrite.errors.required">
+                            First Name is required
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-5">
+                        <label for="inputCity">{{
+                          "leave.date_from" | translate
+                        }}</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          bsDatepicker
+                          [container]="'html'"
+                          formControlName="date_from"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.date_from.invalid
+                          }"
+                        />
+                        <div
+                          *ngIf="submitted && f.date_from.invalid"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.date_from.errors.required">
+                            date required
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group col-md-1">
+                        <label for="leave_fullday_date_from">
+                          {{ "leave.leave_fullday" | translate }}/{{
+                            "leave.leave_halfday" | translate
+                          }}</label
+                        >
+                        <div class="custom-control custom-switch">
+                          <input
+                            type="checkbox"
+                            class="custom-control-input"
+                            formControlName="leave_fullday_date_from"
+                            id="leave_fullday_date_from"
+                          />
+                          <label
+                            class="custom-control-label"
+                            for="leave_fullday_date_from"
+                          >
+                            {{ "leave.leave_fullday" | translate }}</label
+                          >
+                        </div>
+                      </div>
+                      <div class="form-group col-md-5">
+                        <label for="inputZip">{{
+                          "leave.date_end" | translate
+                        }}</label>
+                        <input
+                          type="text"
+                          formControlName="date_end"
+                          class="form-control"
+                          bsDatepicker
+                          [container]="'html'"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.date_end.invalid
+                          }"
+                          required
+                        />
+
+                        <div
+                          *ngIf="submitted && f.date_end.invalid"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.date_end.errors.required">
+                            date required
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group col-md-1">
+                        <label for="leave_fullday_date_end">
+                          {{ "leave.leave_fullday" | translate }}/{{
+                            "leave.leave_halfday" | translate
+                          }}</label
+                        >
+                        <div class="custom-control custom-switch">
+                          <input
+                            type="checkbox"
+                            class="custom-control-input"
+                            formControlName="leave_fullday_date_end"
+                            id="leave_fullday_date_end"
+                            checked
+                          />
+                          <label
+                            class="custom-control-label"
+                            for="leave_fullday_date_end"
+                          >
+                            {{ "leave.leave_fullday" | translate }}</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>{{ "leave.leave_contact" | translate }}</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="leave_contact"
+                        [ngClass]="{
+                          'is-invalid': submitted && f.leave_contact.invalid
+                        }"
+                      />
+                      <div
+                        *ngIf="submitted && f.leave_contact.invalid"
+                        class="invalid-feedback"
+                      >
+                        <div *ngIf="f.leave_contact.errors.required">
+                          {{ "leave.leave_contact" | translate }} is required
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label class="font-lg">
+                          <h6>{{ "leave.leader" | translate }}</h6>
+                        </label>
+                          <ng-select
+                          [items]="selectedleader | async"
+                          [multiple]="false"
+                          bindLabel="spclPersonNameTh"
+                          bindValue="personId"
+                          formControlName="leader"
+                          class="form-control"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.leader.invalid
+                          }"
+                          required
+                        >
+                          <ng-template
+                            ng-label-tmp
+                            let-item="item"
+                            let-clear="clear"
+                          >
+                            <span class="ng-value-label"
+                              ><img
+                                [src]="item.avatar_url"
+                                width="12px"
+                                height="12px"
+                              />
+                              {{ item.spclPersonNameTh }}</span
+                            >
+                          </ng-template>
+                          <ng-template ng-option-tmp let-item="item">
+                            <img
+                              [src]="item.avatar_url"
+                              width="12px"
+                              height="12px"
+                            />
+                            {{ item.spclPersonNameTh }} ({{ item.execName }} )
+                          </ng-template>
+                        </ng-select>  
+                        <div
+                          *ngIf="submitted && f.leader.invalid"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.leader.errors.required">
+                            {{ f.leave_aboard.value }}
+                            {{ "leave.selectedCountry" | translate }} is
+                            selectedCountry
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group col-md-6">
+                        <label class="font-lg">
+                          <h6>{{ "leave.director" | translate }}</h6>
+                        </label>
+
+                        <ng-select
+                        [items]="selecteddirector | async"
+                        [multiple]="false"
+                        bindLabel="spclPersonNameTh"
+                        bindValue="personId"
+                        formControlName="director"
+                        class="form-control"
+                        [ngClass]="{
+                          'is-invalid': submitted && f.director.invalid
+                        }"
+                        required
+                      >
+                        <ng-template
+                          ng-label-tmp
+                          let-item="item"
+                          let-clear="clear"
+                        >
+                          <span class="ng-value-label"
+                            ><img
+                              [src]="item.avatar_url"
+                              width="12px"
+                              height="12px"
+                            />
+                            {{ item.spclPersonNameTh }}</span
+                          >
                         </ng-template>
                         <ng-template ng-option-tmp let-item="item">
-                          <img [src]="item.avatar_url" width="12px" height="12px"> {{item.login}}
+                          <img
+                            [src]="item.avatar_url"
+                            width="12px"
+                            height="12px"
+                          />
+                          {{ item.spclPersonNameTh }} ({{ item.execName }} )
                         </ng-template>
-                      </ng-select> -->
-                      <div *ngIf=" submitted && f.leave_country.invalid  " class="invalid-feedback">
-                        <div *ngIf="f.leave_country.errors.required">  {{ f.leave_aboard.value }}  {{ 'leave.selectedCountry' | translate }} is selectedCountry
+                      </ng-select>  
+                        <!-- <ng-select
+                          [items]="githubUsers$ | async"
+                          [multiple]="false"
+                          bindLabel="login"
+                          bindValue="login"
+                          formControlName="director"
+                          class="form-control"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.director.invalid
+                          }"
+                          *ngIf="{ required: f.leave_aboard.value }"
+                        >
+                          <ng-template
+                            ng-label-tmp
+                            let-item="item"
+                            let-clear="clear"
+                          >
+                            <span class="ng-value-label"
+                              ><img
+                                [src]="item.avatar_url"
+                                width="12px"
+                                height="12px"
+                              />
+                              {{ item.login }}</span
+                            >
+                          </ng-template>
+                          <ng-template ng-option-tmp let-item="item">
+                            <img
+                              [src]="item.avatar_url"
+                              width="12px"
+                              height="12px"
+                            />
+                            {{ item.login }}
+                          </ng-template>
+                        </ng-select> -->
+                        <div
+                          *ngIf="submitted && f.director.invalid"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.director.errors.required">
+                            {{ f.leave_aboard.value }}
+                            {{ "leave.selectedCountry" | translate }} is
+                            selectedCountry
+                          </div>
                         </div>
                       </div>
-                      </div> 
                     </div>
-
- 
-                    <div class="form-row">
-                      <div class="form-group col-md-5">
-                        <label for="inputCity">{{ 'leave.date_from' | translate }}</label>
-                        <input type="text"  class="form-control" bsDatepicker [container]="'html'"
-                        formControlName="date_from"
-                        [ngClass]="{ 'is-invalid':submitted && f.date_from.invalid }"  >
-                        <div *ngIf=" submitted && f.date_from.invalid" class="invalid-feedback">
-                          <div *ngIf="f.date_from.errors.required">date required</div>
-                        </div>
-
-                      </div>
-                      <div class="form-group col-md-1">
-                        <label for="leave_fullday_date_from"> {{'leave.leave_fullday' | translate}}/{{'leave.leave_halfday' | translate}}</label>
-                        <div class="custom-control custom-switch">
-                          <input type="checkbox" class="custom-control-input"  formControlName="leave_fullday_date_from" id="leave_fullday_date_from"   >
-                          <label class="custom-control-label" for="leave_fullday_date_from">
-                            {{'leave.leave_fullday' | translate}}</label>
-                        </div>
-                      </div>
-                      <div class="form-group col-md-5">
-                        <label for="inputZip">{{ 'leave.date_end' | translate }}</label>
-                        <input type="text"  formControlName="date_end" class="form-control" bsDatepicker [container]="'html'"
-                      
-                        [ngClass]="{ 'is-invalid':submitted && f.date_end.invalid }" required>
-                    
-                      <div *ngIf=" submitted && f.date_end.invalid" class="invalid-feedback">
-                        <div *ngIf="f.date_end.errors.required">date required</div>
-                      </div>
-                      </div>
-                      <div class="form-group col-md-1">
-                        <label for="leave_fullday_date_end"> {{'leave.leave_fullday' | translate}}/{{'leave.leave_halfday' | translate}}</label>
-                        <div class="custom-control custom-switch">
-                          <input type="checkbox" class="custom-control-input"  formControlName="leave_fullday_date_end" id="leave_fullday_date_end"  checked>
-                          <label class="custom-control-label" for="leave_fullday_date_end">
-                            {{'leave.leave_fullday' | translate}}</label>
-                        </div>
-                      </div>
-                    </div>
- 
-                    <div class="form-group">
-                      <label>{{ 'leave.leave_contact' | translate }}</label>
-                      <input type="text"   class="form-control" formControlName="leave_contact"
-                        [ngClass]="{ 'is-invalid':submitted && f.leave_contact.invalid }"    >
-                      <div *ngIf="submitted && f.leave_contact.invalid" class="invalid-feedback">
-                        <div *ngIf="f.leave_contact.errors.required">{{ 'leave.leave_contact' | translate }} is required</div>
-                      
-                      </div>
-                    </div> 
 
                     <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label class="font-lg"> <h6>{{'leave.leader'|translate}} </h6> </label>
-                      <!-- <ng-select [items]="githubUsers$ | async" [multiple]="false" bindLabel="login" bindValue="login"
-                      formControlName="leader"
-                      class="form-control" [ngClass]="{ 'is-invalid':submitted && f.leader.invalid }"
-                       required   >
-                      <ng-template ng-label-tmp let-item="item" let-clear="clear">
-                        <span class="ng-value-label"><img [src]="item.avatar_url" width="12px" height="12px">
-                          {{item.login}}</span>
-                      </ng-template>
-                      <ng-template ng-option-tmp let-item="item">
-                        <img [src]="item.avatar_url" width="12px" height="12px"> {{item.login}}
-                      </ng-template>
-                    </ng-select> -->
-                    <div *ngIf=" submitted && f.leader.invalid  " class="invalid-feedback">
-                      <div *ngIf="f.leader.errors.required">  {{ f.leave_aboard.value }}  {{ 'leave.selectedCountry' | translate }} is selectedCountry
+                      <div class="form-group col-md-6">
+                        <label class="font-lg">
+                          <h6>{{ "leave.approve" | translate }}</h6>
+                        </label>
+                        <ng-select
+                        [items]="selectedApprover | async"
+                        [multiple]="false"
+                        bindLabel="spclPersonNameTh"
+                        bindValue="personId"
+                        formControlName="approve"
+                        class="form-control"
+                        [ngClass]="{
+                          'is-invalid': submitted && f.approve.invalid
+                        }"
+                        required
+                      >
+                        <ng-template
+                          ng-label-tmp
+                          let-item="item"
+                          let-clear="clear"
+                        >
+                          <span class="ng-value-label"
+                            ><img
+                              [src]="item.avatar_url"
+                              width="12px"
+                              height="12px"
+                            />
+                            {{ item.spclPersonNameTh }}</span
+                          >
+                        </ng-template>
+                        <ng-template ng-option-tmp let-item="item">
+                          <img
+                            [src]="item.avatar_url"
+                            width="12px"
+                            height="12px"
+                          />
+                          {{ item.spclPersonNameTh }} ({{ item.execName }} )
+                        </ng-template>
+                      </ng-select>  
+                        <div
+                          *ngIf="submitted && f.approve.invalid"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.approve.errors.required">
+                            {{ f.approve.value
+                            }}{{ "leave.selectedCountry" | translate }} is
+                            selectedCountry
+                          </div>
+                        </div>
                       </div>
                     </div>
- 
-                    </div> 
-
-
-                    <div class="form-group col-md-6">
-                      <label class="font-lg"> <h6>{{'leave.director'|translate}} </h6> </label>
-                      <!-- <ng-select [items]="githubUsers$ | async" [multiple]="false" bindLabel="login" bindValue="login"
-                      formControlName="director"
-                      class="form-control" [ngClass]="{ 'is-invalid':submitted && f.director.invalid }"
-                      *ngIf="{ required: f.leave_aboard.value  } "   >
-                      <ng-template ng-label-tmp let-item="item" let-clear="clear">
-                        <span class="ng-value-label"><img [src]="item.avatar_url" width="12px" height="12px">
-                          {{item.login}}</span>
-                      </ng-template>
-                      <ng-template ng-option-tmp let-item="item">
-                        <img [src]="item.avatar_url" width="12px" height="12px"> {{item.login}}
-                      </ng-template>
-                    </ng-select> -->
-                    <div *ngIf=" submitted && f.director.invalid  " class="invalid-feedback">
-                      <div *ngIf="f.director.errors.required">  {{ f.leave_aboard.value }}  {{ 'leave.selectedCountry' | translate }} is selectedCountry
-                      </div>
-                    </div>
-                    </div> 
-
-
-                  </div> 
-
-
-                  <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label class="font-lg"> <h6>{{'leave.approve'|translate}} </h6> </label>
-                      <!-- <ng-select [items]="githubUsers$ | async" [multiple]="false" bindLabel="login" bindValue="login"
-                      formControlName="approve"
-                      class="form-control" [ngClass]="{ 'is-invalid':submitted && f.approve.invalid }" required   >
-                      <ng-template ng-label-tmp let-item="item" let-clear="clear">
-                        <span class="ng-value-label"><img [src]="item.avatar_url" width="12px" height="12px">
-                          {{item.login}}</span>
-                      </ng-template>
-                      <ng-template ng-option-tmp let-item="item">
-                        <img [src]="item.avatar_url" width="12px" height="12px"> {{item.login}}
-                      </ng-template>
-                    </ng-select> -->
-                    <div *ngIf=" submitted && f.approve.invalid  " class="invalid-feedback">
-                      <div *ngIf="f.approve.errors.required"> {{ f.approve.value }}{{ 'leave.selectedCountry' | translate }} is selectedCountry
-                      </div>
-                    </div>
-                    </div>  
-                  </div>  
                     <div class="form-row">
-                      <div class=" card-body text-center ">
-                    <button   class="btn btn-success mb-1 mr-2"> <i class="iconsminds-save"></i> {{'leave.leave_save' | translate}}</button>
-                    <button  class="btn btn-danger mb-1 ml-2 "> <i class="simple-icon-trash"></i> {{'leave.leave_cancel' | translate}}</button>  
-                  </div>
-                </div>
-                  </form> 
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </tab>
- 
-        <tab [heading]="('leave.results' | translate)" class="tab-content">
-          <div class="row">
-            <div class="col-12 col-lg-4">
-              <div class="card mb-4">
-                <div class="card-body">
-                  <p class="list-item-heading mb-4">{{ 'survey.quota' | translate }}</p>
-                  <div class="mb-4">
-                    <p class="mb-2">Gender</p>
-                    <progressbar class="mb-3" [value]="[{'value':60, type :'theme-1' },{'value':40, type :'theme-2' }]">
-                    </progressbar>
-                    <table class="table table-sm table-borderless">
-                      <tbody>
-                        <tr>
-                          <td class="p-0 pb-1 w-10">
-                            <span class="log-indicator border-theme-1 align-middle"></span>
-                          </td>
-                          <td class="p-0 pb-1">
-                            <span class="font-weight-medium text-muted text-small">105/125
-                              Male</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="p-0 pb-1 w-10">
-                            <span class="log-indicator border-theme-2 align-middle"></span>
-                          </td>
-                          <td class="p-0 pb-1">
-                            <span class="font-weight-medium text-muted text-small">90/125
-                              Female</span>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="mb-4">
-                    <p class="mb-2">Education</p>
-                    <div class="progress mb-3">
-                      <progressbar class="mb-3"
-                        [value]="[{'value':80, type :'theme-1' },{'value':20, type :'theme-2' }]">
-                      </progressbar>
+                      <div class="card-body text-center">
+                        <button class="btn btn-success mb-1 mr-2">
+                          <i class="iconsminds-save"></i>
+                          {{ "leave.leave_save" | translate }}
+                        </button>
+                        <button class="btn btn-danger mb-1 ml-2">
+                          <i class="simple-icon-trash"></i>
+                          {{ "leave.leave_cancel" | translate }}
+                        </button>
+                      </div>
                     </div>
-                    <table class="table table-sm table-borderless">
-                      <tbody>
-                        <tr>
-                          <td class="p-0 pb-1 w-10">
-                            <span class="log-indicator border-theme-1 align-middle"></span>
-                          </td>
-                          <td class="p-0 pb-1">
-                            <span class="font-weight-medium text-muted text-small">139/125
-                              College</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="p-0 pb-1 w-10">
-                            <span class="log-indicator border-theme-2 align-middle"></span>
-                          </td>
-                          <td class="p-0 pb-1">
-                            <span class="font-weight-medium text-muted text-small">95/125
-                              High School</span>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="mb-4">
-                    <p class="mb-2">Age</p>
-                    <progressbar class="mb-3"
-                      [value]="[{'value':35, type :'theme-1' },{'value':25, type :'theme-2' },{'value':40, type :'theme-3' }]">
-                    </progressbar>
-                    <table class="table table-sm table-borderless">
-                      <tbody>
-                        <tr>
-                          <td class="p-0 pb-1 w-10">
-                            <span class="log-indicator border-theme-1 align-middle"></span>
-                          </td>
-                          <td class="p-0 pb-1">
-                            <span class="font-weight-medium text-muted text-small">50/75
-                              18-24</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="p-0 pb-1 w-10">
-                            <span class="log-indicator border-theme-2 align-middle"></span>
-                          </td>
-                          <td class="p-0 pb-1">
-                            <span class="font-weight-medium text-muted text-small">40/75
-                              24-30</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="p-0 pb-1 w-10">
-                            <span class="log-indicator border-theme-3 align-middle"></span>
-                          </td>
-                          <td class="p-0 pb-1">
-                            <span class="font-weight-medium text-muted text-small">60/75
-                              30-40</span>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-lg-8">
-              <div class="card mb-4">
-                <div class="card-body">
-                  <h5 class="card-title">How old are you?</h5>
-                  <div class="chart-container">
-                    <app-doughnut-chart [shadow]="true" [options]="chartDataConfig.doughnutChartOptions"
-                      [data]="ageChartData">
-                    </app-doughnut-chart>
-                  </div>
-                </div>
-              </div>
-              <div class="card mb-4">
-                <div class="card-body">
-                  <h5 class="card-title">What is your gender?</h5>
-                  <div class="chart-container">
-                    <app-doughnut-chart [shadow]="true" [options]="chartDataConfig.doughnutChartOptions"
-                      [data]="genderChartData">
-                    </app-doughnut-chart>
-                  </div>
-                </div>
-              </div>
-              <div class="card mb-4">
-                <div class="card-body">
-                  <h5 class="card-title">What is your employment status?</h5>
-                  <div class="chart-container">
-                    <app-doughnut-chart [shadow]="true" [options]="chartDataConfig.doughnutChartOptions"
-                      [data]="workChartData">
-                    </app-doughnut-chart>
-                  </div>
-                </div>
-              </div>
-              <div class="card mb-4">
-                <div class="card-body">
-                  <h5 class="card-title">
-                    What programming languages do you use?
-                  </h5>
-                  <div class="chart-container">
-                    <app-doughnut-chart [shadow]="true" [options]="chartDataConfig.doughnutChartOptions"
-                      [data]="codingChartData">
-                    </app-doughnut-chart>
-                  </div>
+                  </form>
                 </div>
               </div>
             </div>
           </div>
         </tab>
+
+       
       </tabset>
     </div>
+
   </ng-container>
+ 
   <ng-template #loading>
     <div class="loading"></div>
   </ng-template>
 </div>
 
-
 <app-application-menu>
   <div class="p-4 h-100">
     <div class="scroll">
-      <h3 class="text-muted  ">{{ 'leave.summary' | translate }}</h3>
+      <h3 class="text-muted">{{ "leave.summary" | translate }}</h3>
       <ul class="list-unstyled mb-5">
         <li class="active">
           <a href="javascript:;">
@@ -440,17 +612,20 @@
           </a>
         </li>
       </ul>
-      <p class="text-muted text-small">{{ 'leave.lasttime' | translate }}</p>
+      <p class="text-muted text-small">{{ "leave.lasttime" | translate }}</p>
       <ul class="list-unstyled mb-5">
-        <li> <a href="javascript:;">
-            <i class="simple-icon-check"></i>ลากิจ </a>
+        <li>
+          <a href="javascript:;"> <i class="simple-icon-check"></i>ลากิจ </a>
         </li>
-        <li> <a href="javascript:;">
-            <i class="simple-icon-calendar"></i>12/04/62 - 12/04/62 </a>
+        <li>
+          <a href="javascript:;">
+            <i class="simple-icon-calendar"></i>12/04/62 - 12/04/62
+          </a>
         </li>
-        <li> <a href="javascript:;">
-            <i class="simple-icon-calculator"></i> 0.5 </a>
-
+        <li>
+          <a href="javascript:;">
+            <i class="simple-icon-calculator"></i> 0.5
+          </a>
         </li>
       </ul>
     </div>

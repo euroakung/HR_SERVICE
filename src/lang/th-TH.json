@@ -18,7 +18,9 @@
     "username": "ชื่อผู้ใช้",
     "code": "รีเซ็ตรหัส",
     "username-required": "กรุณาระบุชื่อผู้ใช้",
-    "password-required": "กรุณาระบุรหัสผ่าน"
+    "password-required": "กรุณาระบุรหัสผ่าน",
+    "account": "การตั้งค่าบัญชีทั่วไป" ,
+    "sing-out": "ออกจากระบบ" 
   },
   "person": {
     "name": "ชื่อ-สกุล",

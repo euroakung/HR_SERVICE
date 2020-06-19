@@ -1,21 +1,32 @@
 import {  Component, OnInit, OnDestroy,ElementRef, HostListener, ViewChild, AfterContentInit , Renderer2 } from '@angular/core';
-import { ISurvey, SurveyService } from '../survey/survey.service';
-import { Colors } from 'src/app/constants/colors.service';
-import { ChartService } from 'src/app/components/charts/chart.service';
+ 
+import { Colors } from 'src/app/constants/colors.service'; 
 import { ScrollableComponent } from 'src/app/views/app/ui/datatables/scrollable/scrollable.component'; 
 import { ColumnMode, DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
-import { ApiService, IProduct } from 'src/app/data/api.service';
+ 
 import { SelectDataService, Person } from 'src/app/containers/forms/select/select.data.service';
 import { ContextMenuComponent } from 'ngx-contextmenu';
 import { FormGroup ,FormBuilder, FormControl, Validators } from '@angular/forms';
-import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
+import { catchError, debounceTime, distinctUntilChanged, switchMap, tap, filter, map } from 'rxjs/operators';
 import { concat, Observable, of, Subject } from 'rxjs';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { thBeLocale } from 'ngx-bootstrap/locale';  
-import {timeRequired} from 'src/app/containers/form-validations/custom.validators'; 
-import { LeaveService, ILeave }  from '../leave/leave.service'
+import { timeRequired} from 'src/app/containers/form-validations/custom.validators'; 
+
 import { ActivatedRoute  } from '@angular/router';
+import { allowedNodeEnvironmentFlags } from 'process'; 
+import { DatePipe } from '@angular/common';
+
+import { approvE } from 'src/app/models';
+import { LeaveService, ILeave }  from '../leave/leave.service'
+import { ApiAproverService } from 'src/app/data/approver.service'; 
+import { ApiCountryService } from 'src/app/data/country.service';
+
+import { AuthenticationService } from 'src/app/shared/authentication.service';
+
+
+
 defineLocale('th-be', thBeLocale);
 @Component({ 
   selector: 'app-leave-detail',
@@ -28,22 +39,16 @@ export class LeaveDetailComponent implements OnInit, OnDestroy {
   @ViewChild('form') form: FormGroup;
   @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
   @ViewChild(DatatableComponent) table: DatatableComponent;
-  chartDataConfig: ChartService;
-  productDataConfig: ApiService;
-
+ 
+public loading = false;
   leaveItems = [];
-  colors = Colors.getColors();
-
-
-
   ColumnMode = ColumnMode;
   headerHeight = 30;
   rowHeight = 60;
   itemsPerPage = 15;
   currentPage = 0;
 
-  isLoading: boolean;
-  rows: IProduct[] = [];
+  isLoading: boolean; 
   columns = [
     { prop: 'title', name: 'Title' },
     { prop: 'sales', name: 'Sales' },
@@ -57,139 +62,26 @@ export class LeaveDetailComponent implements OnInit, OnDestroy {
   selectAllState = '';
   endOfTheList = false;
 
+
+  //https://localhost:44346/api/Approver
+  //githubUsers$: Observable<any[]>;
+  //this.githubUsers$ = this.selectDataService.getGithubAccounts('anjm');
   
-  ageChartData = {
-    labels: ['12-24', '24-30', '30-40', '40-50', '50-60'],
-    datasets: [{
-      label: '',
-      borderColor: [
-        this.colors.themeColor1,
-        this.colors.themeColor2,
-        this.colors.themeColor3,
-        this.colors.themeColor4,
-        this.colors.themeColor5
-      ],
-      backgroundColor: [
-        this.colors.themeColor1_10,
-        this.colors.themeColor2_10,
-        this.colors.themeColor3_10,
-        this.colors.themeColor4_10,
-        this.colors.themeColor5_10
-      ],
-      borderWidth: 2,
-      data: [15, 25, 20, 30, 14]
-    }]
-  };
+  selectedCountry: Observable<any[]>;
 
-  genderChartData = {
-    labels: ['Male', 'Female', 'Other'],
-    datasets: [{
-      label: '',
-      borderColor: [
-        this.colors.themeColor1,
-        this.colors.themeColor2,
-        this.colors.themeColor3
-      ],
-      backgroundColor: [
-        this.colors.themeColor1_10,
-        this.colors.themeColor2_10,
-        this.colors.themeColor3_10
-      ],
-      borderWidth: 2,
-      data: [85, 45, 20]
-    }]
-  };
+  selectedApprover:Observable<any[]>;
+  selectedleader: Observable<any[]>; 
+;
+  selecteddirector: Observable<any[]>;;
 
-  workChartData = {
-    labels: [
-      'Employed for wages',
-      'Self-employed',
-      'Looking for work',
-      'Retired'
-    ],
-    datasets: [{
-      label: '',
-      borderColor: [
-        this.colors.themeColor1,
-        this.colors.themeColor2,
-        this.colors.themeColor3,
-        this.colors.themeColor4
-      ],
-      backgroundColor: [
-        this.colors.themeColor1_10,
-        this.colors.themeColor2_10,
-        this.colors.themeColor3_10,
-        this.colors.themeColor4_10
-      ],
-      borderWidth: 2,
-      data: [15, 25, 20, 8]
-    }]
-  };
-
-  codingChartData = {
-    labels: ['Python', 'JavaScript', 'PHP', 'Java', 'C#'],
-    datasets: [{
-      label: '',
-      borderColor: [
-        this.colors.themeColor1,
-        this.colors.themeColor2,
-        this.colors.themeColor3,
-        this.colors.themeColor4,
-        this.colors.themeColor5
-      ],
-      backgroundColor: [
-        this.colors.themeColor1_10,
-        this.colors.themeColor2_10,
-        this.colors.themeColor3_10,
-        this.colors.themeColor4_10,
-        this.colors.themeColor4_10
-      ],
-      borderWidth: 2,
-      data: [15, 25, 20, 8, 25]
-    }]
-  };
-
-
-
-/////select///
-
-// people: Person[];
-// selectedPersonId = '5a15b13c36e7a7f00cf0d7cb';
-// selectedPeople = [{ name: 'Karyn Wright' }];
-
-// selectedCompanies;
-// companies: any[] = [];
-// companiesNames = ['Uber', 'Microsoft', 'Flexigen'];
-
-// peopleAsync: Observable<Person[]>;
-// selectedPersonIdAsync = '5a15b13c605403381eec5019';
-
-// githubUsers$: Observable<any[]>;
-// selectedUsers = [];
-
-// peopleLoading = false;
-
-// peopleAsyncSearch: Observable<Person[]>;
-// peopleLoadingAsyncSearch = false;
-// peopleInputAsyncSearch = new Subject<string>();
-// selectedPersonsAsyncSearch = [{ name: 'Karyn Wright' }, { name: 'Other' }];
-
-/////select///
-
-  constructor(private localeService: BsLocaleService, private surveyService: SurveyService, private chartService: ChartService, private renderer: Renderer2, private apiService: ApiService, private el: ElementRef, private selectDataService: SelectDataService, private leaveService:LeaveService, private formBuilder: FormBuilder,private route:  ActivatedRoute) {
-    // this.chartDataConfig = this.chartService;
-    // this.people = selectDataService.people;
-  //  console.log(locales);
+ pipe = new DatePipe('en-US');
+ now = Date.now();
+  datePipe: any;
+  facultyId = '';
+  constructor(private localeService: BsLocaleService,   private renderer: Renderer2,   private el: ElementRef, private selectDataService: SelectDataService, private leaveService:LeaveService, private formBuilder: FormBuilder,private route:  ActivatedRoute ,private apiAproverService :ApiAproverService,private apiCountry :ApiCountryService,private authenticationService :AuthenticationService) {
+   
    this.localeService.use('th-be');
-  //   this.maxDate.setDate(this.maxDate.getDate() + 7);
-  //   this.bsRangeValue = [this.bsValue, this.maxDate];
   
-  // this.formExternalComponents = new FormGroup({
-  //   name: new FormControl(null, [Validators.required, Validators.minLength(2), Validators.pattern('^[A-Za-z]+$')]),
-  //   ngSelect: new FormControl(null, [Validators.required]),
-  //   basicTime: new FormControl(null, [timeRequired()]),
-  //   basicDate: new FormControl(null, [Validators.required]) 
-  // });
  
   }
 
@@ -197,13 +89,85 @@ export class LeaveDetailComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    ///  this.renderer.addClass(document.body, 'right-menu');
+   
+//alert(this.pipe.transform(this.now, 'dd/MM/yyyy'));
+this.facultyId =    this.authenticationService.currentUserValue.facultyId 
+
+ this.selectedleader = this.apiAproverService.getApprove('8,9,10,15',this.facultyId,false) ; //หัวหน้างาน
+ this.selecteddirector = this.apiAproverService.getApprove('4,5,6,7,16,17,18,19',this.facultyId,false) ; //ผอ/คณบดี
+ this.selectedApprover = this.apiAproverService.getApprove('4,5,6,7,16,17,18,19', this.facultyId,true) ; //อธิก่าร/รองอธิการ /ผอ/คณบดี
+ /// this.selectedApprover =  this.apiAproverService.getApprove() ;
+
+ 
+
+
+  this.selectedCountry = this.apiCountry.getCountry() ;
+
+
     this.route.paramMap.subscribe(params => {
-      var id = params.get('id');
+  
+       
+    //  console.log(this.leaveItems);
+    // alert(data.json());
+    // alert( this.leaveItems['endDate']);
+
+    this.registerForm = this.formBuilder.group({
+      txtwrite: ['มหาวิทยาลัยพะเยา', Validators.required],
+      subject: ['', Validators.required],
+      inform: ['', Validators.required],
+      leave_aboard: [false, Validators.required],
+      txtCause: ['', Validators.required], 
+      leave_country: ['',""],
+      date_from: ['', [Validators.required]],
+      leave_fullday_date_from: [true,""],
+      date_end: ['', Validators.required],
+      leave_fullday_date_end: [true,""],
+      leader: ['', Validators.required],
+      director: ['',""],
+      approve: ['',Validators.required],
+      leave_contact: ['', Validators.required] 
+    } );
+        
+
       
-      this.getItems(id);
+    
+
+    this.leaveService.getLeaveItemsById(params.get('id')).subscribe(res => {
+      var data = res[0];
+     
+      this.registerForm.get('txtwrite').setValue(data.writing);
+      this.registerForm.get('subject').setValue(data.leaveType);
+      this.registerForm.get('inform').setValue(data.inform);
+      this.registerForm.get('txtCause').setValue(data.cause);
+      
+      this.registerForm.get('leave_aboard').setValue(((data.leaveAbroad == 'T')?true:false));
+      this.registerForm.get('date_from').setValue(this.pipe.transform(new Date(data.startDate),"dd/MM/yyyy"));//dd/mm/yyyy
+      this.registerForm.get('date_end').setValue(this.pipe.transform(new Date(data.startDate),"dd/MM/yyyy"));//dd/mm/yyyy
+ 
+      this.registerForm.get('leave_fullday_date_from').setValue(((data.startDateFull == 'T')?true:false));
+      this.registerForm.get('leave_fullday_date_end').setValue(((data.endDateFull == 'T')?true:false));
+
+
+      this.registerForm.get('leader').setValue(data.cause);
+      this.registerForm.get('director').setValue(data.cause);
+      this.registerForm.get('approve').setValue(data.cause);
+      this.registerForm.get('leave_contact').setValue(data.leaveContact);
+      
+
+
+
+
+
+
     });
-    this.onScroll(null);
+
+   
+      // console.log(this.leaveItems);
+     //  alert(this.leaveItems.length)
+ 
+    });
+ 
+   
     
 
       // this.companiesNames.forEach((c, i) => {
@@ -218,26 +182,11 @@ export class LeaveDetailComponent implements OnInit, OnDestroy {
 
       ///////form/////
 
-      this.registerForm = this.formBuilder.group({
-        txtwrite: ['มหาวิทยาลัยพะเยา', Validators.required],
-        subject: ['', Validators.required],
-        inform: ['1', Validators.required],
-        leave_aboard: [false, Validators.required],
-        leave_country: ['',""],
-        date_from: ['', [Validators.required]],
-        leave_fullday_date_from: [true,""],
-        date_end: ['', Validators.required],
-        leave_fullday_date_end: [true,""],
-        leader: ['', Validators.required],
-        director: ['',""],
-        approve: ['',Validators.required],
-        leave_contact: ['', Validators.required] 
-    } );
+      
         ///////form/////
     ///select///
 
-    // this.peopleAsync = this.selectDataService.getPeople();
-    // this.githubUsers$ = this.selectDataService.getGithubAccounts('anjm');
+  
 
     // this.peopleLoading = true;
     // this.selectDataService.getPeople().subscribe(x => {
@@ -263,7 +212,7 @@ export class LeaveDetailComponent implements OnInit, OnDestroy {
   get f() { return this.registerForm.controls; }
 
     onSubmit() {
-        this.submitted = true; 
+    this.submitted = true; 
  ///check leave_aboard condition
  if (this.registerForm.value.leave_aboard){ 
   this.registerForm.get('leave_country').setValidators([Validators.required]); 
@@ -341,118 +290,14 @@ export class LeaveDetailComponent implements OnInit, OnDestroy {
     this.screenHeight = window.innerHeight;
   }
   @HostListener('window:scroll', ['$event'])
-  onScroll(event?) {
-    const pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
-    const max = document.documentElement.scrollHeight;
-    this.getScreenSize();
-    if ((!this.isLoading && pos === max) || (!this.isLoading && event === null)) {
-      const limit = this.itemsPerPage;
-      this.currentPage++;
-      this.loadPage(limit);
-    }
-  }
-  
-  loadPage(limit: number) {
-    this.isLoading = true;
-   var daa =  this.apiService.getProducts(limit, this.currentPage).subscribe(
-      data => {
-        if (data.status) {
-          this.isLoading = false;
-          const rows = [...this.rows, ...data.data];
-          this.rows = rows;
-          this.temp = [...this.rows, ...data.data];
-          this.setSelectAllState();
-        } else {
-          this.endOfTheList = true;
-        }
-      },
-      error => {
-        this.isLoading = false;
-      }
-    );
-    console.log(daa);
-  }
-
-  updateFilter(event) {
-    const val = event.target.value.toLowerCase().trim();
-    const count = this.columns.length;
-    const keys = Object.keys(this.temp[0]);
-    const temp = this.temp.filter(item => {
-      for (let i = 0; i < count; i++) {
-        if ((item[keys[i]] && item[keys[i]].toString().toLowerCase().indexOf(val) !== -1) || !val) {
-          return true;
-        }
-      }
-    });
-    this.rows = temp;
-    this.table.offset = 0;
-  }
 
 
-  searchFilter(event) {
-    const val = event.target.value.toLowerCase().trim();
-    const count = this.columns.length;
-    const keys = Object.keys(this.temp[0]);
-    const temp = this.temp.filter(item => {
-      for (let i = 0; i < count; i++) {
-        if ((item[keys[i]] && item[keys[i]].toString().toLowerCase().indexOf(val) !== -1) || !val) {
-          return true;
-        }
-      }
-    });
-    this.rows = temp;
-    this.table.offset = 0;
-  }
 
-  onSelect({ selected }) {
-    this.selected.splice(0, this.selected.length);
-    this.selected.push(...selected);
-    this.setSelectAllState();
-  }
-
-  setSelectAllState() {
-    if (this.selected.length === this.rows.length) {
-      this.selectAllState = 'checked';
-    } else if (this.selected.length !== 0) {
-      this.selectAllState = 'indeterminate';
-    } else {
-      this.selectAllState = '';
-    }
-  }
-
-  selectAllChange($event) {
-    if ($event.target.checked) {
-      this.selected = [...this.rows];
-    } else {
-      this.selected = [];
-    }
-    this.setSelectAllState();
-  }
-
-
-  
 
   ngOnDestroy() {
   //  this.renderer.removeClass(document.body, 'right-menu');
   }
-  getItems(id: string) { 
-    this.leaveService.getLeaveItemsById(id).subscribe((data: any[])=>{
-      console.log(data);
-      this.leaveItems = data;
-     /// console.log(  this.leaveItems);
-      
+   
 
-    }) ;
-  
-  } ;
-
-  addNewQuestion() {
-    // this.currentSurvey.questions.push({
-    //   id: this.currentSurvey.questions.length + 1,
-    //   title: 'New Question',
-    //   question: 'Question',
-    //   answerType: 0,
-    //   answers: []
-    // });
-  }
+ 
 } 

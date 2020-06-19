@@ -31,6 +31,10 @@ export class LoginComponent implements OnInit {
   }
   get f() { return this.loginForm.controls; }
   onSubmit() {
+    this.authService.logout();
+
+
+
     this.submitted = true;
 
     if (this.loginForm.invalid) {
@@ -56,12 +60,11 @@ export class LoginComponent implements OnInit {
     //   this.notifications.create('Error', error.message, NotificationType.Bare, { theClass: 'outline primary', timeOut: 6000, showProgressBar: false });
     // });
 
-    this.authService.signIn(this.loginForm.value.txtUserName, this.loginForm.value.txtPassword)
+    this.authService.login(this.loginForm.value.txtUserName, this.loginForm.value.txtPassword)
       .pipe(first())
       .subscribe(
         (res: any) => { 
-          localStorage.setItem('token', res.token);
-          localStorage.setItem('userId', res.userId);
+          
           this.router.navigate(['/']);
         },
         error => {  

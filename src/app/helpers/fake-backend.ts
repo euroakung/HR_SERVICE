@@ -1,24 +1,46 @@
-﻿import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
 import { User } from '../models';
-import { environment } from '../../environments/environment';
-const users: User[] = [{ id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User' }];
-
+const users: User[] = [{ id: 12;
+        username: "",
+        password: "Admin",
+        firstName: "Admin",
+        lastName: "Admin",
+        token?: "Admin",
+        isLoggedIn :true,
+        role: "Admin"}];
+//const users: User[] = [];
+// export class User {
+//     id: number;
+//     username: string;
+//     password: string;
+//     firstName: string;
+//     lastName: string;
+//     token?: string;
+//     isLoggedIn :boolean;
+//     role: string;    
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
-    readonly BaseURI  =  `${environment.apiUrl}/api/Authent`
+    
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const { url, method, headers, body } = request;
-      
+        // githubUsers$: Observable<any[]>;
+        // selectedUsers = [];
+        // this.githubUsers$ = this.selectDataService.getGithubAccounts('anjm');
         // wrap in delayed observable to simulate server api call
         return of(null)
             .pipe(mergeMap(handleRoute))
             .pipe(materialize()) // call materialize and dematerialize to ensure delay even if an error is thrown (https://github.com/Reactive-Extensions/RxJS/issues/648)
             .pipe(delay(500))
             .pipe(dematerialize());
+
+
+
+
+
 
         function handleRoute() {
             switch (true) {
@@ -36,20 +58,21 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         function authenticate() {
             const { username, password } = body;
-                    
-            // ///get User 
-              const user =  this.http.post(this.BaseURI, { username, password });;
-              console.log(user);
-           
+
+
+            const user = users.find(x => x.username === username && x.password === password);
+
+
+
+
             if (!user) return error('Username or password is incorrect');
             return ok({
-                id: user.userId,
-                username: user.splNameth,
+                id: user.id,
+                username: user.username,
                 firstName: user.firstName,
                 lastName: user.lastName,
-                token: user.token
+                token: 'fake-jwt-token'
             })
-            
         }
 
         function getUsers() {
