@@ -13,12 +13,3 @@
 }
 
 
-export class approvE {
-    approvE_ID: number;
-    approvE_NAME1: string;
-    approvE_NAME2: string;
-    approvE_STATUS: string; 
-    approvE_USE_ID: string;
-    facultY_ID: string;
-    recorD_STATUS: string; 
-}

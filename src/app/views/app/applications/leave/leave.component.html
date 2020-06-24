@@ -1,10 +1,7 @@
-<div class="row app-row">
+<div class="row app-row2">
     <div class="col-12">
         <app-heading></app-heading>
         <div class="top-right-button-container text-zero">
-
-
-           
 
 
             <div dropdown>
@@ -97,7 +94,7 @@
                              
                         </a>
                         <p class="mb-1      w-10 w-xs-100">{{'leave.amount' | translate}}   {{ item.leaveDay }}   {{'leave.day' | translate}} </p>
-                        <p class="mb-1    w-20 w-xs-150"> {{'leave.days' | translate}}   {{item.startDate | date}}   -  {{item.endDate | date}} </p>
+                        <p class="mb-1    w-20 w-xs-150"> {{'leave.days' | translate}}   {{item.startDate | date: 'dd/MM/yyyy'}}   -  {{item.endDate | date: 'dd/MM/yyyy'}} </p>
                         <div class="w-10 w-xs-300"><span class="badge badge-pill badge-success"> อนุญาต  </span></div>
                     </div>
                     <div    class="custom-control custom-checkbox pl-1 align-self-center mr-4 c-pointer"> 
@@ -118,7 +115,7 @@
     </ng-template>
 </div>
   <app-add-new-leave-modal #addNewModalRef></app-add-new-leave-modal>  
-<app-application-menu>
+<!-- <app-application-menu>
     <div class="p-4 h-100">
         <div class="scroll">
             <h3 class="text-muted  ">{{ 'leave.summary' | translate }}</h3>
@@ -182,4 +179,4 @@
           
         </div>
     </div>
-</app-application-menu>
+</app-application-menu> -->

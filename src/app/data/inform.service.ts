@@ -20,7 +20,7 @@ export interface IInformResponse {
 
 @Injectable({ providedIn: 'root' })
 //export class ApiService {
-  export class ApiInfromService {  
+  export class ApiInformService {  
   constructor(private http: HttpClient, private authenticationService: AuthenticationService) { }
 
 

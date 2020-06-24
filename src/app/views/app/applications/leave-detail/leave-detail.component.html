@@ -18,7 +18,7 @@
 
                   <h2 class="mb-4">{{ "leave.detail" | translate }}</h2>
 
-                  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                  <form [formGroup]="registerForm" (ngSubmit)="onSubmit2()">
                     <div class="form-row">
                       <div class="form-group col-lg-12 mb-4">
                         <label>{{ "leave.write-at" | translate }}</label>
@@ -85,7 +85,7 @@
                           ><span>{{ "leave.inform" | translate }}</span></label
                         >
                         <ng-select
-                          [items]="selectedApprover | async"
+                          [items]="selectedInform | async"
                           [multiple]="false"
                           bindLabel="approvE_NAME1"
                           bindValue="approvE_ID"
@@ -125,7 +125,7 @@
                           class="invalid-feedback"
                         >
                           <div *ngIf="f.inform.errors.required">
-                            {{ "forms.state" | translate }} is selectedUsers
+                            {{ "message.please-choose" | translate }}
                           </div>
                         </div>
                       </div>
@@ -200,9 +200,7 @@
                           class="invalid-feedback"
                         >
                           <div *ngIf="f.leave_country.errors.required">
-                            {{ f.leave_aboard.value }}
-                            {{ "leave.selectedCountry" | translate }} is
-                            selectedCountry
+                            {{ "message.please-choose" | translate }}
                           </div>
                         </div>
                       </div>
@@ -387,9 +385,7 @@
                           class="invalid-feedback"
                         >
                           <div *ngIf="f.leader.errors.required">
-                            {{ f.leave_aboard.value }}
-                            {{ "leave.selectedCountry" | translate }} is
-                            selectedCountry
+                            {{ "message.please-choose" | translate }}
                           </div>
                         </div>
                       </div>
@@ -409,7 +405,7 @@
                         [ngClass]="{
                           'is-invalid': submitted && f.director.invalid
                         }"
-                        required
+                        *ngIf="{ required: f.leave_aboard.value }" 
                       >
                         <ng-template
                           ng-label-tmp
@@ -434,51 +430,14 @@
                           {{ item.spclPersonNameTh }} ({{ item.execName }} )
                         </ng-template>
                       </ng-select>  
-                        <!-- <ng-select
-                          [items]="githubUsers$ | async"
-                          [multiple]="false"
-                          bindLabel="login"
-                          bindValue="login"
-                          formControlName="director"
-                          class="form-control"
-                          [ngClass]="{
-                            'is-invalid': submitted && f.director.invalid
-                          }"
-                          *ngIf="{ required: f.leave_aboard.value }"
-                        >
-                          <ng-template
-                            ng-label-tmp
-                            let-item="item"
-                            let-clear="clear"
-                          >
-                            <span class="ng-value-label"
-                              ><img
-                                [src]="item.avatar_url"
-                                width="12px"
-                                height="12px"
-                              />
-                              {{ item.login }}</span
-                            >
-                          </ng-template>
-                          <ng-template ng-option-tmp let-item="item">
-                            <img
-                              [src]="item.avatar_url"
-                              width="12px"
-                              height="12px"
-                            />
-                            {{ item.login }}
-                          </ng-template>
-                        </ng-select> -->
-                        <div
-                          *ngIf="submitted && f.director.invalid"
-                          class="invalid-feedback"
-                        >
-                          <div *ngIf="f.director.errors.required">
-                            {{ f.leave_aboard.value }}
-                            {{ "leave.selectedCountry" | translate }} is
-                            selectedCountry
-                          </div>
-                        </div>
+                      <div
+                      *ngIf="submitted && f.director.invalid"
+                      class="invalid-feedback"
+                    >
+                      <div *ngIf="f.director.errors.required">
+                        {{ "message.please-choose" | translate }}
+                      </div>
+                    </div> 
                       </div>
                     </div>
 
@@ -527,25 +486,24 @@
                           class="invalid-feedback"
                         >
                           <div *ngIf="f.approve.errors.required">
-                            {{ f.approve.value
-                            }}{{ "leave.selectedCountry" | translate }} is
-                            selectedCountry
+                            {{ "message.please-choose" | translate }}
                           </div>
                         </div>
                       </div>
                     </div>
+
                     <div class="form-row">
-                      <div class="card-body text-center">
-                        <button class="btn btn-success mb-1 mr-2">
-                          <i class="iconsminds-save"></i>
-                          {{ "leave.leave_save" | translate }}
-                        </button>
-                        <button class="btn btn-danger mb-1 ml-2">
-                          <i class="simple-icon-trash"></i>
-                          {{ "leave.leave_cancel" | translate }}
-                        </button>
+                      <div class=" card-body text-center ">
+                        <button class="btn btn-success mb-1 mr-2"> <i class="iconsminds-save"></i>
+                          {{'leave.leave_save' | translate}}</button>
+                        <a class="btn btn-danger mb-1 ml-2 "  > <i class="simple-icon-trash"></i>
+                          {{'leave.leave_cancel' | translate}}</a>
                       </div>
                     </div>
+
+
+
+ 
                   </form>
                 </div>
               </div>
