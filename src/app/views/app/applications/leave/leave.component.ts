@@ -10,6 +10,12 @@ import { LeaveService, ILeave } from "./leave.service";
 import { ContextMenuComponent } from "ngx-contextmenu";
 import { DatatableComponent,ColumnMode } from '@swimlane/ngx-datatable';
 import { AddNewLeaveSickModalComponent } from 'src/app/containers/applications/leave-modal/add-leave-modal/add-new-sick-modal.component';
+
+
+import { AddNewLeaveHelpWifeModalComponent } from 'src/app/containers/applications/leave-modal/add-leave-modal/add-new-helpwife-modal.component';
+import { AddNewLeaveOrdinationModalComponent } from 'src/app/containers/applications/leave-modal/add-leave-modal/add-new-ordination-modal.component';
+
+
 @Component({
   selector: "app-leave",
   templateUrl: "./leave.component.html",
@@ -43,6 +49,20 @@ export class LeaveComponent implements OnInit, OnDestroy {
   @ViewChild('addNewSickModalRef', { static: true }) 
   addNewSickModalRef: AddNewLeaveSickModalComponent;
 
+
+  @ViewChild('addNewOrdinationModalRef', { static: true }) 
+  addNewOrdinationModalRef: AddNewLeaveOrdinationModalComponent;
+
+
+
+  @ViewChild('addNewHelpWifeModalRef', { static: true }) 
+  addNewHelpWifeModalRef: AddNewLeaveHelpWifeModalComponent;
+
+
+  // @ViewChild('addNewHajjModalRef', { static: true }) 
+  // addNewHajjModalRef: AddNewLeaveSickModalComponent;
+
+
   rows: any[] = [];
   expanded: any = {};
   timeout: any;  
@@ -72,19 +92,25 @@ export class LeaveComponent implements OnInit, OnDestroy {
   }
 
   showAddNewModal(leavetype: number) { 
-    if  (leavetype == 2){  
+    if  (leavetype == 2 ||leavetype == 4  ){  
+      ///ลาป่วย ลาคลอดบุตร
       this.addNewSickModalRef.show(leavetype); 
-    }else{
+    }else  if  (leavetype == 5 ){  
+       ///ลาอุปสมบท
+      this.addNewOrdinationModalRef.show(leavetype); 
+    }  else  if  (leavetype == 6 ){  
+      ///ลาพิธีฮัจย์
+    // this.addNewHajjModalRef.show(leavetype); 
+   }else  if  (leavetype == 11   ){  
+      //ลาไปช่วยเหลือภริยาที่คลอดบุตร
+      this.addNewHelpWifeModalRef.show(leavetype); 
+    }else  if  (leavetype == 1 ||leavetype == 3   ){
+      ///ลากิจส่วนตัว 3 ลาพักผ่อน 1
+      alert ('dasdasd');
       this.addNewModalRef.show(leavetype); 
     }
   }
-
-
-
-
-
-
-
+ 
   isSelected(p: ILeave) {
     return this.selected.findIndex((x) => x.id === p.RequestId) > -1;
   }

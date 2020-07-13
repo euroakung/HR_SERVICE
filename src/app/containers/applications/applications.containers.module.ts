@@ -5,7 +5,11 @@ import {  CollapseModule  } from 'ngx-bootstrap/collapse';
 import { FormsModule } from '@angular/forms';
 import { AddNewTodoModalComponent } from './add-new-todo-modal/add-new-todo-modal.component';
 import { AddNewLeaveModalComponent } from './leave-modal/add-leave-modal/add-new-leave-modal.component';
-import { AddNewLeaveSickModalComponent } from './leave-modal/add-leave-modal/add-new-sick-modal.component';
+import { AddNewLeaveHelpWifeModalComponent } from './leave-modal/add-leave-modal/add-new-helpwife-modal.component';
+import { AddNewLeaveOrdinationModalComponent } from './leave-modal/add-leave-modal/add-new-ordination-modal.component';
+import { AddNewLeaveSickModalComponent } from './leave-modal/add-leave-modal/add-new-sick-modal.component'; 
+
+
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AddNewSurveyModalComponent } from './add-new-survey-modal/add-new-survey-modal.component';
@@ -27,6 +31,8 @@ import { FormValidationsContainersModule } from 'src/app/containers/form-validat
     AddNewSurveyModalComponent,
     AddNewLeaveModalComponent,
     AddNewLeaveSickModalComponent,
+    AddNewLeaveOrdinationModalComponent,
+    AddNewLeaveHelpWifeModalComponent,
     QuestionBuilderComponent
   ],
   imports: [
@@ -50,6 +56,8 @@ import { FormValidationsContainersModule } from 'src/app/containers/form-validat
     AddNewSurveyModalComponent,
     AddNewLeaveModalComponent,
     AddNewLeaveSickModalComponent,
+    AddNewLeaveOrdinationModalComponent,
+    AddNewLeaveHelpWifeModalComponent,
     QuestionBuilderComponent
   ]
 })
