@@ -4,17 +4,24 @@ import {
   HttpParams
 } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthenticationService } from '../shared/authentication.service';
+import { IServiceResponse } from './service-response';
   
 
 export interface IApproveResponse {  
-    approvE_ID: string;
-    approvE_NAME1: string;
-    facultY_ID: string;
-    approvE_USE_ID: string;
-    approvE_NAME2: string;
+  personId: string;
+  nameTh: string;
+  execId: string;
+  execName: string;
+  execDetail: string;
+  facultyId: string;
+  facultyNameTh: string;
+  execIndex: string;
+  spclPersonNameTh: string;
+  approveStatus: string;
+
 }
 
 @Injectable({ providedIn: 'root' })
@@ -26,24 +33,16 @@ export interface IApproveResponse {
 
   getApprove(execId:string,facultyId :string,approve:boolean) {
     const url = environment.apiUrl + '/api/approver';
-    return this.http.post<any[]>(url,{"ExecId": execId,"FacultyId":facultyId,"ApproveStatus":approve});
+    return this.http.post<IApproveResponse[]>(url,{"ExecId": execId,"FacultyId":facultyId,"ApproveStatus":approve});
   }
-
-
-
-  // getApprove1() {
-  //   const url = environment.apiUrl + '/api/Approver';
-  //   let params = new HttpParams();
-   
  
-  //   return this.http.post(url, { "FACULTY_ID":this.authenticationService.currentUserValue.facultyId })
-  //     .pipe(
-  //       map((res: IApproveResponse) => {
-  //         return res;
-  //       }),
-  //       catchError(errorRes => {
-  //         return throwError(errorRes);
+  // getApprove(execId:string,facultyId :string,approve:boolean) : Observable<IApproveResponse[]> {
+  //   const url = environment.apiUrl + '/api/approver';
+  //   return  this.http.post(url,{"ExecId": execId,"FacultyId":facultyId,"ApproveStatus":approve}).pipe(
+  //       map((res: IServiceResponse<IApproveResponse>) => { 
+  //       // console.log("response[survey.service][getSurveyItems]", res);
+  //        return res.data;
   //       })
   //     );
-  // }
+  // } 
 }

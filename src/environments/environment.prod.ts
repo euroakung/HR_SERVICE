@@ -29,5 +29,11 @@ export const environment = {
     messagingSenderId: '16217062888',
     appId: '1:16217062888:web:6b08232ca0c9662fedb85d',
     measurementId: 'G-8ETT79WRRN'
-  }
+  },
+  approverList: {
+    leader: '8,9,10,15',
+    director: '4,5,6,7,16,17,18,19',
+    approve: '4,5,6,7,16,17,18,19'
+
+  } 
 };

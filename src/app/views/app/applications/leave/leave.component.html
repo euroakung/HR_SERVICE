@@ -75,6 +75,35 @@
         </div> 
     </div>
     <ng-container *ngIf="leaveItems; else loading">
+
+        <!-- <div class="col-12" *ngFor="let item of leaveItems; let i=index">
+            <div [ngClass]="{'card d-flex mb-3 card': true, 'active':isSelected(item)}">
+                <div class="d-flex flex-grow-1 min-width-zero">
+                    <div
+                        class="align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center card-body">
+                        <a class="list-item-heading mb-0 truncate w-40 w-xs-100  mb-1 mt-1" id="toggler1"
+                            href="javascript:;">
+                            <i
+                                [ngClass]="{'heading-icon':true, 'simple-icon-refresh' : item.status === 'COMPLETED', 'simple-icon-check' : item.status !== 'COMPLETED' }"></i>
+                            <span class="align-middle d-inline-block">{{ item.title }}</span></a>
+                        <p class="mb-1 text-muted text-small w-15 w-xs-100">{{ item.category }}</p>
+                        <p class="mb-1 text-muted text-small w-15 w-xs-100">{{ item.date }}</p>
+                        <div class="w-15 w-xs-100"><span
+                                [class]="'badge badge-pill badge-' + item.labelColor">{{ item.label }}</span></div>
+                    </div>
+                    <div class="custom-control custom-checkbox pl-1 align-self-center mr-4">
+                        <div class="itemCheck mb-0 custom-checkbox custom-control">
+                            <input type="checkbox" class="custom-control-input" [id]="'customCheck'+i"
+                                [checked]="isSelected(item)" (change)="onSelect(item)">
+                            <label class="custom-control-label" [for]="'customCheck'+i"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body pt-1">
+                    <p class="mb-0">{{ item.detail }}</p>
+                </div>
+            </div>
+        </div> -->
         <div class="col-12" *ngFor="let item of leaveItems; let i=index">
             <div [ngClass]="{'card d-flex mb-3 card': true, 'active':isSelected(item)}">
                 <div class="d-flex flex-grow-1 min-width-zero">
@@ -83,18 +112,16 @@
                         <a class=" mb-0 truncate w-20 w-xs-100  mb-1 mt-1" id="toggler1" 
                         [routerLink]="'/app/applications/leave/'+ item.requestId">
                             <i
-                                [ngClass]="{'heading-icon':true, 'simple-icon-user-following' : item.status === 'COMPLETED', 'iconsminds-stethoscope' : item.status !== 'COMPLETED' }"></i>
-        
-                            <span  class="align-middle d-inline-block">  {{ item.leaveTypeName }} </span>
-                        
+                                [ngClass]="{'heading-icon':true, 'simple-icon-user-following' : item.status === 'COMPLETED', 'iconsminds-stethoscope' : item.status !== 'COMPLETED' }"></i>        
+                            <span  class="align-middle d-inline-block">{{item.leaveTypeName}} </span>                        
                         </a>
-                        <a class="  mb-0 truncate w-20   mb-1 mt-1" id="toggler1" 
-                            [routerLink]="'/app/applications/leave/'+ item.id">
+                        <a class=" mb-0 truncate w-20   mb-1 mt-1" id="toggler1"  title="{{ item.requestBarcodenum }} "
+                            [routerLink]="'/app/applications/leave/'+  item.requestId">
                                 <i  class="iconsminds-qr-code"></i> <span class="align-middle" > {{'leave.leave-code' | translate}} :   {{ item.requestBarcodenum }}  </span>
                              
                         </a>
-                        <p class="mb-1      w-10 w-xs-100">{{'leave.amount' | translate}}   {{ item.leaveDay }}   {{'leave.day' | translate}} </p>
-                        <p class="mb-1    w-20 w-xs-150"> {{'leave.days' | translate}}   {{item.startDate | date: 'dd/MM/yyyy'}}   -  {{item.endDate | date: 'dd/MM/yyyy'}} </p>
+                        <p class="mb-1 w-10 w-xs-100">{{'leave.amount' | translate}}   {{ item.leaveDay }}   {{'leave.day' | translate}} </p>
+                        <p class="mb-1 w-20 w-xs-150"> {{'leave.days' | translate}}   {{item.startDate | date: 'dd/MM/yyyy'}}   -  {{item.endDate | date: 'dd/MM/yyyy'}} </p>
                         <div class="w-10 w-xs-300"><span class="badge badge-pill badge-success"> อนุญาต  </span></div>
                     </div>
                     <div    class="custom-control custom-checkbox pl-1 align-self-center mr-4 c-pointer"> 
@@ -103,18 +130,20 @@
                     <div     class="custom-control custom-checkbox pl-1 align-self-center mr-4 c-pointer"> 
                         <a    class="btn btn-xs btn-danger mb-1 ml-2 " (click)="showAddNewModal(10)"> <i class="simple-icon-trash"></i> {{'leave.leave-delete' | translate}}</a>  
                     </div>
+                </div> 
+                <div class="card-body pt-1">
+                    <p class="mb-0"><a class=" mb-0 truncate w-20   mb-1 mt-1" id="toggler1" >{{'leave.cause' | translate}} :  {{ item.cause }} </a> ,  <a class=" mb-0 truncate w-20   mb-1 mt-1" id="toggler1" > {{'leave.leave_contact' | translate}} :</a>  {{ item.leaveContact }}  </p> 
                 </div>
-                <!-- <div class="card-body pt-1">
-                    <p class="mb-0">{{ item.detail }}</p>
-                </div> -->
+            
             </div>
-        </div>
+        </div>  
     </ng-container>
     <ng-template #loading>
         <div class="loading"></div>
     </ng-template>
 </div>
   <app-add-new-leave-modal #addNewModalRef></app-add-new-leave-modal>  
+    <app-add-new-sick-modal #addNewSickModalRef></app-add-new-sick-modal>   
 <!-- <app-application-menu>
     <div class="p-4 h-100">
         <div class="scroll">

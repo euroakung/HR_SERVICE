@@ -5,9 +5,11 @@ import {
   OnDestroy,
   Renderer2,
 } from "@angular/core";
-import { AddNewLeaveModalComponent } from "src/app/containers/applications/add-new-leave-modal/add-new-leave-modal.component";
+import { AddNewLeaveModalComponent } from  "src/app/containers/applications/leave-modal/add-leave-modal/add-new-leave-modal.component";
 import { LeaveService, ILeave } from "./leave.service";
 import { ContextMenuComponent } from "ngx-contextmenu";
+import { DatatableComponent,ColumnMode } from '@swimlane/ngx-datatable';
+import { AddNewLeaveSickModalComponent } from 'src/app/containers/applications/leave-modal/add-leave-modal/add-new-sick-modal.component';
 @Component({
   selector: "app-leave",
   templateUrl: "./leave.component.html",
@@ -28,11 +30,22 @@ export class LeaveComponent implements OnInit, OnDestroy {
   itemOrder = "เลขคำขอ";
   itemOptionsOrders = ["ประเภทการลา", "วันที่ลา", "สถานะ", "เลขคำขอ"];
   displayOptionsCollapsed = false;
+ 
   //rows = ILeave.slice(0, 20).map(({ title, sales, stock, category, id }) => ({ title, sales, stock, category, id }));
   leaveItems = [];
+  @ViewChild('myTable') table: any;
   @ViewChild("basicMenu") public basicMenu: ContextMenuComponent;
-  @ViewChild("addNewModalRef", { static: true })
-  addNewModalRef: AddNewLeaveModalComponent;
+
+
+  @ViewChild("addNewModalRef", { static: true })    
+  addNewModalRef: AddNewLeaveModalComponent ; 
+
+  @ViewChild('addNewSickModalRef', { static: true }) 
+  addNewSickModalRef: AddNewLeaveSickModalComponent;
+
+  rows: any[] = [];
+  expanded: any = {};
+  timeout: any;  
 
   constructor(
     private leaveService: LeaveService,
@@ -42,6 +55,9 @@ export class LeaveComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.renderer.addClass(document.body, "right-menu");
     this.getItems();
+    this.fetch((data) => {
+      this.rows = data;
+    });
   }
 
   ngOnDestroy() {
@@ -55,9 +71,19 @@ export class LeaveComponent implements OnInit, OnDestroy {
     
   }
 
-  showAddNewModal(leavetype: number) {
-    this.addNewModalRef.show(leavetype);
+  showAddNewModal(leavetype: number) { 
+    if  (leavetype == 2){  
+      this.addNewSickModalRef.show(leavetype); 
+    }else{
+      this.addNewModalRef.show(leavetype); 
+    }
   }
+
+
+
+
+
+
 
   isSelected(p: ILeave) {
     return this.selected.findIndex((x) => x.id === p.RequestId) > -1;
@@ -105,5 +131,43 @@ export class LeaveComponent implements OnInit, OnDestroy {
       //   }
       // }
     });
+  }
+  // fetch(cb) {
+  //   const req = new XMLHttpRequest();
+  //   req.open('GET', `http://swimlane.github.io/ngx-datatable/assets/data/company.json`);
+
+  //   req.onload = () => {
+  //     const data = JSON.parse(req.response);
+  //     cb(data);
+  //   };
+
+  //   req.send();
+  // }
+
+  onPage(event) {
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      console.log('paged!', event);
+    }, 100);
+  }
+
+  fetch(cb) {
+    const req = new XMLHttpRequest();
+    req.open('GET',`http://swimlane.github.io/ngx-datatable/assets/data/company.json`);
+
+    req.onload = () => {
+      cb(JSON.parse(req.response));
+    };
+
+    req.send();
+  }
+
+  toggleExpandRow(row) {
+    console.log('Toggled Expand Row!', row);
+    this.table.rowDetail.toggleExpandRow(row);
+  }
+
+  onDetailToggle(event) {
+    console.log('Detail Toggled', event);
   }
 }

@@ -41,6 +41,11 @@
               "./node_modules/angular-calendar/css/angular-calendar.css",
               "./node_modules/ngx-lightbox/lightbox.css",
               "./node_modules/video.js/dist/video-js.min.css",
+                 "./node_modules/@swimlane/ngx-datatable/index.css",
+              "./node_modules/@swimlane/ngx-datatable/themes/material.scss",
+              "./node_modules/@swimlane/ngx-datatable/themes/dark.scss",
+              "./node_modules/@swimlane/ngx-datatable/themes/bootstrap.scss",
+              "./node_modules/@swimlane/ngx-datatable/assets/icons.css",
               {
                 "input": "src/assets/css/sass/themes/vien.light.blueyale.scss",
                 "bundleName": "light.blue.yale",

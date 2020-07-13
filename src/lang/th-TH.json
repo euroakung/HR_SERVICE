@@ -375,11 +375,7 @@
     "status": "สถานะ",
     "summary":"ข้อมูลสรุปวันลา",
     "lasttime":"ลาครั้งล่าสุด",
-    "cancel": "ยกเลิก",
-    "leave-delete": "ลบข้อมูลใบลา",
-    "leave-cancel": "ยกเลิกวันลา",
-    "submit": "บันทึก",
-    "action": "Action",
+   
     "another-action": "Another action",
     "display-options": "ตัวเลือกการแสดงผล",
     "orderby": "เรียงโดย : ",
@@ -415,7 +411,9 @@
     "leader": "หัวหน้าส่วนงาน",
     "director": "ผู้อำนวยการ/คณบดี",
     "approve": "ผู้อนุญาต",
-
+ 
+    
+     
     "comment_leader": "ความเห็นหัวหน้า",
     "comment_director": "ความเห็นผู้อำนวยการ",
     "comment_president": "ความเห็นอธิการบดี",
@@ -424,11 +422,18 @@
     "leave_reject": "ไม่อนุญาต",
     
     "leave_open": "เปิดดูเอกสารประกอบ",
-    "leave_save": "บันทึก",
-    "leave_cancel": "ยกเลิก",
-    "leave_edit": "แก้ไข",
+    "documentation": "เอกสารประกอบ",
+    
     "least6characters": "รหัสผ่านต้องไม่น้อยกว่า 6 ตัวอักษร",
-    "search": "ค้นหา"
+    "search": "ค้นหา",
+   
+    "sending": "ส่งใบลา",
+    "edit": "แก้ไขข้อมูลใบลา",
+    "cancel": "ยกเลิก",
+    "leave-delete": "ลบข้อมูลใบลา",
+    "leave-cancel": "ยกเลิกวันลา",
+    "submit": "บันทึก",
+    "action": "Action"
     
   }, 
    "approveleave": {
@@ -905,6 +910,7 @@
   ,
   "message":{
     "please-choose": "กรุณาเลือก",
+    "required": "กรุณากรอกข้อมูล",
     "is-required": "Step 2",
     "step-name-3": "Step 3",
     "step-desc-1": "First step description",
