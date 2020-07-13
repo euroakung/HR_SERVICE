@@ -112,13 +112,11 @@ selectedApprover:Observable<any[]>;
       Inform: ["1", Validators.required],
       // LeaveAbroad: [false,""],
       Cause: ["",Validators.required],
-      Country: ["",""],
-      StartDate: ["", [Validators.required]],
-      StartDateFull: [true,""],
-      EndDate: ["", Validators.required],
-      EndDateFull: [true,""],
-      leader: ["", Validators.required],
-      // director: ["",""],
+      BirthDate: ["",Validators.required],
+      StartDate: ["", [Validators.required]], 
+      EndDate: ["", Validators.required], 
+      WifeName: ["", Validators.required], 
+      leader: ["", Validators.required], 
       approve: ["",Validators.required],
       Contact: ["", Validators.required] ,
       documentation: [''],
@@ -152,23 +150,7 @@ selectedApprover:Observable<any[]>;
 
     onSubmit() {
         this.submitted = true; 
-     //   console.log(this.registerForm.value);
- ///check LeaveAbroad condition
-//  if (this.registerForm.value.LeaveAbroad){ 
-//   this.registerForm.get('Country').setValidators([Validators.required]); 
-//   this.registerForm.get('Country').updateValueAndValidity();
-//   // this.registerForm.get('director').setValidators([Validators.required]); 
-//   // this.registerForm.get('director').updateValueAndValidity(); 
-//   }else{
-//     this.registerForm.get('Country').clearValidators();
-//     this.registerForm.get('Country').updateValueAndValidity(); 
-//     // this.registerForm.get('director').clearValidators();
-//     // this.registerForm.get('director').updateValueAndValidity();
-//   }
- 
-
-
-
+    
  
         if (this.registerForm.invalid) {
          
@@ -198,28 +180,11 @@ selectedApprover:Observable<any[]>;
       //  alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
     }
 
-    onChangeAboard() { 
-///check LeaveAbroad condition
-// if (this.registerForm.value.LeaveAbroad){ 
-//   this.registerForm.get('Country').setValidators([Validators.required]); 
-//   this.registerForm.get('Country').updateValueAndValidity();
-//   this.registerForm.get('director').setValidators([Validators.required]); 
-//   this.registerForm.get('director').updateValueAndValidity(); 
-//   }else{
-//     this.registerForm.get('Country').clearValidators();
-//     this.registerForm.get('Country').updateValueAndValidity(); 
-//     this.registerForm.get('director').clearValidators();
-//     this.registerForm.get('director').updateValueAndValidity();
-//   }
-
-
+    onChangeAboard() {  
       // stop here if form is invalid
       if (this.registerForm.invalid) {
           return;
-      }
-
-      // display form values on success
-    //  alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
+      } 
   }
     onReset() {
       this.submitted = false;

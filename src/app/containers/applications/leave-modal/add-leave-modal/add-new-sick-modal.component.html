@@ -14,7 +14,7 @@
           <input type="text" class="form-control" formControlName="Writing"
             [ngClass]="{ 'is-invalid':submitted && f.Writing.invalid }">
           <div *ngIf=" submitted && f.Writing.invalid" class="invalid-feedback">
-            <div *ngIf="f.Writing.errors.required">First Name is required</div>
+            <div *ngIf="f.Writing.errors.required">   {{ "message.required" | translate }}  </div>
           </div>
         </div>
       </div>
